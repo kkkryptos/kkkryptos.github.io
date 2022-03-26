@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="/images/logo.png">
-  <title>归档</title>
+  <title>editor.md</title>
   
     
       <meta 
         property="og:title" 
-        content="归档">
+        content="editor.md">
     
     
       <meta 
         property="og:url" 
-        content="http://kkkryptos.github.io/archives/2022/index.html">
+        content="http://kkkryptos.github.io/MyMarkdown/index.html">
     
     
       <meta 
@@ -238,49 +238,90 @@
       <div class="section-wrap">
         <div class="container">
           <div class="columns">
-            <main class="main-column">
-<div class="card card-content">
-  <h1 class="widget-title">归档</h1>
+            <main class="main-column"><link rel="stylesheet" href="<%- theme.libs.editormdCss %>">
+
+<style type="text/css">
+    /* don't remove. */
+    .page-cover {
+        /* height: 75vh; */
+        height: 940px;
+    }
+
+    .editormd {
+      top: 76px;
+    }
+
+    pre {
+      padding: 0;
+    }
+
+    .editormd-menu > li.divider {
+      overflow: inherit; 
+      padding: 5px 0px;
+    }
+
+    header .nav-transparent {    /*修改当行兰样式*/
+        background-image: linear-gradient(to right, #bf30a3 0%, #0f9d58 100%);
+    }
+
+    .editormd-form input[type="text"], 
+    .editormd-form input[type="number"] {
+        height: 15px;
+        margin: 0px;
+        font-size: 14px;
+    }
+
+    .editormd-form input[type="text"] {
+        display: inline-block;
+        width: 246px;
+    }
+
+    .editormd-dialog-container label {
+      font-size: 14px;
+      color: #444;
+  }
+
+    .editormd-dialog-container select {
+      display: inline-block;
+      background-color: rgba(255,255,255,0.9);
+      width: 182px;
+      border-radius: 2px;
+      height: 25px;
+  }
+
+</style>
+
+<div class="pd-header page-cover">
+  <div class="editormd" id="my-editormd">
+    <textarea style="display:none;"></textarea>
+  </div>
 </div>
-<div class="archive-timeline">
-  
-  
-    
-      <div class="archive-timeline-tag"><span>2022</span></div>
-      
-    
-    <div class="archive-timeline-item">
-      <div class="archive-timeline-post">
-        <div class="card card-content">
-          <div class="archive-timeline-post-date">2022-03-26</div>
-          <div class="archive-timeline-post-content">
-            <a 
-              href="/2022/03/26/%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%B5%8C%E5%85%A5%E5%BC%8F14%E5%A4%A9%E5%80%92%E8%AE%A1%E6%97%B6/"
-              class="archive-timeline-post-item">
-              蓝桥杯嵌入式14天倒计时
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    
-    <div class="archive-timeline-item">
-      <div class="archive-timeline-post">
-        <div class="card card-content">
-          <div class="archive-timeline-post-date">2022-02-11</div>
-          <div class="archive-timeline-post-content">
-            <a 
-              href="/2022/02/11/hello-world/"
-              class="archive-timeline-post-item">
-              Hello World
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-</div>
+
+<script src="<%- theme.libs.js.jquery %>"></script>
+<script src="<%- theme.libs.js.editormdJs %>"></script>
+<script  type="text/javascript">
+  var myEditor;
+  $(function() {  
+      myEditor = editormd("my-editormd", {
+        width   : "98%",
+        height  : 840,
+        syncScrolling : "single",
+        path    : "/libs/editorMd/lib/",
+       // theme: "dark",
+      //  previewTheme: "dark",
+      //  editorTheme: "pastel-on-dark",
+        markdown: '',
+        codeFold: true,
+        emoji: true,
+        taskList: true,
+        tocm: true,         // Using [TOCM]
+        tex: true,                   // 开启科学公式TeX语言支持，默认关闭
+        flowChart: true,             // 开启流程图支持，默认关闭
+        sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+        htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启   
+    });
+  });
+</script>
 </main>
             <aside class="left-column">
               
