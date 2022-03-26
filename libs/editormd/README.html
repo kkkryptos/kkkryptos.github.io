@@ -1,0 +1,79 @@
+<h1 id="Editor-md"><a href="#Editor-md" class="headerlink" title="Editor.md"></a>Editor.md</h1><p><img src="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png"></p>
+<p><img src="https://img.shields.io/github/stars/pandao/editor.md.svg"><br><img src="https://img.shields.io/github/forks/pandao/editor.md.svg"><br><img src="https://img.shields.io/github/tag/pandao/editor.md.svg"><br><img src="https://img.shields.io/github/release/pandao/editor.md.svg"><br><img src="https://img.shields.io/github/issues/pandao/editor.md.svg"><br><img src="https://img.shields.io/bower/v/editor.md.svg"></p>
+<p><strong>Editor.md</strong> : The open source embeddable online markdown editor (component), based on CodeMirror &amp; jQuery &amp; Marked.</p>
+<h3 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h3><ul>
+<li>Support Standard Markdown &#x2F; CommonMark and GFM (GitHub Flavored Markdown);</li>
+<li>Full-featured: Real-time Preview, Image (cross-domain) upload, Preformatted text&#x2F;Code blocks&#x2F;Tables insert, Code fold, Search replace, Read only, Themes, Multi-languages, L18n, HTML entities, Code syntax highlighting…;</li>
+<li>Markdown Extras : Support <a href="https://pandao.github.io/editor.md/examples/toc.html">ToC (Table of Contents)</a>, <a href="https://pandao.github.io/editor.md/examples/emoji.html">Emoji</a>, <a href="https://pandao.github.io/editor.md/examples/task-lists.html">Task lists</a>, <a href="https://pandao.github.io/editor.md/examples/@links.html">@Links</a>…;</li>
+<li>Compatible with all major browsers (IE8+), compatible Zepto.js and iPad;</li>
+<li>Support <a href="https://pandao.github.io/editor.md/examples/html-tags-decode.html">decode &amp; fliter of the HTML tags &amp; attributes</a>;</li>
+<li>Support <a href="https://pandao.github.io/editor.md/examples/katex.html">TeX (LaTeX expressions, Based on KaTeX)</a>, <a href="https://pandao.github.io/editor.md/examples/flowchart.html">Flowchart</a> and <a href="https://pandao.github.io/editor.md/examples/sequence-diagram.html">Sequence Diagram</a> of Markdown extended syntax;</li>
+<li>Support AMD&#x2F;CMD (Require.js &amp; Sea.js) Module Loader, and Custom&#x2F;define editor plugins;</li>
+</ul>
+<p><a href="https://pandao.github.io/editor.md/en.html">README &amp; Examples (English)</a></p>
+<hr>
+<p><strong>Editor.md</strong> 是一款开源的、可嵌入的 Markdown 在线编辑器（组件），基于 CodeMirror、jQuery 和 Marked 构建。</p>
+<p><img src="https://pandao.github.io/editor.md/examples/images/editormd-screenshot.png" alt="editormd-screenshot" title="editormd-screenshot"></p>
+<h4 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h4><ul>
+<li>支持通用 Markdown &#x2F; CommonMark 和 GFM (GitHub Flavored Markdown) 风格的语法，也可<a href="https://pandao.github.io/editor.md/examples/change-mode.html">变身为代码编辑器</a>；</li>
+<li>支持实时预览、图片（跨域）上传、预格式文本&#x2F;代码&#x2F;表格插入、代码折叠、跳转到行、搜索替换、只读模式、自定义样式主题和多语言语法高亮等功能；</li>
+<li>支持 <a href="https://pandao.github.io/editor.md/examples/toc.html">ToC（Table of Contents）</a>、<a href="https://pandao.github.io/editor.md/examples/emoji.html">Emoji表情</a>、<a href="https://pandao.github.io/editor.md/examples/task-lists.html">Task lists</a>、<a href="https://pandao.github.io/editor.md/examples/@links.html">@链接</a>等 Markdown 扩展语法；</li>
+<li>支持 TeX 科学公式（基于 <a href="https://pandao.github.io/editor.md/examples/katex.html">KaTeX</a>）、流程图 <a href="https://pandao.github.io/editor.md/examples/flowchart.html">Flowchart</a> 和 <a href="https://pandao.github.io/editor.md/examples/sequence-diagram.html">时序图 Sequence Diagram</a>;</li>
+<li>支持<a href="https://pandao.github.io/editor.md/examples/html-tags-decode.html">识别和解析 HTML 标签，并且支持自定义过滤标签及属性解析</a>，具有可靠的安全性和几乎无限的扩展性；</li>
+<li>支持 AMD &#x2F; CMD 模块化加载（支持 <a href="https://pandao.github.io/editor.md/examples/use-requirejs.html">Require.js</a> &amp; <a href="https://pandao.github.io/editor.md/examples/use-seajs.html">Sea.js</a>），并且支持<a href="https://pandao.github.io/editor.md/examples/define-plugin.html">自定义扩展插件</a>；</li>
+<li>兼容主流的浏览器（IE8+）和 <a href="https://pandao.github.io/editor.md/examples/use-zepto.html">Zepto.js</a>，且支持 iPad 等平板设备；</li>
+</ul>
+<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h4><p><a href="https://pandao.github.io/editor.md/examples/index.html">https://pandao.github.io/editor.md/examples/index.html</a></p>
+<h4 id="Download-amp-install"><a href="#Download-amp-install" class="headerlink" title="Download &amp; install"></a>Download &amp; install</h4><p><a href="https://github.com/pandao/editor.md/archive/master.zip">Github download</a></p>
+<p>Bower install :</p>
+<pre><code class="shell">bower install editor.md
+</code></pre>
+<h4 id="Usages"><a href="#Usages" class="headerlink" title="Usages"></a>Usages</h4><p>HTML：</p>
+<pre><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;editormd.min.css&quot; /&gt;
+&lt;div id=&quot;editormd&quot;&gt;
+    &lt;textarea style=&quot;display:none;&quot;&gt;### Hello Editor.md !&lt;/textarea&gt;
+&lt;/div&gt;
+</code></pre>
+<blockquote>
+<p>Tip: Editor.md can auto append <code>&lt;textarea&gt;</code> tag;</p>
+</blockquote>
+<p>javascript:</p>
+<pre><code class="html">&lt;script src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;editormd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    $(function() {
+        var editor = editormd(&quot;editormd&quot;, {
+            path : &quot;../lib/&quot; // Autoload modules mode, codemirror, marked... dependents libs path
+        });
+
+        /*
+        // or
+        var editor = editormd({
+            id   : &quot;editormd&quot;,
+            path : &quot;../lib/&quot;
+        });
+        */
+    });
+&lt;/script&gt;
+</code></pre>
+<p>Using modular script loader :</p>
+<ul>
+<li><a href="https://github.com/pandao/editor.md/tree/master/examples/use-requirejs.html">Using Require.js</a></li>
+<li><a href="https://github.com/pandao/editor.md/tree/master/examples/use-seajs.html">Using Sea.js</a></li>
+</ul>
+<h4 id="Dependents"><a href="#Dependents" class="headerlink" title="Dependents"></a>Dependents</h4><ul>
+<li><a href="http://codemirror.net/" title="CodeMirror">CodeMirror</a></li>
+<li><a href="https://github.com/chjj/marked" title="marked">marked</a></li>
+<li><a href="http://jquery.com/" title="jQuery">jQuery</a></li>
+<li><a href="http://fontawesome.io/" title="FontAwesome">FontAwesome</a></li>
+<li><a href="https://github.com/sindresorhus/github-markdown-css" title="github-markdown.css">github-markdown.css</a></li>
+<li><a href="http://khan.github.io/KaTeX/" title="KaTeX">KaTeX</a></li>
+<li><a href="http://code.google.com/p/google-code-prettify/" title="prettify.js">prettify.js</a></li>
+<li><a href="http://raphaeljs.com/" title="Rephael.js">Rephael.js</a></li>
+<li><a href="http://adrai.github.io/flowchart.js/" title="flowchart.js">flowchart.js</a></li>
+<li><a href="http://bramp.github.io/js-sequence-diagrams/" title="sequence-diagram.js">sequence-diagram.js</a></li>
+<li><a href="https://github.com/pandao/prefixes.scss" title="Prefixes.scss">Prefixes.scss</a></li>
+</ul>
+<h4 id="Changes"><a href="#Changes" class="headerlink" title="Changes"></a>Changes</h4><p><a href="https://github.com/pandao/editor.md/blob/master/CHANGE.md">Change logs</a></p>
+<h4 id="License"><a href="#License" class="headerlink" title="License"></a>License</h4><p>The MIT License.</p>
+<p>Copyright (c) 2015 Pandao</p>
