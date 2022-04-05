@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="不对称">
+  <link 
+    rel="icon" 
+    href="/images/logo.png">
+  <title>如何写博客</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="如何写博客">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://kkkryptos.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="images/author.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-04-05">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-04-05">
+      <meta 
+        property="og:article:author" 
+        content="kkkryptos">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="hexo">
+        
+          <meta 
+            property="og:article:tag" 
+            content="博客">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="/images/logo.png" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">不对称</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      如何写博客
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-04-05T08:53:25.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-04-05</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/" 
+          class="post-meta-link">
+          摘录博客
+        </a>
+      
+        <a 
+          href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/" 
+          class="post-meta-link">
+          hexo博客
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>1.3k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/hexo/" 
+            class="post-meta-link">
+            hexo
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/%E5%8D%9A%E5%AE%A2/" 
+            class="post-meta-link">
+            博客
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h3 id="1、创建一个md文件"><a href="#1、创建一个md文件" class="headerlink" title="1、创建一个md文件"></a>1、创建一个md文件</h3><p>md文件即为Markdowm文件，通过以下命令创建：</p>
+<pre class="highlight"><span class="line">$ hexo new &lt;title&gt;</span><br></pre>
+
+<p>eg.</p>
+<pre class="highlight"><span class="line">$ hexo new &quot;如何写博客&quot;</span><br></pre>
+
+<p>将在D:\<blog>\source_posts_posts下创建一个同名文件夹及.md</blog></p>
+<h3 id="2、布局（layout）"><a href="#2、布局（layout）" class="headerlink" title="2、布局（layout）"></a>2、布局（layout）</h3><ul>
+<li>创建md文件时，我们可以指定布局</li>
+</ul>
+<pre class="highlight"><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre>
+
+<p>eg.</p>
+<pre class="highlight"><span class="line">$ hexo new page &quot;我的页面&quot;</span><br></pre>
+
+
+
+<ul>
+<li>布局有三种：<code>post</code>（文章）、<code>draft</code>（草稿）、<code>page</code>（页面）</li>
+</ul>
+<p>在新建文件时，Hexo 会根据 <code>scaffolds</code> 文件夹内相对应的文件（可以理解为模板）来建立md文件：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-2683cfb7e862381166e609ef37210a99_720w.png" alt="img" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic2.zhimg.com/80/v2-2683cfb7e862381166e609ef37210a99_720w.png" class="lozad post-image"></p>
+<ul>
+<li>如果没有指定布局类型，则为默认布局<code>post</code>，可以在站点配置文件修改 <code>default_layout</code> 参数来修改默认布局。</li>
+<li>当我们创建不同布局的md文件时，它们会存储在不同路径：</li>
+</ul>
+<p><img src="https://pic3.zhimg.com/80/v2-81c1aa7b55f1ae6767b3563127a22156_720w.jpg" alt="img" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic3.zhimg.com/80/v2-81c1aa7b55f1ae6767b3563127a22156_720w.jpg" class="lozad post-image"></p>
+<blockquote>
+<p>对于独立页面来说，Hexo 会创建一个以标题为名字的目录，并在目录中放置一个 <code>index.md</code> 文件，页面布局顾名思义就是用来DIY我们博客页面的。</p>
+</blockquote>
+<h3 id="3-草稿（draft）"><a href="#3-草稿（draft）" class="headerlink" title="3.草稿（draft）"></a>3.草稿（draft）</h3><p><code>draft</code>这种布局在建立时会被保存到 <code>source/_drafts</code> 文件夹中，但不会显示在页面上，如果我们不想某一篇文章显示在页面上，那么就可以把它移动到<code>_drafts</code>文件夹中。</p>
+<ul>
+<li>我们可在启动服务器时加上 <code>--draft</code> 参数来查看草稿。</li>
+</ul>
+<pre class="highlight"><span class="line">$ hexo server --draft</span><br></pre>
+
+<ul>
+<li>还可以在站点配置文件中把 <code>render_drafts</code> 参数设为 <code>true</code> 来预览草稿。</li>
+<li>我们可以通过 <code>publish</code> 命令将草稿发布文章或者页面，它将会被移动到指定的文件夹。</li>
+</ul>
+<pre class="highlight"><span class="line">$ hexo publish [layout] &lt;title&gt;</span><br></pre>
+
+<h3 id="4-Front-matter"><a href="#4-Front-matter" class="headerlink" title="4.Front-matter"></a>4.Front-matter</h3><p>当我们创建一个md文件后，打开后会看到一些内容，这些称为<code>Front-matter</code>，它是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
+<pre class="highlight"><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span> <span class="comment"># 标题就是我们上面创建的时候指定的名字</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2013</span><span class="string">/7/13</span> <span class="number">20</span><span class="string">:46:25</span> <span class="comment"># 文件创建的时间</span></span><br><span class="line"><span class="meta">---</span></span><br></pre>
+
+<blockquote>
+<p>在<code>Typora</code>中我们在md文件的首行（必须是第一行）输入<code>---</code> ，然后按回车就可以插入<code>Front-matter</code>了。</p>
+</blockquote>
+<p>Front-matter预定义参数</p>
+<pre class="highlight"><span class="line">layout  布局  默认为true，如果你不想你的文章被处理，可以设置为false</span><br><span class="line">title  标题  标题会显示在最上方居中位置     </span><br><span class="line">date  建立日期    如果不指定则为默认值-文件创建日期，可以自定义。</span><br><span class="line">update  更新日期  如果不指定则为默认值-文件修改后重新生成静态文件的日期。</span><br><span class="line">comments  是否开启文章的评论功能 默认值为true</span><br><span class="line">tags  标签（不适用于页面page布局）</span><br><span class="line">categoreies  分类（不适用于页面page布局）</span><br><span class="line">permalink  覆盖文章网址</span><br><span class="line">keywords  仅用于 meta 标签和 Open Graph 的关键词（不推荐使用）</span><br></pre>
+
+<h3 id="为文章添加分类与标签"><a href="#为文章添加分类与标签" class="headerlink" title="为文章添加分类与标签"></a>为文章添加分类与标签</h3><p>只有文章（post布局）支持分类和标签，需要在<code>Front-matter</code>中设置。分类有层级关系，标签没有。</p>
+<p>举个例子：<br>1）下面文章它的标签是：Hexo、博客<br>2）分类是： 个人博客 &gt; Hexo博客<br>3）“Hexo博客” 是 “个人博客” 的子分类</p>
+<pre class="highlight"><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">个人博客（第一层级）</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Hexo博客（第二层级）</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Hexo</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">博客</span></span><br></pre>
+
+<h3 id="为文章添加多个分类"><a href="#为文章添加多个分类" class="headerlink" title="为文章添加多个分类"></a>为文章添加多个分类</h3><p>1）下面文章属于三个分类：日常 &gt; 生活，日常 &gt; 随想，日记<br>2）其中生活、随想为日常的子分类，日常和日记为同级分类</p>
+<pre class="highlight"><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">日常</span>, <span class="string">生活</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">日常</span>, <span class="string">随想</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">日记</span>]</span><br></pre>
+
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li><strong>清除缓存：</strong><code>hexo clean</code></li>
+<li><strong>生成静态文件：</strong><code>hexo generate</code>可简写为 <code>hexo g</code></li>
+<li><strong>启动服务器：</strong><code>hexo server</code>或者 <code>hexo s</code> 常用参数：<code>-p（--port）</code>重设端口</li>
+<li><strong>部署：</strong><code>hexo deploy</code>可简写为<code>hexo d</code>，用于将网站部署到服务器上。（暂时用不到，目前都是在本地，后面我们将博客托管到<code>GitHub Pages</code>或<code>Gitee Pages</code>时才会用到此命令）<br>常用参数：<code>-g（--generate）</code>，<code>hexo d -g</code>部署前预先生成静态文件，等同于 <code>hexo g -d</code></li>
+</ul>
+<p><strong>一般发布文章或者修改博客后需要这些操作：</strong>清除缓存&gt;生成静态文件&gt;启动服务器，测试没问题后再部署。</p>
+<pre class="highlight"><span class="line"><span class="comment">// 我们可以写成一条命令</span></span><br><span class="line">$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br><span class="line">$ hexo d</span><br></pre>
+
+<h3 id="自定义命令"><a href="#自定义命令" class="headerlink" title="自定义命令"></a>自定义命令</h3><p>npm 可以在项目<em>package.json</em>里面自定义脚本命令</p>
+<pre class="highlight"><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">&quot;deploy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo clean &amp;&amp; hexo g -d &quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;server&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre>
+
+<p>执行npm run可以查看script的list</p>
+<img src="/2022/04/05/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/image-20220405172208904.png" class title="image-20220405172208904" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/04/05/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/image-20220405172208904.png" class="lozad post-image">
+
+<p>在写完一篇博客我们可以先启动本地服务器来检查效果</p>
+<pre class="highlight"><span class="line">$ npm run server</span><br></pre>
+
+<p>没问题后，部署到服务器命令为</p>
+<pre class="highlight"><span class="line">$ npm run deploy</span><br></pre>
+
+
+
+<h4 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h4><p>一个npm脚本可以执行多个任务，这些任务之间可以指定不同的执行顺序。</p>
+<pre class="highlight"><span class="line">&#x27;&amp;&#x27; 并行执行顺序，同时执行</span><br><span class="line">&quot;dev&quot;:&quot;node test.js &amp; webpack&quot;</span><br><span class="line"></span><br><span class="line">&#x27;&amp;&amp;&#x27;继发顺序，执行前面之后才可以执行后面</span><br><span class="line">&quot;dev&quot;:&quot;node test.js &amp;&amp; webpack&quot;</span><br></pre>
+
+
+
+<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><pre class="highlight"><span class="line">https://www.cnblogs.com/congcong1/p/10588151.html</span><br><span class="line">https://zhuanlan.zhihu.com/p/156915260</span><br></pre>
+
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            kkkryptos
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://kkkryptos.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/">
+            http://kkkryptos.github.io/2022/04/05/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/03/26/%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%B5%8C%E5%85%A5%E5%BC%8F14%E5%A4%A9%E5%80%92%E8%AE%A1%E6%97%B6/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">蓝桥杯嵌入式14天倒计时 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAmd%E6%96%87%E4%BB%B6"><span class="toc-text">1、创建一个md文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B8%83%E5%B1%80%EF%BC%88layout%EF%BC%89"><span class="toc-text">2、布局（layout）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%8D%89%E7%A8%BF%EF%BC%88draft%EF%BC%89"><span class="toc-text">3.草稿（draft）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Front-matter"><span class="toc-text">4.Front-matter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE"><span class="toc-text">为文章添加分类与标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AA%E5%88%86%E7%B1%BB"><span class="toc-text">为文章添加多个分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-text">参考博客</span></a></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="images/author.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">kkkryptos</p>
+<p class="author-description">勤记录！</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>3</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>4</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>4</span>
+    <span>标签</span>
+  </a>
+</div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAmd%E6%96%87%E4%BB%B6"><span class="toc-text">1、创建一个md文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B8%83%E5%B1%80%EF%BC%88layout%EF%BC%89"><span class="toc-text">2、布局（layout）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%8D%89%E7%A8%BF%EF%BC%88draft%EF%BC%89"><span class="toc-text">3.草稿（draft）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Front-matter"><span class="toc-text">4.Front-matter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE"><span class="toc-text">为文章添加分类与标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AA%E5%88%86%E7%B1%BB"><span class="toc-text">为文章添加多个分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-text">参考博客</span></a></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
+        <div class="categories-list-item">
+          竞赛
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
+        <div class="categories-list-item">
+          竞赛/嵌入式
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客/hexo博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/%E5%8D%9A%E5%AE%A2/" 
+        title="博客">
+        <div class="tags-list-item">博客</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/stm32/" 
+        title="stm32">
+        <div class="tags-list-item">stm32</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+        title="嵌入式">
+        <div class="tags-list-item">嵌入式</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAmd%E6%96%87%E4%BB%B6"><span class="toc-text">1、创建一个md文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B8%83%E5%B1%80%EF%BC%88layout%EF%BC%89"><span class="toc-text">2、布局（layout）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%8D%89%E7%A8%BF%EF%BC%88draft%EF%BC%89"><span class="toc-text">3.草稿（draft）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Front-matter"><span class="toc-text">4.Front-matter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE"><span class="toc-text">为文章添加分类与标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AA%E5%88%86%E7%B1%BB"><span class="toc-text">为文章添加多个分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-text">参考博客</span></a></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-04-05</div>
+        <a href="/2022/04/05/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/"><div class="recent-posts-item-content">如何写博客</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-03-26</div>
+        <a href="/2022/03/26/%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%B5%8C%E5%85%A5%E5%BC%8F14%E5%A4%A9%E5%80%92%E8%AE%A1%E6%97%B6/"><div class="recent-posts-item-content">蓝桥杯嵌入式14天倒计时</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-02-11</div>
+        <a href="/2022/02/11/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020 -
+          
+          2022
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          不对称
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer> 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+  </body>
+</html>
