@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="/images/logo.png">
-  <title>嵌入式系统学习03 MPU基础</title>
+  <title>MySQL学习01-介绍与安装</title>
   
     
       <meta 
         property="og:title" 
-        content="嵌入式系统学习03 MPU基础">
+        content="MySQL学习01-介绍与安装">
     
     
       <meta 
         property="og:url" 
-        content="http://kkkryptos.github.io/2022/04/05/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/index.html">
+        content="http://kkkryptos.github.io/2022/04/10/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%8C%89%E7%85%A7/index.html">
     
     
       <meta 
@@ -42,10 +42,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-04-05">
+        content="2022-04-10">
       <meta 
         property="og:article:modified_time" 
-        content="2022-04-06">
+        content="2022-04-10">
       <meta 
         property="og:article:author" 
         content="kkkryptos">
@@ -53,11 +53,11 @@
         
           <meta 
             property="og:article:tag" 
-            content="嵌入式">
+            content="数据库">
         
           <meta 
             property="og:article:tag" 
-            content="stm32">
+            content="MySQL">
         
       
     
@@ -268,36 +268,30 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      嵌入式系统学习03 MPU基础
+      MySQL学习01-介绍与安装
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-04-05T11:05:23.000Z">
+    <time datetime="2022-04-09T16:05:12.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-04-05</span>
+      <span>2022-04-10</span>
     </time>
     
       <span class="dot"></span>
       
         <a 
-          href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/" 
+          href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" 
           class="post-meta-link">
-          专业课
-        </a>
-      
-        <a 
-          href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
-          class="post-meta-link">
-          嵌入式
+          数据库
         </a>
       
     
     
       <span class="dot"></span>
-      <span>202 字</span>
+      <span>714 字</span>
     
   </div>
   
@@ -312,18 +306,18 @@
         
           
           <a 
-            href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+            href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" 
             class="post-meta-link">
-            嵌入式
+            数据库
           </a>
         
           
             <span class="dot"></span>
           
           <a 
-            href="/tags/stm32/" 
+            href="/tags/MySQL/" 
             class="post-meta-link">
-            stm32
+            MySQL
           </a>
         
       </div>
@@ -333,30 +327,43 @@
   <div 
     id="section" 
     class="post-content">
-    <h3 id="ARM"><a href="#ARM" class="headerlink" title="ARM"></a>ARM</h3><ul>
-<li>一种RISC MPU体系结构；</li>
-<li>Advanced RISC Machine Limited公司的简称；</li>
-<li>Advanced RISC Machine Limited公司的一款产品；</li>
-<li>基于ARM处理器设计的系列芯片及其衍生产品。</li>
-</ul>
-<h4 id="RISC"><a href="#RISC" class="headerlink" title="RISC"></a>RISC</h4><p>Reduced Instrution Set Computer</p>
-<p>精简指令集计算机</p>
-<p>固定指令长度、减少指令格式和寻址方式种类</p>
-<p>大多数指令在一个或小于一个机器周期内完成</p>
+    <h3 id="一、相关概念"><a href="#一、相关概念" class="headerlink" title="一、相关概念"></a>一、相关概念</h3><h4 id="1-数据库"><a href="#1-数据库" class="headerlink" title="1.数据库"></a>1.数据库</h4><p>数据库（<code>Database</code>）是按照数据结构来组织、存储和管理数据的仓库。</p>
+<p>数据库用于记录数据，使用数据库记录数据可以表现出各种数据间的联系，也可以很方便地对所记录的数据进行增、删、改、查等操作。</p>
+<h4 id="2-SQL"><a href="#2-SQL" class="headerlink" title="2.SQL"></a>2.SQL</h4><p>结构化查询语言(<code>Structured Query Language</code>)简称 SQL，是上世纪 70 年代由 IBM 公司开发，用于对数据库进行操作的语言。更详细地说，SQL 是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统，同时也是数据库脚本文件的扩展名。</p>
+<h4 id="3-MySQL-介绍"><a href="#3-MySQL-介绍" class="headerlink" title="3. MySQL 介绍"></a>3. MySQL 介绍</h4><p>MySQL 是一个 DBMS（数据库管理系统）, 是最流行的关系型数据库管理系统（关系数据库，是建立在关系数据库模型基础上的数据库，借助于集合代数等概念和方法来处理数据库中的数据）。</p>
+<p>由于其体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，一般中小型网站的开发者都选择 MySQL 作为网站数据库。</p>
+<p>MySQL 使用 SQL 语言进行操作。</p>
+<h3 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h3><h4 id="1-检查"><a href="#1-检查" class="headerlink" title="1.检查"></a>1.检查</h4><p>先要检查 Linux 系统中是否已经安装了 MySQL，输入命令尝试打开 MySQL 服务：</p>
+<pre class="highlight"><span class="line">sudo service mysql start</span><br></pre>
 
+<p>如果提示是这样的，则说明系统中没有 MySQL，需要继续安装：</p>
+<pre class="highlight"><span class="line">mysql: unrecognized service</span><br></pre>
 
-<h4 id="ARM版本-amp-分类"><a href="#ARM版本-amp-分类" class="headerlink" title="ARM版本&amp;分类"></a>ARM版本&amp;分类</h4><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/01.jpg?raw=true" class="lozad post-image"src="https://github.com/kkkryptos/MyPostImages/raw/master/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/01.jpg?raw=true"></p>
-<h4 id="STM32F103系列"><a href="#STM32F103系列" class="headerlink" title="STM32F103系列"></a>STM32F103系列</h4><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/02.png" alt="02" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/02.png" class="lozad post-image"></p>
-<h4 id="STM32命名规则"><a href="#STM32命名规则" class="headerlink" title="STM32命名规则"></a>STM32命名规则</h4><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/03.png" alt="03" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/03.png" class="lozad post-image"></p>
-<h3 id="ARM-Cortex-M3概述"><a href="#ARM-Cortex-M3概述" class="headerlink" title="ARM Cortex-M3概述"></a>ARM Cortex-M3概述</h3><ul>
-<li><h5 id="基于哈佛体系结构的32位ARMv7-M处理器"><a href="#基于哈佛体系结构的32位ARMv7-M处理器" class="headerlink" title="基于哈佛体系结构的32位ARMv7-M处理器"></a>基于哈佛体系结构的32位ARMv7-M处理器</h5></li>
-<li><h5 id="面向高级语言的Thumb-2指令集"><a href="#面向高级语言的Thumb-2指令集" class="headerlink" title="面向高级语言的Thumb-2指令集"></a>面向高级语言的Thumb-2指令集</h5></li>
-<li><h5 id="集成了调试功能"><a href="#集成了调试功能" class="headerlink" title="集成了调试功能"></a>集成了调试功能</h5></li>
-<li><h5 id="分支预测的流水线"><a href="#分支预测的流水线" class="headerlink" title="分支预测的流水线"></a>分支预测的流水线</h5><p>  内核流水线分3个阶段：取指、译码和执行。</p>
-</li>
-<li><h5 id="存储器映射——bit-band技术"><a href="#存储器映射——bit-band技术" class="headerlink" title="存储器映射——bit-band技术"></a>存储器映射——bit-band技术</h5></li>
-<li><h5 id="嵌套向量中断控制器（NVIC）：末尾连锁技术"><a href="#嵌套向量中断控制器（NVIC）：末尾连锁技术" class="headerlink" title="嵌套向量中断控制器（NVIC）：末尾连锁技术"></a>嵌套向量中断控制器（NVIC）：末尾连锁技术</h5></li>
-</ul>
+<h4 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h4><p>在 Ubuntu 上安装 MySQL，最简单的方式是在线安装。只需要几行简单的命令：</p>
+<pre class="highlight"><span class="line">#安装 MySQL 服务端、核心程序 </span><br><span class="line">sudo apt-get install mysql-server </span><br><span class="line">#安装 MySQL 客户端 </span><br><span class="line">sudo apt-get install mysql-client</span><br></pre>
+
+<p>安装结束后，用命令验证是否安装并启动成功：</p>
+<pre class="highlight"><span class="line">sudo netstat -tap | grep mysql</span><br></pre>
+
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/MySQL%E5%AD%A6%E4%B9%A0/01.png?raw=true" class="lozad post-image"src="https://github.com/kkkryptos/MyPostImages/raw/master/MySQL%E5%AD%A6%E4%B9%A0/01.png?raw=true"></p>
+<p>此时，可以根据自己的需求，用 gedit 修改 MySQL 的配置文件（my.cnf）,使用以下命令:</p>
+<pre class="highlight"><span class="line">sudo gedit /etc/mysql/my.cnf</span><br></pre>
+
+<p><em>#在打开文档中找到[mysqld]并在下面添加一行skip-grant-tables并保存退出</em> </p>
+<pre class="highlight"><span class="line">[mysqld] </span><br><span class="line"></span><br><span class="line">skip-grant-tables</span><br></pre>
+
+<h4 id="3-尝试"><a href="#3-尝试" class="headerlink" title="3.尝试"></a>3.尝试</h4><h5 id="1）打开MySQL："><a href="#1）打开MySQL：" class="headerlink" title="1）打开MySQL："></a>1）打开MySQL：</h5><p>使用如下两条命令，打开 MySQL 服务并使用 root 用户登录：</p>
+<pre class="highlight"><span class="line"># 启动 MySQL 服务</span><br><span class="line">sudo service mysql start</span><br><span class="line"></span><br><span class="line"># 使用 root 用户登录，实验楼环境的密码为空，直接回车就可以登录</span><br><span class="line">mysql -u root</span><br></pre>
+
+<p>执行成功会出现如下提示：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/02.png?raw=true" class="lozad post-image"src="https://github.com/kkkryptos/MyPostImages/raw/master/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/02.png?raw=true"></p>
+<h5 id="2）查看数据库："><a href="#2）查看数据库：" class="headerlink" title="2）查看数据库："></a>2）查看数据库：</h5><p>使用命令 <code>show databases;</code>，查看有哪些数据库（注意不要漏掉分号 <code>;</code>）：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/03.png?raw=true" class="lozad post-image"src="https://github.com/kkkryptos/MyPostImages/raw/master/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/03.png?raw=true"></p>
+<h5 id="3）-连接数据库："><a href="#3）-连接数据库：" class="headerlink" title="3） 连接数据库："></a>3） 连接数据库：</h5><p>选择连接其中一个数据库，语句格式为 <code>use &lt;数据库名&gt;</code>，这里可以不用加分号</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/04.png?raw=true" class="lozad post-image"src="https://github.com/kkkryptos/MyPostImages/raw/master/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/04.png?raw=true"></p>
+<h5 id="4）查看表："><a href="#4）查看表：" class="headerlink" title="4）查看表："></a>4）查看表：</h5><p>使用命令 <code>show tables;</code> 查看数据库中有哪些表（<strong>注意不要漏掉“;”</strong>）：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/05.png?raw=true" class="lozad post-image"src="https://github.com/kkkryptos/MyPostImages/raw/master/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/05.png?raw=true"></p>
+<h5 id="5）退出："><a href="#5）退出：" class="headerlink" title="5）退出："></a>5）退出：</h5><p>使用命令 <code>quit</code> 或者 <code>exit</code> 退出 MySQL。</p>
 
   </div>
   <div>
@@ -376,8 +383,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://kkkryptos.github.io/2022/04/05/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/">
-            http://kkkryptos.github.io/2022/04/05/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/
+            href="http://kkkryptos.github.io/2022/04/10/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%8C%89%E7%85%A7/">
+            http://kkkryptos.github.io/2022/04/10/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%8C%89%E7%85%A7/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -389,13 +396,13 @@
   
     <div class="nav-item-prev">
       <a 
-        href="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%8C%89%E7%85%A7/" 
+        href="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/" 
         class="nav-link">
         <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
           <div class="nav-label">上一篇</div>
           
-            <div class="nav-title">MySQL学习01-介绍与安装 </div>
+            <div class="nav-title">MySQL学习02-创建数据库并插入数据 </div>
           
         </div>
       </a>
@@ -404,12 +411,12 @@
   
     <div class="nav-item-next">
       <a 
-        href="/2022/04/05/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/" 
+        href="/2022/04/05/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">如何写博客 </div>
+            <div class="nav-title">嵌入式系统学习03 MPU基础 </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -427,7 +434,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM"><span class="toc-text">ARM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RISC"><span class="toc-text">RISC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARM%E7%89%88%E6%9C%AC-amp-%E5%88%86%E7%B1%BB"><span class="toc-text">ARM版本&amp;分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STM32F103%E7%B3%BB%E5%88%97"><span class="toc-text">STM32F103系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STM32%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-text">STM32命名规则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM-Cortex-M3%E6%A6%82%E8%BF%B0"><span class="toc-text">ARM Cortex-M3概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%93%88%E4%BD%9B%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E7%9A%8432%E4%BD%8DARMv7-M%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-text">基于哈佛体系结构的32位ARMv7-M处理器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E7%9A%84Thumb-2%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-text">面向高级语言的Thumb-2指令集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E4%BA%86%E8%B0%83%E8%AF%95%E5%8A%9F%E8%83%BD"><span class="toc-text">集成了调试功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-text">分支预测的流水线</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E6%98%A0%E5%B0%84%E2%80%94%E2%80%94bit-band%E6%8A%80%E6%9C%AF"><span class="toc-text">存储器映射——bit-band技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E5%90%91%E9%87%8F%E4%B8%AD%E6%96%AD%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88NVIC%EF%BC%89%EF%BC%9A%E6%9C%AB%E5%B0%BE%E8%BF%9E%E9%94%81%E6%8A%80%E6%9C%AF"><span class="toc-text">嵌套向量中断控制器（NVIC）：末尾连锁技术</span></a></li></ol></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">一、相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-SQL"><span class="toc-text">2.SQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-MySQL-%E4%BB%8B%E7%BB%8D"><span class="toc-text">3. MySQL 介绍</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85"><span class="toc-text">二、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A3%80%E6%9F%A5"><span class="toc-text">1.检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85"><span class="toc-text">2.安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B0%9D%E8%AF%95"><span class="toc-text">3.尝试</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%EF%BC%89%E6%89%93%E5%BC%80MySQL%EF%BC%9A"><span class="toc-text">1）打开MySQL：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">2）查看数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%EF%BC%89-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">3） 连接数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%EF%BC%89%E6%9F%A5%E7%9C%8B%E8%A1%A8%EF%BC%9A"><span class="toc-text">4）查看表：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%EF%BC%89%E9%80%80%E5%87%BA%EF%BC%9A"><span class="toc-text">5）退出：</span></a></li></ol></li></ol></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -475,7 +482,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM"><span class="toc-text">ARM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RISC"><span class="toc-text">RISC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARM%E7%89%88%E6%9C%AC-amp-%E5%88%86%E7%B1%BB"><span class="toc-text">ARM版本&amp;分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STM32F103%E7%B3%BB%E5%88%97"><span class="toc-text">STM32F103系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STM32%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-text">STM32命名规则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM-Cortex-M3%E6%A6%82%E8%BF%B0"><span class="toc-text">ARM Cortex-M3概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%93%88%E4%BD%9B%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E7%9A%8432%E4%BD%8DARMv7-M%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-text">基于哈佛体系结构的32位ARMv7-M处理器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E7%9A%84Thumb-2%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-text">面向高级语言的Thumb-2指令集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E4%BA%86%E8%B0%83%E8%AF%95%E5%8A%9F%E8%83%BD"><span class="toc-text">集成了调试功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-text">分支预测的流水线</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E6%98%A0%E5%B0%84%E2%80%94%E2%80%94bit-band%E6%8A%80%E6%9C%AF"><span class="toc-text">存储器映射——bit-band技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E5%90%91%E9%87%8F%E4%B8%AD%E6%96%AD%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88NVIC%EF%BC%89%EF%BC%9A%E6%9C%AB%E5%B0%BE%E8%BF%9E%E9%94%81%E6%8A%80%E6%9C%AF"><span class="toc-text">嵌套向量中断控制器（NVIC）：末尾连锁技术</span></a></li></ol></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">一、相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-SQL"><span class="toc-text">2.SQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-MySQL-%E4%BB%8B%E7%BB%8D"><span class="toc-text">3. MySQL 介绍</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85"><span class="toc-text">二、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A3%80%E6%9F%A5"><span class="toc-text">1.检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85"><span class="toc-text">2.安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B0%9D%E8%AF%95"><span class="toc-text">3.尝试</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%EF%BC%89%E6%89%93%E5%BC%80MySQL%EF%BC%9A"><span class="toc-text">1）打开MySQL：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">2）查看数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%EF%BC%89-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">3） 连接数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%EF%BC%89%E6%9F%A5%E7%9C%8B%E8%A1%A8%EF%BC%9A"><span class="toc-text">4）查看表：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%EF%BC%89%E9%80%80%E5%87%BA%EF%BC%9A"><span class="toc-text">5）退出：</span></a></li></ol></li></ol></li></ol>
       </div>
     </article>
   
@@ -607,7 +614,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM"><span class="toc-text">ARM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RISC"><span class="toc-text">RISC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARM%E7%89%88%E6%9C%AC-amp-%E5%88%86%E7%B1%BB"><span class="toc-text">ARM版本&amp;分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STM32F103%E7%B3%BB%E5%88%97"><span class="toc-text">STM32F103系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#STM32%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-text">STM32命名规则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM-Cortex-M3%E6%A6%82%E8%BF%B0"><span class="toc-text">ARM Cortex-M3概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%93%88%E4%BD%9B%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E7%9A%8432%E4%BD%8DARMv7-M%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-text">基于哈佛体系结构的32位ARMv7-M处理器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E7%9A%84Thumb-2%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-text">面向高级语言的Thumb-2指令集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E4%BA%86%E8%B0%83%E8%AF%95%E5%8A%9F%E8%83%BD"><span class="toc-text">集成了调试功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-text">分支预测的流水线</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E6%98%A0%E5%B0%84%E2%80%94%E2%80%94bit-band%E6%8A%80%E6%9C%AF"><span class="toc-text">存储器映射——bit-band技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E5%90%91%E9%87%8F%E4%B8%AD%E6%96%AD%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88NVIC%EF%BC%89%EF%BC%9A%E6%9C%AB%E5%B0%BE%E8%BF%9E%E9%94%81%E6%8A%80%E6%9C%AF"><span class="toc-text">嵌套向量中断控制器（NVIC）：末尾连锁技术</span></a></li></ol></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">一、相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-SQL"><span class="toc-text">2.SQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-MySQL-%E4%BB%8B%E7%BB%8D"><span class="toc-text">3. MySQL 介绍</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85"><span class="toc-text">二、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A3%80%E6%9F%A5"><span class="toc-text">1.检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85"><span class="toc-text">2.安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B0%9D%E8%AF%95"><span class="toc-text">3.尝试</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%EF%BC%89%E6%89%93%E5%BC%80MySQL%EF%BC%9A"><span class="toc-text">1）打开MySQL：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">2）查看数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%EF%BC%89-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9A"><span class="toc-text">3） 连接数据库：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%EF%BC%89%E6%9F%A5%E7%9C%8B%E8%A1%A8%EF%BC%9A"><span class="toc-text">4）查看表：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%EF%BC%89%E9%80%80%E5%87%BA%EF%BC%9A"><span class="toc-text">5）退出：</span></a></li></ol></li></ol></li></ol>
     </article>
   
   
