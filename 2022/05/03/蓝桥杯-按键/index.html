@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="不对称">
+  <link 
+    rel="icon" 
+    href="/images/logo.png">
+  <title>蓝桥杯_按键</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="蓝桥杯_按键">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://kkkryptos.github.io/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%8C%89%E9%94%AE/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="images/author.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-05-03">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-05-04">
+      <meta 
+        property="og:article:author" 
+        content="kkkryptos">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="stm32">
+        
+          <meta 
+            property="og:article:tag" 
+            content="蓝桥杯">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="/images/logo.png" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">不对称</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      蓝桥杯_按键
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-05-03T05:33:38.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-05-03</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E7%AB%9E%E8%B5%9B/" 
+          class="post-meta-link">
+          竞赛
+        </a>
+      
+        <a 
+          href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+          class="post-meta-link">
+          嵌入式
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>918 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/stm32/" 
+            class="post-meta-link">
+            stm32
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
+            class="post-meta-link">
+            蓝桥杯
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3><p><img src="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%8C%89%E9%94%AE/hexo_blog\source_posts\MyPostImages\蓝桥杯-按键\按键.png" alt="按键" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%8C%89%E9%94%AE/hexo_blog\source_posts\MyPostImages\蓝桥杯-按键\按键.png" class="lozad post-image"></p>
+<p>PA0 、PB0-PB2</p>
+<p>读到低电平为开，高电平为关</p>
+<h3 id="二、CubeMX工程配置"><a href="#二、CubeMX工程配置" class="headerlink" title="二、CubeMX工程配置"></a>二、CubeMX工程配置</h3><h4 id="1、Pinout-amp-Configuration-System-Core"><a href="#1、Pinout-amp-Configuration-System-Core" class="headerlink" title="1、Pinout&amp;Configuration_System Core"></a>1、Pinout&amp;Configuration_System Core</h4><h5 id="1-SYS"><a href="#1-SYS" class="headerlink" title="1.SYS"></a>1.SYS</h5><p>Debug：<strong>Serial Wire</strong>（串行）</p>
+<p><code>PA13 SYS_JTCK-SWCLK</code></p>
+<p><code>PA14 SYS_JTMS-SWDID</code></p>
+<h5 id="2-RCC-时钟配置"><a href="#2-RCC-时钟配置" class="headerlink" title="2.RCC(时钟配置)"></a>2.RCC(时钟配置)</h5><p>High Speed Clock(HSE)：<strong>Crystal&#x2F;Ceramic Resonator</strong>（晶振）</p>
+<p><code>PF0-O RCC_OSC_IN</code></p>
+<p><code>PF1-O RCC_OSC_OUT</code></p>
+<h5 id="3、GPIO"><a href="#3、GPIO" class="headerlink" title="3、GPIO"></a>3、GPIO</h5><pre class="highlight"><span class="line">//按键</span><br><span class="line">PA0 GPIO_INPUT</span><br><span class="line">PB0 GPIO_INPUT</span><br><span class="line">PB1 GPIO_INPUT</span><br><span class="line">PB2 GPIO_INPUT</span><br><span class="line">//LED</span><br><span class="line">PC8 GPIO_OUTPUT</span><br><span class="line">PC9 GPIO_OUTPUT</span><br><span class="line">PC10 GPIO_OUTPUT</span><br><span class="line">PC11 GPIO_OUTPUT</span><br></pre>
+
+<p>PB0-PB2：</p>
+<p>GPIO mode: Input mode</p>
+<p>GPIO Pull-up&#x2F;Pull-down: No pull-up and no pull-down</p>
+<p>User Label：<strong>KEY1-KEY3</strong>（标签）</p>
+<p>PD8-PD15:</p>
+<p>GPIO output level: <strong>High</strong>（默认状态）——LED默认关闭</p>
+<p>GPIO mode: <strong>Output Push Pull</strong>（推挽输出：可接高低电平）</p>
+<p>Maximum Output speed: <strong>High</strong>（切换电平状态速度）</p>
+<p>User Label：<strong>LED1-LED8</strong>（标签）</p>
+<p>PD2：</p>
+<p>GPIO output level: <strong>High</strong>（默认状态）——LED使能打开</p>
+<p>GPIO mode: <strong>Output Push Pull</strong>（推挽输出：可接高低电平）</p>
+<p>Maximum Output speed: <strong>High</strong>（切换电平状态速度）</p>
+<p>User Label: <strong>LED1_EN</strong>（标签）</p>
+<h4 id="2、Clock-Configuration（时钟源配置）"><a href="#2、Clock-Configuration（时钟源配置）" class="headerlink" title="2、Clock Configuration（时钟源配置）"></a>2、Clock Configuration（时钟源配置）</h4><h5 id="配置HSE（外部晶振）"><a href="#配置HSE（外部晶振）" class="headerlink" title="配置HSE（外部晶振）"></a>配置HSE（外部晶振）</h5><p>Imput frequency：24——HSE——PLLCLK倍频——HCLK：170（回车）</p>
+<h4 id="3、Project-Manager"><a href="#3、Project-Manager" class="headerlink" title="3、Project Manager"></a>3、Project Manager</h4><h5 id="1-Project"><a href="#1-Project" class="headerlink" title="1.Project"></a>1.Project</h5><p>Project Name(STM32G431RBT6_KEY_ACTION)</p>
+<p>Project Location（\CubeMX_Keil)</p>
+<p>Toolchain&#x2F;IDE：MDK-ARM</p>
+<ul>
+<li><input disabled type="checkbox"> Use Default Firmware Location——Browse：V1.3.0</li>
+</ul>
+<h5 id="2-Code-Generator"><a href="#2-Code-Generator" class="headerlink" title="2.Code Generator"></a>2.Code Generator</h5><ul>
+<li><input checked disabled type="checkbox"> Generate peripheral initialization as a pair of ‘.c&#x2F;.h’ fire per peripheral</li>
+</ul>
+<h4 id="4、GENERATE-CODE"><a href="#4、GENERATE-CODE" class="headerlink" title="4、GENERATE CODE"></a>4、GENERATE CODE</h4><h3 id="三、代码编写"><a href="#三、代码编写" class="headerlink" title="三、代码编写"></a>三、代码编写</h3><p>先编译一遍代码看有没有错误</p>
+<h4 id="1、消抖-amp-只做一次"><a href="#1、消抖-amp-只做一次" class="headerlink" title="1、消抖&amp;只做一次"></a>1、消抖&amp;只做一次</h4><pre class="highlight"><span class="line"><span class="comment">/*****key.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">uint16_t</span> key_delay_filter_count[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;<span class="comment">//数组</span></span><br><span class="line">key_status keys_status[<span class="number">4</span>];</span><br><span class="line"><span class="comment">//↑类型（自定义）  ↑变量</span></span><br><span class="line">    </span><br><span class="line"><span class="type">void</span> <span class="title function_">Update_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span><span class="comment">//消抖10ms</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin)=<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		key_delay_filter_count[key_num]&lt;&lt;<span class="number">1</span>;<span class="comment">//左移一位 00000011--&gt;00000110(有16位 这里省略了8位0)</span></span><br><span class="line">		key_delay_filter_count[key_num]|=<span class="number">0x0001</span>;<span class="comment">//与1取或 --&gt;00000111</span></span><br><span class="line">		<span class="keyword">if</span>(key_delay_filter_count[key_num]&gt;<span class="number">0x03FF</span>)<span class="comment">//3是两个1 FF是8个1 共10位 即10ms延时</span></span><br><span class="line">		&#123;</span><br><span class="line">            <span class="keyword">if</span>(keys_status[key_num]=key_released)</span><br><span class="line">                keys_status[key_num]=key_pressed;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		key_delay_filter_count[key_num]&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(key_delay_filter_count[key_num]=<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			keys_status=key_released;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">uint16_t</span> <span class="title function_">Get_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> keys_status[key_num]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> Do_It_Once(<span class="type">uint8_t</span> key_num)</span><br><span class="line">&#123;</span><br><span class="line">    keys_status[key_num]=key_waiting_for_release;</span><br><span class="line">&#125;</span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="comment">/*****key.h*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __KEY_H__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __KEY_H__</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;main.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    key_released=<span class="number">0U</span>,<span class="comment">//U指无符号整型</span></span><br><span class="line">    key_pressed,</span><br><span class="line">    key_waiting_for_release,</span><br><span class="line">&#125;key_status;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> key_status keys_status[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Update_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span>;</span><br><span class="line"><span class="type">uint16_t</span> <span class="title function_">Get_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Do_It_Once</span><span class="params">(<span class="type">uint8_t</span> key_num)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/*__ KEY_H__ */</span></span></span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="comment">/*****stm32g4xx_it.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">SysTick_Handler</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 0 */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* USER CODE END SysTick_IRQn 0 */</span></span><br><span class="line">  HAL_IncTick();</span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 1 */</span></span><br><span class="line"></span><br><span class="line">	Update_Key_Status();</span><br><span class="line">	</span><br><span class="line">  <span class="comment">/* USER CODE END SysTick_IRQn 1 */</span></span><br><span class="line">&#125;</span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        Do_It_Once(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+
+
+<h4 id="2、长按连续做"><a href="#2、长按连续做" class="headerlink" title="2、长按连续做"></a>2、长按连续做</h4><pre class="highlight"><span class="line"><span class="comment">/*****key.c*****/</span></span><br><span class="line"><span class="type">uint16_t</span> key_cnt[<span class="number">4</span>],key_action_interval[<span class="number">4</span>];</span><br><span class="line"><span class="comment">/*------------------------    </span></span><br><span class="line"><span class="comment">void Update_Key_Status(uint8_t key_num)//消抖10ms</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	if(HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin)=0)</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]&lt;&lt;1;//左移一位 00000011--&gt;00000110(有16位 这里省略了8位0)</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]|=0x0001;//与1取或 --&gt;00000111</span></span><br><span class="line"><span class="comment">		if(key_delay_filter_count[key_num]&gt;0x03FF)//3是两个1 FF是8个1 共10位 即10ms延时</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">            if(keys_status[key_num]=key_released)</span></span><br><span class="line"><span class="comment">                keys_status[key_num]=key_pressed;</span></span><br><span class="line"><span class="comment">-------------------------*/</span></span><br><span class="line">            <span class="keyword">if</span>(keys_status[key_num]=key_long_pressed)</span><br><span class="line">            &#123;</span><br><span class="line">            	key_cnt[key_num]++; <span class="comment">//长按计时</span></span><br><span class="line">            	<span class="keyword">if</span>(key_cnt[key_num]&gt;key_action_interval[key_num])<span class="comment">//key_action_interval执行间隔</span></span><br><span class="line">            	&#123;</span><br><span class="line">            		keys_status[key_num]=key_pressed;<span class="comment">//执行</span></span><br><span class="line">            		key_cnt[key_num]=<span class="number">0</span>;<span class="comment">//清零计时</span></span><br><span class="line">            	&#125;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	else</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]&gt;&gt;1;</span></span><br><span class="line"><span class="comment">		if(key_delay_filter_count[key_num]=0)</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			keys_status=key_released;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line">			key_cnt[key_num]=<span class="number">0</span>;<span class="comment">//清零计时,防止短按（10&lt;key_delay_filter_count&lt;510)时累计</span></span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Do_It_Every_nMs</span><span class="params">(<span class="type">uint8_t</span> key_num,<span class="type">uint16_t</span> nMs)</span></span><br><span class="line">&#123;</span><br><span class="line">    key_action_interval[key_num]=nMs;</span><br><span class="line">    keys_status[key_num]=key_long_pressed;</span><br><span class="line">&#125;</span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="comment">/*****key.h*****/</span></span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">typedef enum</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    key_released=0U,//U指无符号整型</span></span><br><span class="line"><span class="comment">    key_pressed,</span></span><br><span class="line"><span class="comment">    key_waiting_for_release,</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line">    key_long_pressed,</span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">&#125;key_status;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Do_It_Every_nMs</span><span class="params">(<span class="type">uint8_t</span> key_num,<span class="type">uint16_t</span> nMs)</span>;</span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        <span class="comment">//Do_It_Once(0);</span></span><br><span class="line">        Do_It_Every_nMs(<span class="number">0</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+
+
+<h4 id="3、多按键分别控制"><a href="#3、多按键分别控制" class="headerlink" title="3、多按键分别控制"></a>3、多按键分别控制</h4><pre class="highlight"><span class="line"><span class="comment">/*****key.c*****/</span></span><br><span class="line"><span class="type">uint16_t</span> key_readpin[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Update_Key_ReadPin</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	key_readpin[<span class="number">0</span>]=HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin);</span><br><span class="line">	key_readpin[<span class="number">1</span>]=HAL_GPIO_ReadPin(KEY2_GPIO_Port,KEY2_Pin);</span><br><span class="line">	key_readpin[<span class="number">2</span>]=HAL_GPIO_ReadPin(KEY3_GPIO_Port,KEY3_Pin);</span><br><span class="line">	key_readpin[<span class="number">3</span>]=HAL_GPIO_ReadPin(KEY4_GPIO_Port,KEY4_Pin);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Update_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span><span class="comment">//消抖10ms</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(key_readpin[key_num]=<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	```</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">	```</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="comment">/*****key.h*****/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Update_Key_ReadPin</span><span class="params">(<span class="type">void</span>)</span>;</span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="comment">/*****stm32g4xx_it.c*****/</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN PD */</span></span><br><span class="line">	<span class="type">uint8_t</span> key_num;</span><br><span class="line"><span class="comment">/* USER CODE END PD */</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">SysTick_Handler</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  ```</span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 1 */</span></span><br><span class="line">	Update_Key_ReadPin();</span><br><span class="line">	<span class="keyword">for</span>(key_num=<span class="number">0</span>;key_num&lt;<span class="number">4</span>;key_num++)</span><br><span class="line">	&#123;</span><br><span class="line">		Update_Key_Status(key_num);</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="comment">/* USER CODE END SysTick_IRQn 1 */</span></span><br><span class="line">&#125;</span><br></pre>
+
+<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">0</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">1</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">1</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">2</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED3_GPIO_Port,LED3_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">2</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">3</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED4_GPIO_Port,LED4_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">3</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            kkkryptos
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://kkkryptos.github.io/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%8C%89%E9%94%AE/">
+            http://kkkryptos.github.io/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%8C%89%E9%94%AE/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-LED/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">蓝桥杯_LED </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81GPIO"><span class="toc-text">3、GPIO</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%B6%88%E6%8A%96-amp-%E5%8F%AA%E5%81%9A%E4%B8%80%E6%AC%A1"><span class="toc-text">1、消抖&amp;只做一次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E6%8C%89%E8%BF%9E%E7%BB%AD%E5%81%9A"><span class="toc-text">2、长按连续做</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E6%8C%89%E9%94%AE%E5%88%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-text">3、多按键分别控制</span></a></li></ol></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="images/author.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">kkkryptos</p>
+<p class="author-description">勤记录！</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>9</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>7</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>7</span>
+    <span>标签</span>
+  </a>
+</div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81GPIO"><span class="toc-text">3、GPIO</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%B6%88%E6%8A%96-amp-%E5%8F%AA%E5%81%9A%E4%B8%80%E6%AC%A1"><span class="toc-text">1、消抖&amp;只做一次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E6%8C%89%E8%BF%9E%E7%BB%AD%E5%81%9A"><span class="toc-text">2、长按连续做</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E6%8C%89%E9%94%AE%E5%88%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-text">3、多按键分别控制</span></a></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+        <div class="categories-list-item">
+          数据库
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
+        <div class="categories-list-item">
+          专业课
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
+        <div class="categories-list-item">
+          竞赛
+          <span class="categories-list-item-badge">3</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
+        <div class="categories-list-item">
+          专业课/嵌入式
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客/hexo博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
+        <div class="categories-list-item">
+          竞赛/嵌入式
+          <span class="categories-list-item-badge">3</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/stm32/" 
+        title="stm32">
+        <div class="tags-list-item">stm32</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+        title="嵌入式">
+        <div class="tags-list-item">嵌入式</div>
+      </a>
+    
+      <a 
+        href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
+        title="蓝桥杯">
+        <div class="tags-list-item">蓝桥杯</div>
+      </a>
+    
+      <a 
+        href="/tags/MySQL/" 
+        title="MySQL">
+        <div class="tags-list-item">MySQL</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" 
+        title="数据库">
+        <div class="tags-list-item">数据库</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%8D%9A%E5%AE%A2/" 
+        title="博客">
+        <div class="tags-list-item">博客</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81GPIO"><span class="toc-text">3、GPIO</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%B6%88%E6%8A%96-amp-%E5%8F%AA%E5%81%9A%E4%B8%80%E6%AC%A1"><span class="toc-text">1、消抖&amp;只做一次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E6%8C%89%E8%BF%9E%E7%BB%AD%E5%81%9A"><span class="toc-text">2、长按连续做</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E6%8C%89%E9%94%AE%E5%88%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-text">3、多按键分别控制</span></a></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-05-03</div>
+        <a href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%8C%89%E9%94%AE/"><div class="recent-posts-item-content">蓝桥杯_按键</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-05-03</div>
+        <a href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-LED/"><div class="recent-posts-item-content">蓝桥杯_LED</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-05-03</div>
+        <a href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/"><div class="recent-posts-item-content">蓝桥杯_液晶屏</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-04-10</div>
+        <a href="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/"><div class="recent-posts-item-content">MySQL学习02-创建数据库并插入数据</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020 -
+          
+          2022
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          不对称
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer> 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+  </body>
+</html>
