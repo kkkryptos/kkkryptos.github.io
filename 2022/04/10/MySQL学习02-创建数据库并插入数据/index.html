@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="/images/logo.png">
-  <title>蓝桥杯嵌入式14天倒计时</title>
+  <title>MySQL学习02-创建数据库并插入数据</title>
   
     
       <meta 
         property="og:title" 
-        content="蓝桥杯嵌入式14天倒计时">
+        content="MySQL学习02-创建数据库并插入数据">
     
     
       <meta 
         property="og:url" 
-        content="http://kkkryptos.github.io/2022/03/26/%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%B5%8C%E5%85%A5%E5%BC%8F14%E5%A4%A9%E5%80%92%E8%AE%A1%E6%97%B6/index.html">
+        content="http://kkkryptos.github.io/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/index.html">
     
     
       <meta 
@@ -42,10 +42,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-03-26">
+        content="2022-04-10">
       <meta 
         property="og:article:modified_time" 
-        content="2022-04-06">
+        content="2022-04-10">
       <meta 
         property="og:article:author" 
         content="kkkryptos">
@@ -53,11 +53,11 @@
         
           <meta 
             property="og:article:tag" 
-            content="嵌入式">
+            content="数据库">
         
           <meta 
             property="og:article:tag" 
-            content="stm32">
+            content="MySQL">
         
       
     
@@ -268,36 +268,30 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      蓝桥杯嵌入式14天倒计时
+      MySQL学习02-创建数据库并插入数据
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-03-26T10:20:19.000Z">
+    <time datetime="2022-04-09T17:20:15.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-03-26</span>
+      <span>2022-04-10</span>
     </time>
     
       <span class="dot"></span>
       
         <a 
-          href="/categories/%E7%AB%9E%E8%B5%9B/" 
+          href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" 
           class="post-meta-link">
-          竞赛
-        </a>
-      
-        <a 
-          href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
-          class="post-meta-link">
-          嵌入式
+          数据库
         </a>
       
     
     
       <span class="dot"></span>
-      <span>161 字</span>
+      <span>1.1k 字</span>
     
   </div>
   
@@ -312,18 +306,18 @@
         
           
           <a 
-            href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+            href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" 
             class="post-meta-link">
-            嵌入式
+            数据库
           </a>
         
           
             <span class="dot"></span>
           
           <a 
-            href="/tags/stm32/" 
+            href="/tags/MySQL/" 
             class="post-meta-link">
-            stm32
+            MySQL
           </a>
         
       </div>
@@ -333,27 +327,127 @@
   <div 
     id="section" 
     class="post-content">
-    <h3 id="学习规划"><a href="#学习规划" class="headerlink" title="学习规划"></a>学习规划</h3><h4 id="任务清单"><a href="#任务清单" class="headerlink" title="任务清单"></a>任务清单</h4><h5 id="1、b站视频"><a href="#1、b站视频" class="headerlink" title="1、b站视频"></a>1、b站视频</h5><ul>
-<li>LED</li>
-<li>按键（3）</li>
-<li>液晶屏（3）</li>
-<li>ADC</li>
-<li>定时器（4）</li>
-<li>中断</li>
-<li>串口（2）</li>
-<li>I2C</li>
+    <h3 id><a href="#" class="headerlink" title></a></h3><h3 id="一、打开MySQL并登录"><a href="#一、打开MySQL并登录" class="headerlink" title="一、打开MySQL并登录"></a>一、打开MySQL并登录</h3><pre class="highlight"><span class="line"># 打开 MySQL 服务</span><br><span class="line">sudo service mysql start</span><br><span class="line"></span><br><span class="line">#使用 root 用户登录，密码为空</span><br><span class="line">mysql -u root</span><br></pre>
+
+<h3 id="二、新建数据库"><a href="#二、新建数据库" class="headerlink" title="二、新建数据库"></a>二、新建数据库</h3><p>语句格式为 <code>CREATE DATABASE &lt;数据库名字&gt;;</code>，（注意不要漏掉分号 <code>;</code>）</p>
+<pre class="highlight"><span class="line">CREATE DATABASE mysql_shiyan;</span><br></pre>
+
+<p>在大多数系统中，SQL 语句都是不区分大小写的，因此以下语句都是合法的：</p>
+<pre class="highlight"><span class="line">CREATE DATABASE name1;</span><br><span class="line">create database name2;</span><br><span class="line">CREATE database name3;</span><br><span class="line">create DAtabaSE name4;</span><br></pre>
+
+<p>但是出于严谨，而且便于区分保留字（<em>保留字(reserved word)：指在高级语言中已经定义过的字，使用者不能再将这些字作为变量名或过程名使用。</em>）和变量名，我们把保留字大写，把变量和数据小写。</p>
+<p>创建成功后输入命令 <code>show databases;</code> （注意不要漏掉<code>;</code>）检查一下：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/hexo_blog\source_posts\MyPostImages\MySQL学习02-创建数据库并插入数据\01.png" class="lozad post-image"src="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/hexo_blog\source_posts\MyPostImages\MySQL学习02-创建数据库并插入数据\01.png"></p>
+<h3 id="三、连接数据库"><a href="#三、连接数据库" class="headerlink" title="三、连接数据库"></a>三、连接数据库</h3><p>接下来的操作，就在刚才创建的 <code>mysql_shiyan</code> 中进行，由于一个系统中可能会有多个数据库，要确定当前是对哪一个数据库操作，使用语句 <code>use &lt;dbname&gt;</code>：</p>
+<pre class="highlight"><span class="line">use mysql_shiyan;</span><br></pre>
+
+<p>输入命令 <code>show tables;</code> 可以查看当前数据库里有几张表，现在 <code>mysql_shiyan</code> 里还是空的：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/hexo_blog\source_posts\MyPostImages\MySQL学习02-创建数据库并插入数据\02.png" class="lozad post-image"src="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/hexo_blog\source_posts\MyPostImages\MySQL学习02-创建数据库并插入数据\02.png"></p>
+<h3 id="四、新建数据表"><a href="#四、新建数据表" class="headerlink" title="四、新建数据表"></a>四、新建数据表</h3><h4 id="1-数据表"><a href="#1-数据表" class="headerlink" title="1.数据表"></a>1.数据表</h4><p>数据表（<code>table</code>）简称表，它是数据库最重要的组成部分之一。数据库只是一个框架，表才是实质内容。</p>
+<p>而一个数据库中一般会有多张表，这些各自独立的表通过建立关系被联接起来，才成为可以交叉查阅、一目了然的数据库。</p>
+<h4 id="2-新建数据表"><a href="#2-新建数据表" class="headerlink" title="2.新建数据表"></a>2.新建数据表</h4><p>在数据库中新建一张表的语句格式为：</p>
+<pre class="highlight"><span class="line">CREATE TABLE 表的名字</span><br><span class="line">(</span><br><span class="line">列名a 数据类型(数据长度),</span><br><span class="line">列名b 数据类型(数据长度)，</span><br><span class="line">列名c 数据类型(数据长度)</span><br><span class="line">);</span><br></pre>
+
+<pre class="highlight"><span class="line">CREATE TABLE employee (id int(10),name char(20),phone int(12));</span><br></pre>
+
+<p>or</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/hexo_blog\source_posts\MyPostImages\MySQL学习02-创建数据库并插入数据\03.png" class="lozad post-image"src="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/hexo_blog\source_posts\MyPostImages\MySQL学习02-创建数据库并插入数据\03.png"></p>
+<h3 id="五、插入数据"><a href="#五、插入数据" class="headerlink" title="五、插入数据"></a>五、插入数据</h3><h4 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h4><p>在刚才新建表的过程中，我们提到了数据类型，MySQL 的数据类型和其他编程语言大同小异，下表是一些 MySQL 常用数据类型：</p>
+<p>数据类型：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>大小(字节)</th>
+<th>用途</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>INT</td>
+<td>4</td>
+<td>整数</td>
+<td></td>
+</tr>
+<tr>
+<td>FLOAT</td>
+<td>4</td>
+<td>单精度浮点数</td>
+<td></td>
+</tr>
+<tr>
+<td>DOUBLE</td>
+<td>8</td>
+<td>双精度浮点数</td>
+<td></td>
+</tr>
+<tr>
+<td>ENUM</td>
+<td>–</td>
+<td>单选,比如性别</td>
+<td>ENUM(‘a’,’b’,’c’)</td>
+</tr>
+<tr>
+<td>SET</td>
+<td>–</td>
+<td>多选</td>
+<td>SET(‘1’,’2’,’3’)</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>3</td>
+<td>日期</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>3</td>
+<td>时间点或持续时间</td>
+<td>HH:MM:SS</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>1</td>
+<td>年份值</td>
+<td>YYYY</td>
+</tr>
+<tr>
+<td>CHAR</td>
+<td>0~255</td>
+<td>定长字符串</td>
+<td></td>
+</tr>
+<tr>
+<td>VARCHAR</td>
+<td>0~255</td>
+<td>变长字符串</td>
+<td></td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>0~65535</td>
+<td>长文本数据</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>整数除了 INT 外，还有 TINYINT、SMALLINT、MEDIUMINT、BIGINT。</p>
+<p><strong>CHAR 和 VARCHAR 的区别:</strong> CHAR 的长度是固定的，而 VARCHAR 的长度是可以变化的，比如，存储字符串 “abc”，对于 CHAR(10)，表示存储的字符将占 10 个字节(包括 7 个空字符)，而同样的 VARCHAR(12) 则只占用 4 个字节的长度，<code>增加一个额外字节来存储字符串本身的长度</code>，12 只是最大值，当你存储的字符小于 12 时，按实际长度存储。</p>
+<p><strong>ENUM 和 SET 的区别:</strong> ENUM 类型的数据的值，必须是定义时枚举的值的其中之一，即单选，而 SET 类型的值则可以多选。</p>
+<p>想要了解更多关于 MySQL 数据类型的信息，可以参考下面两篇博客。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/anxpp/article/details/51284106#comments">MySQL 中的数据类型介绍</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/bukudekong/archive/2011/06/27/2091590.html">MySQL 数据类型</a></li>
 </ul>
-<h5 id="2、往年真题"><a href="#2、往年真题" class="headerlink" title="2、往年真题"></a>2、往年真题</h5><h4 id="时间安排"><a href="#时间安排" class="headerlink" title="时间安排"></a>时间安排</h4><p>共15个视频 每个视频约半小时 实践+记录约2小时 共30个小时</p>
-<p>27号：复习并记录LED</p>
-<p>28号：按键1、2</p>
-<p>29号：按键3、ADC</p>
-<p>30号：定时器1、2、</p>
-<p>31号：定时器3、4、中断</p>
-<p>1号：串口1、2</p>
-<p>2、3号（周末）：I2C，整理归纳视频内容 看看书和官方文档，做一套往年题</p>
-<p>4、5、6号：各一套题</p>
-<p>7号：突破难点，答疑</p>
-<p>8号：做好比赛准备</p>
+<h4 id="2-插入数据"><a href="#2-插入数据" class="headerlink" title="2.插入数据"></a>2.插入数据</h4><p>我们通过 INSERT 语句向表中插入数据，语句格式为：</p>
+<pre class="highlight"><span class="line">INSERT INTO 表的名字(列名a,列名b,列名c) VALUES(值1,值2,值3);</span><br></pre>
+
+<p>我们尝试向 employee 中加入 Tom、Jack 和 Rose：</p>
+<pre class="highlight"><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee(id,name,phone) <span class="keyword">VALUES</span>(<span class="number">01</span>,<span class="string">&#x27;Tom&#x27;</span>,<span class="number">110110110</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee <span class="keyword">VALUES</span>(<span class="number">02</span>,<span class="string">&#x27;Jack&#x27;</span>,<span class="number">119119119</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee(id,name) <span class="keyword">VALUES</span>(<span class="number">03</span>,<span class="string">&#x27;Rose&#x27;</span>);</span><br></pre>
+
+<p>你已经注意到了，有的数据需要用单引号括起来，比如 Tom、Jack、Rose 的名字，这是由于它们的数据类型是 CHAR 型。此外 <strong>VARCHAR,TEXT,DATE,TIME,ENUM</strong> 等类型的数据也需要单引号修饰，而 <strong>INT,FLOAT,DOUBLE</strong> 等则不需要。</p>
+<p>第一条语句比第二条语句多了一部分：<code>(id,name,phone)</code> 这个括号里列出的，是将要添加的数据 <code>(01,&#39;Tom&#39;,110110110)</code> 其中每个值在表中对应的列。而第三条语句只添加了 <code>(id,name)</code> 两列的数据，<strong>所以在表中 Rose 的 phone 为 NULL</strong>。</p>
+<p>现在我们使用语句 <code>SELECT * FROM employee;</code> 查看 employee 表，可见 Tom 和 Jack 的相关数据已经保存在其中了：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/hexo_blog\source_posts\MyPostImages\MySQL学习02-创建数据库并插入数据\04.png" class="lozad post-image"src="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/hexo_blog\source_posts\MyPostImages\MySQL学习02-创建数据库并插入数据\04.png"></p>
 
   </div>
   <div>
@@ -373,8 +467,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://kkkryptos.github.io/2022/03/26/%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%B5%8C%E5%85%A5%E5%BC%8F14%E5%A4%A9%E5%80%92%E8%AE%A1%E6%97%B6/">
-            http://kkkryptos.github.io/2022/03/26/%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%B5%8C%E5%85%A5%E5%BC%8F14%E5%A4%A9%E5%80%92%E8%AE%A1%E6%97%B6/
+            href="http://kkkryptos.github.io/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/">
+            http://kkkryptos.github.io/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -386,18 +480,32 @@
   
     <div class="nav-item-prev">
       <a 
-        href="/2022/04/05/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/" 
+        href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/" 
         class="nav-link">
         <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
           <div class="nav-label">上一篇</div>
           
-            <div class="nav-title">如何写博客 </div>
+            <div class="nav-title">蓝桥杯_液晶屏 </div>
           
         </div>
       </a>
     </div>
   
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">MySQL学习01-介绍与安装 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
   
 </div>
 
@@ -410,7 +518,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%A7%84%E5%88%92"><span class="toc-text">学习规划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E6%B8%85%E5%8D%95"><span class="toc-text">任务清单</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81b%E7%AB%99%E8%A7%86%E9%A2%91"><span class="toc-text">1、b站视频</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%BE%80%E5%B9%B4%E7%9C%9F%E9%A2%98"><span class="toc-text">2、往年真题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%AE%89%E6%8E%92"><span class="toc-text">时间安排</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%89%93%E5%BC%80MySQL%E5%B9%B6%E7%99%BB%E5%BD%95"><span class="toc-text">一、打开MySQL并登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">二、新建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">三、连接数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">四、新建数据表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">1.数据表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">2.新建数据表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">五、插入数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">2.插入数据</span></a></li></ol></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -458,7 +566,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%A7%84%E5%88%92"><span class="toc-text">学习规划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E6%B8%85%E5%8D%95"><span class="toc-text">任务清单</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81b%E7%AB%99%E8%A7%86%E9%A2%91"><span class="toc-text">1、b站视频</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%BE%80%E5%B9%B4%E7%9C%9F%E9%A2%98"><span class="toc-text">2、往年真题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%AE%89%E6%8E%92"><span class="toc-text">时间安排</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%89%93%E5%BC%80MySQL%E5%B9%B6%E7%99%BB%E5%BD%95"><span class="toc-text">一、打开MySQL并登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">二、新建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">三、连接数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">四、新建数据表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">1.数据表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">2.新建数据表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">五、插入数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">2.插入数据</span></a></li></ol></li></ol>
       </div>
     </article>
   
@@ -590,7 +698,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%A7%84%E5%88%92"><span class="toc-text">学习规划</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E6%B8%85%E5%8D%95"><span class="toc-text">任务清单</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81b%E7%AB%99%E8%A7%86%E9%A2%91"><span class="toc-text">1、b站视频</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%BE%80%E5%B9%B4%E7%9C%9F%E9%A2%98"><span class="toc-text">2、往年真题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%AE%89%E6%8E%92"><span class="toc-text">时间安排</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%89%93%E5%BC%80MySQL%E5%B9%B6%E7%99%BB%E5%BD%95"><span class="toc-text">一、打开MySQL并登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">二、新建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">三、连接数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">四、新建数据表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">1.数据表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">2.新建数据表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">五、插入数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">2.插入数据</span></a></li></ol></li></ol>
     </article>
   
   
