@@ -45,7 +45,7 @@
         content="2022-05-03">
       <meta 
         property="og:article:modified_time" 
-        content="2022-05-04">
+        content="2022-05-05">
       <meta 
         property="og:article:author" 
         content="kkkryptos">
@@ -369,21 +369,21 @@
 <li><input checked disabled type="checkbox"> Generate peripheral initialization as a pair of ‘.c&#x2F;.h’ fire per peripheral</li>
 </ul>
 <h4 id="4、GENERATE-CODE"><a href="#4、GENERATE-CODE" class="headerlink" title="4、GENERATE CODE"></a>4、GENERATE CODE</h4><h3 id="三、代码编写"><a href="#三、代码编写" class="headerlink" title="三、代码编写"></a>三、代码编写</h3><p>先编译一遍代码看有没有错误</p>
-<h4 id="1、消抖-amp-只做一次"><a href="#1、消抖-amp-只做一次" class="headerlink" title="1、消抖&amp;只做一次"></a>1、消抖&amp;只做一次</h4><pre class="highlight"><span class="line"><span class="comment">/*****key.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">uint16_t</span> key_delay_filter_count[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;<span class="comment">//数组</span></span><br><span class="line">key_status keys_status[<span class="number">4</span>];</span><br><span class="line"><span class="comment">//↑类型（自定义）  ↑变量</span></span><br><span class="line">    </span><br><span class="line"><span class="type">void</span> <span class="title function_">Update_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span><span class="comment">//消抖10ms</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin)=<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		key_delay_filter_count[key_num]&lt;&lt;<span class="number">1</span>;<span class="comment">//左移一位 00000011--&gt;00000110(有16位 这里省略了8位0)</span></span><br><span class="line">		key_delay_filter_count[key_num]|=<span class="number">0x0001</span>;<span class="comment">//与1取或 --&gt;00000111</span></span><br><span class="line">		<span class="keyword">if</span>(key_delay_filter_count[key_num]&gt;<span class="number">0x03FF</span>)<span class="comment">//3是两个1 FF是8个1 共10位 即10ms延时</span></span><br><span class="line">		&#123;</span><br><span class="line">            <span class="keyword">if</span>(keys_status[key_num]=key_released)</span><br><span class="line">                keys_status[key_num]=key_pressed;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		key_delay_filter_count[key_num]&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(key_delay_filter_count[key_num]=<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			keys_status=key_released;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">uint16_t</span> <span class="title function_">Get_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> keys_status[key_num]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> Do_It_Once(<span class="type">uint8_t</span> key_num)</span><br><span class="line">&#123;</span><br><span class="line">    keys_status[key_num]=key_waiting_for_release;</span><br><span class="line">&#125;</span><br></pre>
+<h4 id="1、消抖-amp-只做一次"><a href="#1、消抖-amp-只做一次" class="headerlink" title="1、消抖&amp;只做一次"></a>1、消抖&amp;只做一次</h4><pre class="highlight"><span class="line"><span class="comment">/*****key.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">uint16_t</span> key_delay_filter_count[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;<span class="comment">//数组</span></span><br><span class="line">key_status keys_status[<span class="number">4</span>];</span><br><span class="line"><span class="comment">//↑类型（自定义）  ↑变量</span></span><br><span class="line">    </span><br><span class="line"><span class="type">void</span> <span class="title function_">Update_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span><span class="comment">//消抖10ms</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin)==<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		key_delay_filter_count[key_num]&lt;&lt;<span class="number">1</span>;<span class="comment">//左移一位 00000011--&gt;00000110(有16位 这里省略了8位0)</span></span><br><span class="line">		key_delay_filter_count[key_num]|=<span class="number">0x0001</span>;<span class="comment">//与1取或 --&gt;00000111</span></span><br><span class="line">		<span class="keyword">if</span>(key_delay_filter_count[key_num]&gt;<span class="number">0x03FF</span>)<span class="comment">//3是两个1 FF是8个1 共10位 即10ms延时</span></span><br><span class="line">		&#123;</span><br><span class="line">            <span class="keyword">if</span>(keys_status[key_num]=key_released)</span><br><span class="line">                keys_status[key_num]=key_pressed;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		key_delay_filter_count[key_num]&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(key_delay_filter_count[key_num]==<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			keys_status=key_released;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">uint16_t</span> <span class="title function_">Get_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> keys_status[key_num]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> Do_It_Once(<span class="type">uint8_t</span> key_num)</span><br><span class="line">&#123;</span><br><span class="line">    keys_status[key_num]=key_waiting_for_release;</span><br><span class="line">&#125;</span><br></pre>
 
 <pre class="highlight"><span class="line"><span class="comment">/*****key.h*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __KEY_H__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __KEY_H__</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;main.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    key_released=<span class="number">0U</span>,<span class="comment">//U指无符号整型</span></span><br><span class="line">    key_pressed,</span><br><span class="line">    key_waiting_for_release,</span><br><span class="line">&#125;key_status;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> key_status keys_status[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Update_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span>;</span><br><span class="line"><span class="type">uint16_t</span> <span class="title function_">Get_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Do_It_Once</span><span class="params">(<span class="type">uint8_t</span> key_num)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/*__ KEY_H__ */</span></span></span><br></pre>
 
 <pre class="highlight"><span class="line"><span class="comment">/*****stm32g4xx_it.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">SysTick_Handler</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 0 */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* USER CODE END SysTick_IRQn 0 */</span></span><br><span class="line">  HAL_IncTick();</span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 1 */</span></span><br><span class="line"></span><br><span class="line">	Update_Key_Status();</span><br><span class="line">	</span><br><span class="line">  <span class="comment">/* USER CODE END SysTick_IRQn 1 */</span></span><br><span class="line">&#125;</span><br></pre>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        Do_It_Once(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        Do_It_Once(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
 
 
 
-<h4 id="2、长按连续做"><a href="#2、长按连续做" class="headerlink" title="2、长按连续做"></a>2、长按连续做</h4><pre class="highlight"><span class="line"><span class="comment">/*****key.c*****/</span></span><br><span class="line"><span class="type">uint16_t</span> key_cnt[<span class="number">4</span>],key_action_interval[<span class="number">4</span>];</span><br><span class="line"><span class="comment">/*------------------------    </span></span><br><span class="line"><span class="comment">void Update_Key_Status(uint8_t key_num)//消抖10ms</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	if(HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin)=0)</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]&lt;&lt;1;//左移一位 00000011--&gt;00000110(有16位 这里省略了8位0)</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]|=0x0001;//与1取或 --&gt;00000111</span></span><br><span class="line"><span class="comment">		if(key_delay_filter_count[key_num]&gt;0x03FF)//3是两个1 FF是8个1 共10位 即10ms延时</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">            if(keys_status[key_num]=key_released)</span></span><br><span class="line"><span class="comment">                keys_status[key_num]=key_pressed;</span></span><br><span class="line"><span class="comment">-------------------------*/</span></span><br><span class="line">            <span class="keyword">if</span>(keys_status[key_num]=key_long_pressed)</span><br><span class="line">            &#123;</span><br><span class="line">            	key_cnt[key_num]++; <span class="comment">//长按计时</span></span><br><span class="line">            	<span class="keyword">if</span>(key_cnt[key_num]&gt;key_action_interval[key_num])<span class="comment">//key_action_interval执行间隔</span></span><br><span class="line">            	&#123;</span><br><span class="line">            		keys_status[key_num]=key_pressed;<span class="comment">//执行</span></span><br><span class="line">            		key_cnt[key_num]=<span class="number">0</span>;<span class="comment">//清零计时</span></span><br><span class="line">            	&#125;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	else</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]&gt;&gt;1;</span></span><br><span class="line"><span class="comment">		if(key_delay_filter_count[key_num]=0)</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			keys_status=key_released;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line">			key_cnt[key_num]=<span class="number">0</span>;<span class="comment">//清零计时,防止短按（10&lt;key_delay_filter_count&lt;510)时累计</span></span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Do_It_Every_nMs</span><span class="params">(<span class="type">uint8_t</span> key_num,<span class="type">uint16_t</span> nMs)</span></span><br><span class="line">&#123;</span><br><span class="line">    key_action_interval[key_num]=nMs;</span><br><span class="line">    keys_status[key_num]=key_long_pressed;</span><br><span class="line">&#125;</span><br></pre>
+<h4 id="2、长按连续做"><a href="#2、长按连续做" class="headerlink" title="2、长按连续做"></a>2、长按连续做</h4><pre class="highlight"><span class="line"><span class="comment">/*****key.c*****/</span></span><br><span class="line"><span class="type">uint16_t</span> key_cnt[<span class="number">4</span>],key_action_interval[<span class="number">4</span>];</span><br><span class="line"><span class="comment">/*------------------------    </span></span><br><span class="line"><span class="comment">void Update_Key_Status(uint8_t key_num)//消抖10ms</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	if(HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin)==0)</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]&lt;&lt;1;//左移一位 00000011--&gt;00000110(有16位 这里省略了8位0)</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]|=0x0001;//与1取或 --&gt;00000111</span></span><br><span class="line"><span class="comment">		if(key_delay_filter_count[key_num]&gt;0x03FF)//3是两个1 FF是8个1 共10位 即10ms延时</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">            if(keys_status[key_num]==key_released)</span></span><br><span class="line"><span class="comment">                keys_status[key_num]=key_pressed;</span></span><br><span class="line"><span class="comment">-------------------------*/</span></span><br><span class="line">            <span class="keyword">if</span>(keys_status[key_num]==key_long_pressed)</span><br><span class="line">            &#123;</span><br><span class="line">            	key_cnt[key_num]++; <span class="comment">//长按计时</span></span><br><span class="line">            	<span class="keyword">if</span>(key_cnt[key_num]&gt;key_action_interval[key_num])<span class="comment">//key_action_interval执行间隔</span></span><br><span class="line">            	&#123;</span><br><span class="line">            		keys_status[key_num]=key_pressed;<span class="comment">//执行</span></span><br><span class="line">            		key_cnt[key_num]=<span class="number">0</span>;<span class="comment">//清零计时</span></span><br><span class="line">            	&#125;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	else</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]&gt;&gt;1;</span></span><br><span class="line"><span class="comment">		if(key_delay_filter_count[key_num]==0)</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			keys_status=key_released;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line">			key_cnt[key_num]=<span class="number">0</span>;<span class="comment">//清零计时,防止短按（10&lt;key_delay_filter_count&lt;510)时累计</span></span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Do_It_Every_nMs</span><span class="params">(<span class="type">uint8_t</span> key_num,<span class="type">uint16_t</span> nMs)</span></span><br><span class="line">&#123;</span><br><span class="line">    key_action_interval[key_num]=nMs;</span><br><span class="line">    keys_status[key_num]=key_long_pressed;</span><br><span class="line">&#125;</span><br></pre>
 
 <pre class="highlight"><span class="line"><span class="comment">/*****key.h*****/</span></span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">typedef enum</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    key_released=0U,//U指无符号整型</span></span><br><span class="line"><span class="comment">    key_pressed,</span></span><br><span class="line"><span class="comment">    key_waiting_for_release,</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line">    key_long_pressed,</span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">&#125;key_status;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Do_It_Every_nMs</span><span class="params">(<span class="type">uint8_t</span> key_num,<span class="type">uint16_t</span> nMs)</span>;</span><br></pre>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        <span class="comment">//Do_It_Once(0);</span></span><br><span class="line">        Do_It_Every_nMs(<span class="number">0</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        <span class="comment">//Do_It_Once(0);</span></span><br><span class="line">        Do_It_Every_nMs(<span class="number">0</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
 
 
 
@@ -393,7 +393,7 @@
 
 <pre class="highlight"><span class="line"><span class="comment">/*****stm32g4xx_it.c*****/</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN PD */</span></span><br><span class="line">	<span class="type">uint8_t</span> key_num;</span><br><span class="line"><span class="comment">/* USER CODE END PD */</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">SysTick_Handler</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  ```</span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 1 */</span></span><br><span class="line">	Update_Key_ReadPin();</span><br><span class="line">	<span class="keyword">for</span>(key_num=<span class="number">0</span>;key_num&lt;<span class="number">4</span>;key_num++)</span><br><span class="line">	&#123;</span><br><span class="line">		Update_Key_Status(key_num);</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="comment">/* USER CODE END SysTick_IRQn 1 */</span></span><br><span class="line">&#125;</span><br></pre>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">0</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">1</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">1</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">2</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED3_GPIO_Port,LED3_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">2</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">3</span>)=key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED4_GPIO_Port,LED4_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">3</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">0</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">1</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">1</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">2</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED3_GPIO_Port,LED3_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">2</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">3</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED4_GPIO_Port,LED4_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">3</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
 
 
   </div>
@@ -424,6 +424,20 @@
   </div>
 </article>
 <div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">蓝桥杯_液晶屏 </div>
+          
+        </div>
+      </a>
+    </div>
   
   
     <div class="nav-item-next">
@@ -470,7 +484,7 @@
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>9</span>
+    <span>12</span>
     <span>文章</span>
   </a>
   <a 
@@ -521,13 +535,6 @@
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          摘录博客
-          <span class="categories-list-item-badge">1</span>
-        </div>
-      </a>
-    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
@@ -535,17 +542,17 @@
         </div>
       </a>
     
-      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
         <div class="categories-list-item">
-          竞赛
-          <span class="categories-list-item-badge">3</span>
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
         <div class="categories-list-item">
-          摘录博客/hexo博客
-          <span class="categories-list-item-badge">1</span>
+          竞赛
+          <span class="categories-list-item-badge">6</span>
         </div>
       </a>
     
@@ -556,10 +563,17 @@
         </div>
       </a>
     
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客/hexo博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
         <div class="categories-list-item">
           竞赛/嵌入式
-          <span class="categories-list-item-badge">3</span>
+          <span class="categories-list-item-badge">6</span>
         </div>
       </a>
     
@@ -584,15 +598,15 @@
       </a>
     
       <a 
-        href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
-        title="嵌入式">
-        <div class="tags-list-item">嵌入式</div>
-      </a>
-    
-      <a 
         href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
         title="蓝桥杯">
         <div class="tags-list-item">蓝桥杯</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+        title="嵌入式">
+        <div class="tags-list-item">嵌入式</div>
       </a>
     
       <a 
@@ -652,23 +666,23 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-03</div>
-        <a href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%8C%89%E9%94%AE/"><div class="recent-posts-item-content">蓝桥杯_按键</div></a>
+        <div class="recent-posts-item-title">2022-05-08</div>
+        <a href="/2022/05/08/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%AD%E6%96%AD/"><div class="recent-posts-item-content">蓝桥杯-中断</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-03</div>
-        <a href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-LED/"><div class="recent-posts-item-content">蓝桥杯_LED</div></a>
+        <div class="recent-posts-item-title">2022-05-06</div>
+        <a href="/2022/05/06/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/"><div class="recent-posts-item-content">蓝桥杯_定时器</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-03</div>
-        <a href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/"><div class="recent-posts-item-content">蓝桥杯_液晶屏</div></a>
+        <div class="recent-posts-item-title">2022-05-05</div>
+        <a href="/2022/05/05/%E8%93%9D%E6%A1%A5%E6%9D%AF-ADC%E9%87%87%E9%9B%86/"><div class="recent-posts-item-content">蓝桥杯_ADC采集</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-04-10</div>
-        <a href="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/"><div class="recent-posts-item-content">MySQL学习02-创建数据库并插入数据</div></a>
+        <div class="recent-posts-item-title">2022-05-04</div>
+        <a href="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/"><div class="recent-posts-item-content">蓝桥杯_液晶屏</div></a>
       </div>
     
   </div>

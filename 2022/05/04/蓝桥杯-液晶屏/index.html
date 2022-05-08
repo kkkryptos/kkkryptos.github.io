@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="/images/logo.png">
-  <title>嵌入式系统学习04-最小系统</title>
+  <title>蓝桥杯_液晶屏</title>
   
     
       <meta 
         property="og:title" 
-        content="嵌入式系统学习04-最小系统">
+        content="蓝桥杯_液晶屏">
     
     
       <meta 
         property="og:url" 
-        content="http://kkkryptos.github.io/2022/04/06/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A004-%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F/index.html">
+        content="http://kkkryptos.github.io/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/index.html">
     
     
       <meta 
@@ -42,10 +42,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-04-06">
+        content="2022-05-04">
       <meta 
         property="og:article:modified_time" 
-        content="2022-05-04">
+        content="2022-05-06">
       <meta 
         property="og:article:author" 
         content="kkkryptos">
@@ -53,11 +53,11 @@
         
           <meta 
             property="og:article:tag" 
-            content="嵌入式">
+            content="stm32">
         
           <meta 
             property="og:article:tag" 
-            content="stm32">
+            content="蓝桥杯">
         
       
     
@@ -268,28 +268,28 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      嵌入式系统学习04-最小系统
+      蓝桥杯_液晶屏
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-04-05T17:28:04.000Z">
+    <time datetime="2022-05-03T23:53:47.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-04-06</span>
+      <span>2022-05-04</span>
     </time>
     
       <span class="dot"></span>
       
         <a 
-          href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/" 
+          href="/categories/%E7%AB%9E%E8%B5%9B/" 
           class="post-meta-link">
-          专业课
+          竞赛
         </a>
       
         <a 
-          href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+          href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
           class="post-meta-link">
           嵌入式
         </a>
@@ -297,7 +297,7 @@
     
     
       <span class="dot"></span>
-      <span>0 字</span>
+      <span>159 字</span>
     
   </div>
   
@@ -312,18 +312,18 @@
         
           
           <a 
-            href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+            href="/tags/stm32/" 
             class="post-meta-link">
-            嵌入式
+            stm32
           </a>
         
           
             <span class="dot"></span>
           
           <a 
-            href="/tags/stm32/" 
+            href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
             class="post-meta-link">
-            stm32
+            蓝桥杯
           </a>
         
       </div>
@@ -333,7 +333,29 @@
   <div 
     id="section" 
     class="post-content">
-    
+    <h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/hexo_blog\source_posts\MyPostImages\蓝桥杯-液晶屏\QQ截图20220504113559.png" class="lozad post-image"src="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/hexo_blog\source_posts\MyPostImages\蓝桥杯-液晶屏\QQ截图20220504113559.png"></p>
+<p>PC0-PC15: LCD_D1-LCD_D15</p>
+<p>PA8: LCD_RD</p>
+<p>PB8: LCD_RS</p>
+<p>PB9: LCD_CS#</p>
+<p>PB5: LCD_WR#</p>
+<p>LCD_RST: LCD_RST#</p>
+<p>(#：低电平有效)</p>
+<h3 id="二、点亮液晶屏LCD"><a href="#二、点亮液晶屏LCD" class="headerlink" title="二、点亮液晶屏LCD"></a>二、点亮液晶屏LCD</h3><h4 id="1、将fonts-h、lcd-h放入-core-Inc"><a href="#1、将fonts-h、lcd-h放入-core-Inc" class="headerlink" title="1、将fonts.h、lcd.h放入\core\Inc"></a>1、将fonts.h、lcd.h放入\core\Inc</h4><h4 id="2、将lcd-c放入-core-Src"><a href="#2、将lcd-c放入-core-Src" class="headerlink" title="2、将lcd.c放入\core\Src"></a>2、将lcd.c放入\core\Src</h4><h4 id="3、将lcd-c加入工程目录"><a href="#3、将lcd-c加入工程目录" class="headerlink" title="3、将lcd.c加入工程目录"></a>3、将lcd.c加入工程目录</h4><h4 id="4、在main-c中调用LCD-Init"><a href="#4、在main-c中调用LCD-Init" class="headerlink" title="4、在main.c中调用LCD_Init();"></a>4、在main.c中调用LCD_Init();</h4><pre class="highlight"><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;lcd.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">LCD_Init();</span><br></pre>
+
+<h4 id="5、编译"><a href="#5、编译" class="headerlink" title="5、编译"></a>5、编译</h4><h4 id="6、显示"><a href="#6、显示" class="headerlink" title="6、显示"></a>6、显示</h4><pre class="highlight"><span class="line">/*****main.c*****/</span><br><span class="line">#include &quot;stdio.h&quot;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	uint8_t str[100];</span><br><span class="line">	LCD_DisplayStringLine(Line0,&quot;test lcd......&quot;);</span><br><span class="line">&#125;</span><br></pre>
+
+
+
+<h3 id="三、LED与LCD冲突解决"><a href="#三、LED与LCD冲突解决" class="headerlink" title="三、LED与LCD冲突解决"></a>三、LED与LCD冲突解决</h3><p>共用PC8-PC15</p>
+<p>添加使能位开关操作</p>
+<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">            <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)==key_pressed)</span><br><span class="line">            &#123;</span><br><span class="line">                HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_SET);</span><br><span class="line">				HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">                Do_It_Every_nMs(<span class="number">0</span>,<span class="number">500</span>);</span><br><span class="line">                HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_RESET);</span><br><span class="line">            &#125;</span><br><span class="line">            ```</span><br><span class="line">        &#125;</span><br></pre>
+
+<p>修改lcd.h下的这三个函数</p>
+<p><img src="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/hexo_blog\source_posts\MyPostImages\蓝桥杯-液晶屏\QQ图片20220505125035.png" alt="QQ图片20220505125035" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/hexo_blog\source_posts\MyPostImages\蓝桥杯-液晶屏\QQ图片20220505125035.png" class="lozad post-image"></p>
+<p>添加这三行</p>
+<p><img src="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/hexo_blog\source_posts\MyPostImages\蓝桥杯-液晶屏\QQ图片20220505125427.png" alt="QQ图片20220505125427" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/hexo_blog\source_posts\MyPostImages\蓝桥杯-液晶屏\QQ图片20220505125427.png" class="lozad post-image"></p>
+
   </div>
   <div>
     
@@ -352,8 +374,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://kkkryptos.github.io/2022/04/06/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A004-%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F/">
-            http://kkkryptos.github.io/2022/04/06/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A004-%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F/
+            href="http://kkkryptos.github.io/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/">
+            http://kkkryptos.github.io/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -365,13 +387,13 @@
   
     <div class="nav-item-prev">
       <a 
-        href="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A001-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/" 
+        href="/2022/05/05/%E8%93%9D%E6%A1%A5%E6%9D%AF-ADC%E9%87%87%E9%9B%86/" 
         class="nav-link">
         <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
           <div class="nav-label">上一篇</div>
           
-            <div class="nav-title">MySQL学习01-介绍与安装 </div>
+            <div class="nav-title">蓝桥杯_ADC采集 </div>
           
         </div>
       </a>
@@ -380,12 +402,12 @@
   
     <div class="nav-item-next">
       <a 
-        href="/2022/04/05/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A003-MPU%E5%9F%BA%E7%A1%80/" 
+        href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%8C%89%E9%94%AE/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">嵌入式系统学习03 MPU基础 </div>
+            <div class="nav-title">蓝桥杯_按键 </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -403,7 +425,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%82%B9%E4%BA%AE%E6%B6%B2%E6%99%B6%E5%B1%8FLCD"><span class="toc-text">二、点亮液晶屏LCD</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%B0%86fonts-h%E3%80%81lcd-h%E6%94%BE%E5%85%A5-core-Inc"><span class="toc-text">1、将fonts.h、lcd.h放入\core\Inc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%B0%86lcd-c%E6%94%BE%E5%85%A5-core-Src"><span class="toc-text">2、将lcd.c放入\core\Src</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%B0%86lcd-c%E5%8A%A0%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95"><span class="toc-text">3、将lcd.c加入工程目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%9C%A8main-c%E4%B8%AD%E8%B0%83%E7%94%A8LCD-Init"><span class="toc-text">4、在main.c中调用LCD_Init();</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E7%BC%96%E8%AF%91"><span class="toc-text">5、编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E6%98%BE%E7%A4%BA"><span class="toc-text">6、显示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81LED%E4%B8%8ELCD%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3"><span class="toc-text">三、LED与LCD冲突解决</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -451,7 +473,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%82%B9%E4%BA%AE%E6%B6%B2%E6%99%B6%E5%B1%8FLCD"><span class="toc-text">二、点亮液晶屏LCD</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%B0%86fonts-h%E3%80%81lcd-h%E6%94%BE%E5%85%A5-core-Inc"><span class="toc-text">1、将fonts.h、lcd.h放入\core\Inc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%B0%86lcd-c%E6%94%BE%E5%85%A5-core-Src"><span class="toc-text">2、将lcd.c放入\core\Src</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%B0%86lcd-c%E5%8A%A0%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95"><span class="toc-text">3、将lcd.c加入工程目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%9C%A8main-c%E4%B8%AD%E8%B0%83%E7%94%A8LCD-Init"><span class="toc-text">4、在main.c中调用LCD_Init();</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E7%BC%96%E8%AF%91"><span class="toc-text">5、编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E6%98%BE%E7%A4%BA"><span class="toc-text">6、显示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81LED%E4%B8%8ELCD%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3"><span class="toc-text">三、LED与LCD冲突解决</span></a></li></ol>
       </div>
     </article>
   
@@ -589,7 +611,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%82%B9%E4%BA%AE%E6%B6%B2%E6%99%B6%E5%B1%8FLCD"><span class="toc-text">二、点亮液晶屏LCD</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%B0%86fonts-h%E3%80%81lcd-h%E6%94%BE%E5%85%A5-core-Inc"><span class="toc-text">1、将fonts.h、lcd.h放入\core\Inc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%B0%86lcd-c%E6%94%BE%E5%85%A5-core-Src"><span class="toc-text">2、将lcd.c放入\core\Src</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%B0%86lcd-c%E5%8A%A0%E5%85%A5%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95"><span class="toc-text">3、将lcd.c加入工程目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%9C%A8main-c%E4%B8%AD%E8%B0%83%E7%94%A8LCD-Init"><span class="toc-text">4、在main.c中调用LCD_Init();</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E7%BC%96%E8%AF%91"><span class="toc-text">5、编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E6%98%BE%E7%A4%BA"><span class="toc-text">6、显示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81LED%E4%B8%8ELCD%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3"><span class="toc-text">三、LED与LCD冲突解决</span></a></li></ol>
     </article>
   
   

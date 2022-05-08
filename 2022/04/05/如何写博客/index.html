@@ -45,7 +45,7 @@
         content="2022-04-05">
       <meta 
         property="og:article:modified_time" 
-        content="2022-04-06">
+        content="2022-05-07">
       <meta 
         property="og:article:author" 
         content="kkkryptos">
@@ -297,7 +297,7 @@
     
     
       <span class="dot"></span>
-      <span>1.8k 字</span>
+      <span>2.2k 字</span>
     
   </div>
   
@@ -427,7 +427,15 @@
 </ul>
 <pre class="highlight"><span class="line">&#123;% asset_img example.jpg This is an example image %&#125;</span><br></pre>
 
-<h3 id="7、常用命令"><a href="#7、常用命令" class="headerlink" title="7、常用命令"></a>7、常用命令</h3><ul>
+<h3 id="7、字体颜色"><a href="#7、字体颜色" class="headerlink" title="7、字体颜色"></a>7、字体颜色</h3><h4 id="1、下载并安装AutoHotKey。"><a href="#1、下载并安装AutoHotKey。" class="headerlink" title="1、下载并安装AutoHotKey。"></a>1、下载并安装AutoHotKey。</h4><p><a target="_blank" rel="noopener" href="https://autohotkey.com/download/ahk-install.exe">官方下载地址</a>： <a target="_blank" rel="noopener" href="https://autohotkey.com/download/ahk-install.exe">https://autohotkey.com/download/ahk-install.exe</a></p>
+<h4 id="2、AutoHotKey-ahk"><a href="#2、AutoHotKey-ahk" class="headerlink" title="2、AutoHotKey.ahk"></a>2、AutoHotKey.ahk</h4><p>打开记事本，把下面的内容复制粘贴进去：</p>
+<pre class="highlight"><span class="line">; Typora</span><br><span class="line">; 快捷增加字体颜色</span><br><span class="line">; SendInput &#123;Text&#125; 解决中文输入法问题</span><br><span class="line"> </span><br><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+O 橙色</span><br><span class="line">    ^!o::addFontColor(&quot;orange&quot;)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+R 红色</span><br><span class="line">    ^!r::addFontColor(&quot;red&quot;)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+B 浅蓝色</span><br><span class="line">    ^!b::addFontColor(&quot;cornflowerblue&quot;)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">; 快捷增加字体颜色</span><br><span class="line">addFontColor(color)&#123;</span><br><span class="line">    clipboard := &quot;&quot; ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">    If(clipboard = &quot;&quot;)&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+
+<p>重命名，如AutoHotKey.ahk</p>
+<h4 id="3、双击运行"><a href="#3、双击运行" class="headerlink" title="3、双击运行"></a>3、双击运行</h4><h4 id="4、使用"><a href="#4、使用" class="headerlink" title="4、使用"></a>4、使用</h4><p>在Typora软件里就可以使用快捷键进行想要的修改操作了（想要更多的快捷键设置方式，可以在AutoHotKey.ahk文件中自行添加）：</p>
+<p>如按 Ctrl+Alt+O 添加橙色， Ctrl+Alt+R 红色，按 Ctrl+\ 取消样式！</p>
+<h4 id="5、其他方式"><a href="#5、其他方式" class="headerlink" title="5、其他方式"></a>5、其他方式</h4><p>也可以右键 AutoHotKey.ahk 脚本文件，点击Compile Script编译脚本成exe程序，就可以不用下载Autohotkey在其他电脑上运行了。</p>
+<h3 id="8、发布博客命令"><a href="#8、发布博客命令" class="headerlink" title="8、发布博客命令"></a>8、发布博客命令</h3><ul>
 <li><strong>清除缓存：</strong><code>hexo clean</code></li>
 <li><strong>生成静态文件：</strong><code>hexo generate</code>可简写为 <code>hexo g</code></li>
 <li><strong>启动服务器：</strong><code>hexo server</code>或者 <code>hexo s</code> 常用参数：<code>-p（--port）</code>重设端口</li>
@@ -454,7 +462,7 @@
 
 
 
-<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><pre class="highlight"><span class="line">https://www.cnblogs.com/congcong1/p/10588151.html</span><br><span class="line">https://zhuanlan.zhihu.com/p/156915260</span><br></pre>
+<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><pre class="highlight"><span class="line">https://www.cnblogs.com/congcong1/p/10588151.html</span><br><span class="line">https://zhuanlan.zhihu.com/p/156915260</span><br><span class="line">https://blog.csdn.net/liulei952413829/article/details/114670380</span><br></pre>
 
 
   </div>
@@ -526,7 +534,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAmd%E6%96%87%E4%BB%B6"><span class="toc-text">1、创建一个md文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B8%83%E5%B1%80%EF%BC%88layout%EF%BC%89"><span class="toc-text">2、布局（layout）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%8D%89%E7%A8%BF%EF%BC%88draft%EF%BC%89"><span class="toc-text">3、草稿（draft）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Front-matter"><span class="toc-text">4、Front-matter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE"><span class="toc-text">为文章添加分类与标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AA%E5%88%86%E7%B1%BB"><span class="toc-text">为文章添加多个分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81typora%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">5、typora快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">6、插入图片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%8E%E7%BD%91%E9%A1%B5%E8%B5%84%E6%BA%90%E7%B2%98%E8%B4%B4"><span class="toc-text">1.从网页资源粘贴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BB%8E%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8"><span class="toc-text">2.从本地引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">7、常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-text">参考博客</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAmd%E6%96%87%E4%BB%B6"><span class="toc-text">1、创建一个md文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B8%83%E5%B1%80%EF%BC%88layout%EF%BC%89"><span class="toc-text">2、布局（layout）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%8D%89%E7%A8%BF%EF%BC%88draft%EF%BC%89"><span class="toc-text">3、草稿（draft）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Front-matter"><span class="toc-text">4、Front-matter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE"><span class="toc-text">为文章添加分类与标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AA%E5%88%86%E7%B1%BB"><span class="toc-text">为文章添加多个分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81typora%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">5、typora快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">6、插入图片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%8E%E7%BD%91%E9%A1%B5%E8%B5%84%E6%BA%90%E7%B2%98%E8%B4%B4"><span class="toc-text">1.从网页资源粘贴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BB%8E%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8"><span class="toc-text">2.从本地引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2"><span class="toc-text">7、字体颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85AutoHotKey%E3%80%82"><span class="toc-text">1、下载并安装AutoHotKey。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81AutoHotKey-ahk"><span class="toc-text">2、AutoHotKey.ahk</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%8F%8C%E5%87%BB%E8%BF%90%E8%A1%8C"><span class="toc-text">3、双击运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E4%BD%BF%E7%94%A8"><span class="toc-text">4、使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%85%B6%E4%BB%96%E6%96%B9%E5%BC%8F"><span class="toc-text">5、其他方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E5%91%BD%E4%BB%A4"><span class="toc-text">8、发布博客命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-text">参考博客</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -545,7 +553,7 @@
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>9</span>
+    <span>12</span>
     <span>文章</span>
   </a>
   <a 
@@ -574,7 +582,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAmd%E6%96%87%E4%BB%B6"><span class="toc-text">1、创建一个md文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B8%83%E5%B1%80%EF%BC%88layout%EF%BC%89"><span class="toc-text">2、布局（layout）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%8D%89%E7%A8%BF%EF%BC%88draft%EF%BC%89"><span class="toc-text">3、草稿（draft）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Front-matter"><span class="toc-text">4、Front-matter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE"><span class="toc-text">为文章添加分类与标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AA%E5%88%86%E7%B1%BB"><span class="toc-text">为文章添加多个分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81typora%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">5、typora快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">6、插入图片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%8E%E7%BD%91%E9%A1%B5%E8%B5%84%E6%BA%90%E7%B2%98%E8%B4%B4"><span class="toc-text">1.从网页资源粘贴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BB%8E%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8"><span class="toc-text">2.从本地引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">7、常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-text">参考博客</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAmd%E6%96%87%E4%BB%B6"><span class="toc-text">1、创建一个md文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B8%83%E5%B1%80%EF%BC%88layout%EF%BC%89"><span class="toc-text">2、布局（layout）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%8D%89%E7%A8%BF%EF%BC%88draft%EF%BC%89"><span class="toc-text">3、草稿（draft）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Front-matter"><span class="toc-text">4、Front-matter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE"><span class="toc-text">为文章添加分类与标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AA%E5%88%86%E7%B1%BB"><span class="toc-text">为文章添加多个分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81typora%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">5、typora快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">6、插入图片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%8E%E7%BD%91%E9%A1%B5%E8%B5%84%E6%BA%90%E7%B2%98%E8%B4%B4"><span class="toc-text">1.从网页资源粘贴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BB%8E%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8"><span class="toc-text">2.从本地引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2"><span class="toc-text">7、字体颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85AutoHotKey%E3%80%82"><span class="toc-text">1、下载并安装AutoHotKey。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81AutoHotKey-ahk"><span class="toc-text">2、AutoHotKey.ahk</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%8F%8C%E5%87%BB%E8%BF%90%E8%A1%8C"><span class="toc-text">3、双击运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E4%BD%BF%E7%94%A8"><span class="toc-text">4、使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%85%B6%E4%BB%96%E6%96%B9%E5%BC%8F"><span class="toc-text">5、其他方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E5%91%BD%E4%BB%A4"><span class="toc-text">8、发布博客命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-text">参考博客</span></a></li></ol>
       </div>
     </article>
   
@@ -596,13 +604,6 @@
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          摘录博客
-          <span class="categories-list-item-badge">1</span>
-        </div>
-      </a>
-    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
@@ -610,17 +611,17 @@
         </div>
       </a>
     
-      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
         <div class="categories-list-item">
-          竞赛
-          <span class="categories-list-item-badge">3</span>
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
         <div class="categories-list-item">
-          摘录博客/hexo博客
-          <span class="categories-list-item-badge">1</span>
+          竞赛
+          <span class="categories-list-item-badge">6</span>
         </div>
       </a>
     
@@ -631,10 +632,17 @@
         </div>
       </a>
     
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客/hexo博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
         <div class="categories-list-item">
           竞赛/嵌入式
-          <span class="categories-list-item-badge">3</span>
+          <span class="categories-list-item-badge">6</span>
         </div>
       </a>
     
@@ -659,15 +667,15 @@
       </a>
     
       <a 
-        href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
-        title="嵌入式">
-        <div class="tags-list-item">嵌入式</div>
-      </a>
-    
-      <a 
         href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
         title="蓝桥杯">
         <div class="tags-list-item">蓝桥杯</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+        title="嵌入式">
+        <div class="tags-list-item">嵌入式</div>
       </a>
     
       <a 
@@ -712,7 +720,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAmd%E6%96%87%E4%BB%B6"><span class="toc-text">1、创建一个md文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B8%83%E5%B1%80%EF%BC%88layout%EF%BC%89"><span class="toc-text">2、布局（layout）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%8D%89%E7%A8%BF%EF%BC%88draft%EF%BC%89"><span class="toc-text">3、草稿（draft）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Front-matter"><span class="toc-text">4、Front-matter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE"><span class="toc-text">为文章添加分类与标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AA%E5%88%86%E7%B1%BB"><span class="toc-text">为文章添加多个分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81typora%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">5、typora快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">6、插入图片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%8E%E7%BD%91%E9%A1%B5%E8%B5%84%E6%BA%90%E7%B2%98%E8%B4%B4"><span class="toc-text">1.从网页资源粘贴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BB%8E%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8"><span class="toc-text">2.从本地引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">7、常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-text">参考博客</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAmd%E6%96%87%E4%BB%B6"><span class="toc-text">1、创建一个md文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B8%83%E5%B1%80%EF%BC%88layout%EF%BC%89"><span class="toc-text">2、布局（layout）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%8D%89%E7%A8%BF%EF%BC%88draft%EF%BC%89"><span class="toc-text">3、草稿（draft）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Front-matter"><span class="toc-text">4、Front-matter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E4%B8%8E%E6%A0%87%E7%AD%BE"><span class="toc-text">为文章添加分类与标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E5%A4%9A%E4%B8%AA%E5%88%86%E7%B1%BB"><span class="toc-text">为文章添加多个分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81typora%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">5、typora快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">6、插入图片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%8E%E7%BD%91%E9%A1%B5%E8%B5%84%E6%BA%90%E7%B2%98%E8%B4%B4"><span class="toc-text">1.从网页资源粘贴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BB%8E%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8"><span class="toc-text">2.从本地引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2"><span class="toc-text">7、字体颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85AutoHotKey%E3%80%82"><span class="toc-text">1、下载并安装AutoHotKey。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81AutoHotKey-ahk"><span class="toc-text">2、AutoHotKey.ahk</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%8F%8C%E5%87%BB%E8%BF%90%E8%A1%8C"><span class="toc-text">3、双击运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E4%BD%BF%E7%94%A8"><span class="toc-text">4、使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%85%B6%E4%BB%96%E6%96%B9%E5%BC%8F"><span class="toc-text">5、其他方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E5%91%BD%E4%BB%A4"><span class="toc-text">8、发布博客命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-text">参考博客</span></a></li></ol>
     </article>
   
   
@@ -727,23 +735,23 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-03</div>
-        <a href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%8C%89%E9%94%AE/"><div class="recent-posts-item-content">蓝桥杯_按键</div></a>
+        <div class="recent-posts-item-title">2022-05-08</div>
+        <a href="/2022/05/08/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%AD%E6%96%AD/"><div class="recent-posts-item-content">蓝桥杯-中断</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-03</div>
-        <a href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-LED/"><div class="recent-posts-item-content">蓝桥杯_LED</div></a>
+        <div class="recent-posts-item-title">2022-05-06</div>
+        <a href="/2022/05/06/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/"><div class="recent-posts-item-content">蓝桥杯_定时器</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-03</div>
-        <a href="/2022/05/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/"><div class="recent-posts-item-content">蓝桥杯_液晶屏</div></a>
+        <div class="recent-posts-item-title">2022-05-05</div>
+        <a href="/2022/05/05/%E8%93%9D%E6%A1%A5%E6%9D%AF-ADC%E9%87%87%E9%9B%86/"><div class="recent-posts-item-content">蓝桥杯_ADC采集</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-04-10</div>
-        <a href="/2022/04/10/MySQL%E5%AD%A6%E4%B9%A002-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE/"><div class="recent-posts-item-content">MySQL学习02-创建数据库并插入数据</div></a>
+        <div class="recent-posts-item-title">2022-05-04</div>
+        <a href="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/"><div class="recent-posts-item-content">蓝桥杯_液晶屏</div></a>
       </div>
     
   </div>
