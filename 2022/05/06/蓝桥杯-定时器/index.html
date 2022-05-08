@@ -53,11 +53,11 @@
         
           <meta 
             property="og:article:tag" 
-            content="蓝桥杯">
+            content="stm32">
         
           <meta 
             property="og:article:tag" 
-            content="stm32">
+            content="蓝桥杯">
         
       
     
@@ -312,18 +312,18 @@
         
           
           <a 
-            href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
+            href="/tags/stm32/" 
             class="post-meta-link">
-            蓝桥杯
+            stm32
           </a>
         
           
             <span class="dot"></span>
           
           <a 
-            href="/tags/stm32/" 
+            href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
             class="post-meta-link">
-            stm32
+            蓝桥杯
           </a>
         
       </div>
@@ -333,7 +333,7 @@
   <div 
     id="section" 
     class="post-content">
-    <h3 id="一、SysTick-TIM-系统滴答定时器"><a href="#一、SysTick-TIM-系统滴答定时器" class="headerlink" title="一、SysTick_TIM 系统滴答定时器"></a>一、SysTick_TIM 系统滴答定时器</h3><h4 id="1、寄存器（参考手册）"><a href="#1、寄存器（参考手册）" class="headerlink" title="1、寄存器（参考手册）"></a>1、寄存器（参考手册）</h4><h5 id="1-SysTick-control-and-status-register-STK-CTRL"><a href="#1-SysTick-control-and-status-register-STK-CTRL" class="headerlink" title="1. SysTick control and status register (STK_CTRL)"></a>1. SysTick control and status register (STK_CTRL)</h5><p><img src="/2022/05/06/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/hexo_blog\source_posts\MyPostImages\蓝桥杯-定时器\01.png" alt="01" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/05/06/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/hexo_blog\source_posts\MyPostImages\蓝桥杯-定时器\01.png" class="lozad post-image"></p>
+    <h3 id="一、SysTick-TIM-系统滴答定时器"><a href="#一、SysTick-TIM-系统滴答定时器" class="headerlink" title="一、SysTick_TIM 系统滴答定时器"></a>一、SysTick_TIM 系统滴答定时器</h3><h4 id="1、寄存器（参考手册）"><a href="#1、寄存器（参考手册）" class="headerlink" title="1、寄存器（参考手册）"></a>1、寄存器（参考手册）</h4><h5 id="1-SysTick-control-and-status-register-STK-CTRL"><a href="#1-SysTick-control-and-status-register-STK-CTRL" class="headerlink" title="1. SysTick control and status register (STK_CTRL)"></a>1. SysTick control and status register (STK_CTRL)</h5><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/01.png?raw=true" alt="01" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/01.png?raw=true" class="lozad post-image"></p>
 <p>Bits 31:17 Reserved, must be kept cleared.<br>      Bit 16 <strong>COUNTFLAG</strong>:  &#x2F;&#x2F;计数标志位<br>                  **Returns 1 if timer counted to 0 since last time this was read. **&#x2F;&#x2F;被读到就自动变0；等systick timer的专用计数器为0时标志位置1<br>Bits 15:3 Reserved, must be kept cleared.<br>        Bit 2 <strong>CLKSOURCE</strong>: Clock source selection &#x2F;&#x2F;选择时钟源（0&#x2F;1）<br>                Selects the clock source.<br>                0: AHB&#x2F;8<br>                1: Processor clock (AHB)<br>        Bit 1 <strong>TICKINT</strong>: SysTick exception request enable &#x2F;&#x2F;异常请求使能<br>                0: Counting down to zero does <strong>not</strong> assert the SysTick exception request<br>                1: Counting down to zero to asserts the SysTick exception request.<br>                <em>Note</em>: Software can use COUNTFLAG to determine if SysTick has ever counted to zero.<br>        Bit 0 <strong>ENABLE</strong>: Counter enable &#x2F;&#x2F;开关<br>                Enables the counter. When ENABLE is set to 1, the counter loads the RELOAD value from the LOAD register and then counts down. On reaching                 0, it sets the COUNTFLAG to 1 and optionally asserts the SysTick depending on the value of TICKINT. It then loads the RELOAD value again, and                 begins counting.<br>                0: Counter disabled<br>                1: Counter enabled</p>
 <h5 id="2-SysTick-reload-value-register-STK-LOAD"><a href="#2-SysTick-reload-value-register-STK-LOAD" class="headerlink" title="2. SysTick reload value register (STK_LOAD)"></a>2. SysTick reload value register (STK_LOAD)</h5><p><img src="/2022/05/06/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/hexo_blog\source_posts\MyPostImages\蓝桥杯-定时器\02.png" alt="1" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/05/06/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/hexo_blog\source_posts\MyPostImages\蓝桥杯-定时器\02.png" class="lozad post-image"></p>
 <p>  Bits 31:24 Reserved, must be kept cleared.<br>    Bits 23:0 <strong>RELOAD</strong>: RELOAD value &#x2F;&#x2F;用来设置计时器倒数开始的值（弹药箱）<br>                    The LOAD register specifies the start value to load into the STK_VAL register when the counter is enabled and when it reaches 0.<br>                    Calculating the RELOAD value<br>                    The RELOAD value can be any value in the range 0x00000001-0x00FFFFFF. A start value of 0 is possible, but has no effect because the SysTick                     exception request and COUNTFLAG are activated when counting from 1 to 0.<br>                    The RELOAD value is calculated according to its use:<br>                    l         To generate a multi-shot timer with a period of N processor clock cycles, use a RELOAD value of N-1. For example, if the SysTick interrupt                                 is required every 100 clock pulses, set RELOAD to 99.<br>                    l         To deliver a single SysTick interrupt after a delay of N processor clock cycles, use a RELOAD of value N. For example, if a SysTick interrupt                                 is required after 100 clock pulses, set RELOAD to 99.</p>
@@ -532,6 +532,13 @@
         </div>
       </a>
     
+      <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
+        <div class="categories-list-item">
+          专业课
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
         <div class="categories-list-item">
           摘录博客
@@ -546,9 +553,9 @@
         </div>
       </a>
     
-      <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
+      <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
         <div class="categories-list-item">
-          专业课
+          专业课/嵌入式
           <span class="categories-list-item-badge">2</span>
         </div>
       </a>
@@ -564,13 +571,6 @@
         <div class="categories-list-item">
           竞赛/嵌入式
           <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
-      <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
-        <div class="categories-list-item">
-          专业课/嵌入式
-          <span class="categories-list-item-badge">2</span>
         </div>
       </a>
     
