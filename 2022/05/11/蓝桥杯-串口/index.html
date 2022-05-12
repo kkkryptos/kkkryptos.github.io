@@ -284,7 +284,7 @@
     class="post-content">
     <pre class="highlight"><span class="line">title: 蓝桥杯_串口</span><br><span class="line">date: 2022-05-11 06:28:09</span><br><span class="line">tags:</span><br><span class="line">- 蓝桥杯</span><br><span class="line">- stm32</span><br><span class="line">categories:</span><br><span class="line">- 竞赛</span><br><span class="line">- 嵌入式</span><br></pre>
 
-<h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3><p><img src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\01.png?lastModify=1652262317" alt="01" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\01.png?lastModify=1652262317" class="lozad post-image"></p>
+<h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/01.png" alt="01" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/01.png" class="lozad post-image"></p>
 <p>PA9、PA10</p>
 <h3 id="二、CubeMX工程配置"><a href="#二、CubeMX工程配置" class="headerlink" title="二、CubeMX工程配置"></a>二、CubeMX工程配置</h3><h4 id="1、Pinout-amp-Configuration-System-Core"><a href="#1、Pinout-amp-Configuration-System-Core" class="headerlink" title="1、Pinout&amp;Configuration_System Core"></a>1、Pinout&amp;Configuration_System Core</h4><h5 id="1-SYS"><a href="#1-SYS" class="headerlink" title="1.SYS"></a>1.SYS</h5><p>Debug：<strong>Serial Wire</strong>（串行）</p>
 <pre class="highlight"><span class="line">PA13 SYS_JTCK-SWCLK</span><br><span class="line">PA14 SYS_JTMS-SWDID</span><br></pre>
@@ -295,7 +295,7 @@
 <h4 id="2、Connectivity"><a href="#2、Connectivity" class="headerlink" title="2、Connectivity"></a>2、Connectivity</h4><h5 id="USART1"><a href="#USART1" class="headerlink" title="USART1"></a>USART1</h5><pre class="highlight"><span class="line">PA9 USART1_TX</span><br><span class="line">PA10 USART1_RX</span><br></pre>
 
 <p>Mode：<strong>Asynchronous</strong>（异步）（先配置PA9 PA10）</p>
-<h5 id="NVIC-Setting"><a href="#NVIC-Setting" class="headerlink" title="NVIC Setting"></a>NVIC Setting</h5><p><img src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\11.png?lastModify=1652262317" alt="11" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\11.png?lastModify=1652262317" class="lozad post-image"></p>
+<h5 id="NVIC-Setting"><a href="#NVIC-Setting" class="headerlink" title="NVIC Setting"></a>NVIC Setting</h5><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/11.png" alt="11" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/11.png" class="lozad post-image"></p>
 <p>生成中断入口函数</p>
 <h4 id="2、Clock-Configuration（时钟源配置）"><a href="#2、Clock-Configuration（时钟源配置）" class="headerlink" title="2、Clock Configuration（时钟源配置）"></a>2、Clock Configuration（时钟源配置）</h4><h5 id="配置HSE（外部晶振）"><a href="#配置HSE（外部晶振）" class="headerlink" title="配置HSE（外部晶振）"></a>配置HSE（外部晶振）</h5><p>Imput frequency：24——HSE——PLLCLK倍频——HCLK：170（回车）</p>
 <h4 id="3、Project-Manager"><a href="#3、Project-Manager" class="headerlink" title="3、Project Manager"></a>3、Project Manager</h4><h5 id="1-Project"><a href="#1-Project" class="headerlink" title="1.Project"></a>1.Project</h5><p>Project Name(STM32G431RBT6_KEY_ACTION)</p>
@@ -315,7 +315,7 @@
 
 <p>HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)</p>
 <p>1&#x2F;波特率&#x3D;发送一个bit需要的时间，一个字符10bits</p>
-<p><img src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\12.png?lastModify=1652262317" alt="12" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\12.png?lastModify=1652262317" class="lozad post-image"></p>
+<p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/12.png" alt="12" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/12.png" class="lozad post-image"></p>
 <p>需要<code>Timeout</code>（超时时间）超过发送内容所需的时间t&#x3D;1&#x2F;波特率*10 *<code>Size</code>（字符长度）才能完整发送</p>
 <h5 id="2-HAL-UART-Transmit-IT"><a href="#2-HAL-UART-Transmit-IT" class="headerlink" title="2.HAL_UART_Transmit_IT"></a>2.HAL_UART_Transmit_IT</h5><pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="type">uint8_t</span> temp_txbuffer[<span class="number">30</span>]=&#123;<span class="string">&quot;test test test&quot;</span>&#125;;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">uint32_t</span> temp_cnt=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">  &#123; </span><br><span class="line">    <span class="keyword">if</span>(HAL_GetTick()-temp_cnt&gt;<span class="number">1000</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_UART_Transmit_IT(&amp;huart1,temp_txbuffer,<span class="number">14</span>);<span class="comment">//不需要超时时间</span></span><br><span class="line">        temp_cnt=HAL_GetTick();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre>
 
@@ -468,17 +468,17 @@
         </div>
       </a>
     
-      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
-        <div class="categories-list-item">
-          竞赛
-          <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
           <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
+        <div class="categories-list-item">
+          竞赛
+          <span class="categories-list-item-badge">7</span>
         </div>
       </a>
     
@@ -489,17 +489,17 @@
         </div>
       </a>
     
-      <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
-        <div class="categories-list-item">
-          竞赛/嵌入式
-          <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
         <div class="categories-list-item">
           专业课/嵌入式
           <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
+        <div class="categories-list-item">
+          竞赛/嵌入式
+          <span class="categories-list-item-badge">7</span>
         </div>
       </a>
     

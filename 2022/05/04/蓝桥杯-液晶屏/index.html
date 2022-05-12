@@ -45,7 +45,7 @@
         content="2022-05-04">
       <meta 
         property="og:article:modified_time" 
-        content="2022-05-08">
+        content="2022-05-12">
       <meta 
         property="og:article:author" 
         content="kkkryptos">
@@ -53,11 +53,11 @@
         
           <meta 
             property="og:article:tag" 
-            content="蓝桥杯">
+            content="stm32">
         
           <meta 
             property="og:article:tag" 
-            content="stm32">
+            content="蓝桥杯">
         
       
     
@@ -312,18 +312,18 @@
         
           
           <a 
-            href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
+            href="/tags/stm32/" 
             class="post-meta-link">
-            蓝桥杯
+            stm32
           </a>
         
           
             <span class="dot"></span>
           
           <a 
-            href="/tags/stm32/" 
+            href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
             class="post-meta-link">
-            stm32
+            蓝桥杯
           </a>
         
       </div>
@@ -333,8 +333,7 @@
   <div 
     id="section" 
     class="post-content">
-    <h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3>
-
+    <h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/QQ%E6%88%AA%E5%9B%BE20220504113559.png" class="lozad post-image"src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/QQ%E6%88%AA%E5%9B%BE20220504113559.png"></p>
 <p>PC0-PC15: LCD_D1-LCD_D15</p>
 <p>PA8: LCD_RD</p>
 <p>PB8: LCD_RS</p>
@@ -353,9 +352,9 @@
 <pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">            <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)==key_pressed)</span><br><span class="line">            &#123;</span><br><span class="line">                HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_SET);</span><br><span class="line">				HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">                Do_It_Every_nMs(<span class="number">0</span>,<span class="number">500</span>);</span><br><span class="line">                HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_RESET);</span><br><span class="line">            &#125;</span><br><span class="line">            ```</span><br><span class="line">        &#125;</span><br></pre>
 
 <p>修改lcd.h下的这三个函数</p>
-<p><img src="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/hexo_blog\source_posts\MyPostImages\蓝桥杯-液晶屏\QQ图片20220505125035.png" alt="QQ图片20220505125035" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/hexo_blog\source_posts\MyPostImages\蓝桥杯-液晶屏\QQ图片20220505125035.png" class="lozad post-image"></p>
+<p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/QQ%E5%9B%BE%E7%89%8720220505125035.png" alt="QQ图片20220505125035" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/QQ%E5%9B%BE%E7%89%8720220505125035.png" class="lozad post-image"></p>
 <p>添加这三行</p>
-<p><img src="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/hexo_blog\source_posts\MyPostImages\蓝桥杯-液晶屏\QQ图片20220505125427.png" alt="QQ图片20220505125427" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/hexo_blog\source_posts\MyPostImages\蓝桥杯-液晶屏\QQ图片20220505125427.png" class="lozad post-image"></p>
+<p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/QQ%E5%9B%BE%E7%89%8720220505125427.png" alt="QQ图片20220505125427" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/QQ%E5%9B%BE%E7%89%8720220505125427.png" class="lozad post-image"></p>
 
   </div>
   <div>
@@ -496,17 +495,17 @@
         </div>
       </a>
     
-      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
-        <div class="categories-list-item">
-          竞赛
-          <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
           <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
+        <div class="categories-list-item">
+          竞赛
+          <span class="categories-list-item-badge">7</span>
         </div>
       </a>
     
@@ -517,17 +516,17 @@
         </div>
       </a>
     
-      <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
-        <div class="categories-list-item">
-          竞赛/嵌入式
-          <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
         <div class="categories-list-item">
           专业课/嵌入式
           <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
+        <div class="categories-list-item">
+          竞赛/嵌入式
+          <span class="categories-list-item-badge">7</span>
         </div>
       </a>
     
