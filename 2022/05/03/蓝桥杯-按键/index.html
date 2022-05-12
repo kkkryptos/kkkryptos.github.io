@@ -45,7 +45,7 @@
         content="2022-05-03">
       <meta 
         property="og:article:modified_time" 
-        content="2022-05-05">
+        content="2022-05-12">
       <meta 
         property="og:article:author" 
         content="kkkryptos">
@@ -53,11 +53,11 @@
         
           <meta 
             property="og:article:tag" 
-            content="stm32">
+            content="蓝桥杯">
         
           <meta 
             property="og:article:tag" 
-            content="蓝桥杯">
+            content="stm32">
         
       
     
@@ -312,18 +312,18 @@
         
           
           <a 
-            href="/tags/stm32/" 
+            href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
             class="post-meta-link">
-            stm32
+            蓝桥杯
           </a>
         
           
             <span class="dot"></span>
           
           <a 
-            href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
+            href="/tags/stm32/" 
             class="post-meta-link">
-            蓝桥杯
+            stm32
           </a>
         
       </div>
@@ -342,7 +342,7 @@
 <h5 id="2-RCC-时钟配置"><a href="#2-RCC-时钟配置" class="headerlink" title="2.RCC(时钟配置)"></a>2.RCC(时钟配置)</h5><p>High Speed Clock(HSE)：<strong>Crystal&#x2F;Ceramic Resonator</strong>（晶振）</p>
 <p><code>PF0-O RCC_OSC_IN</code></p>
 <p><code>PF1-O RCC_OSC_OUT</code></p>
-<h5 id="3、GPIO"><a href="#3、GPIO" class="headerlink" title="3、GPIO"></a>3、GPIO</h5><pre class="highlight"><span class="line">//按键</span><br><span class="line">PA0 GPIO_INPUT</span><br><span class="line">PB0 GPIO_INPUT</span><br><span class="line">PB1 GPIO_INPUT</span><br><span class="line">PB2 GPIO_INPUT</span><br><span class="line">//LED</span><br><span class="line">PC8 GPIO_OUTPUT</span><br><span class="line">PC9 GPIO_OUTPUT</span><br><span class="line">PC10 GPIO_OUTPUT</span><br><span class="line">PC11 GPIO_OUTPUT</span><br></pre>
+<h5 id="3-GPIO"><a href="#3-GPIO" class="headerlink" title="3.GPIO"></a>3.GPIO</h5><pre class="highlight"><span class="line">//按键</span><br><span class="line">PA0 GPIO_INPUT</span><br><span class="line">PB0 GPIO_INPUT</span><br><span class="line">PB1 GPIO_INPUT</span><br><span class="line">PB2 GPIO_INPUT</span><br><span class="line">//LED</span><br><span class="line">PC8 GPIO_OUTPUT</span><br><span class="line">PC9 GPIO_OUTPUT</span><br><span class="line">PC10 GPIO_OUTPUT</span><br><span class="line">PC11 GPIO_OUTPUT</span><br></pre>
 
 <p>PB0-PB2：</p>
 <p>GPIO mode: Input mode</p>
@@ -465,7 +465,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81GPIO"><span class="toc-text">3、GPIO</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%B6%88%E6%8A%96-amp-%E5%8F%AA%E5%81%9A%E4%B8%80%E6%AC%A1"><span class="toc-text">1、消抖&amp;只做一次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E6%8C%89%E8%BF%9E%E7%BB%AD%E5%81%9A"><span class="toc-text">2、长按连续做</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E6%8C%89%E9%94%AE%E5%88%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-text">3、多按键分别控制</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-GPIO"><span class="toc-text">3.GPIO</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%B6%88%E6%8A%96-amp-%E5%8F%AA%E5%81%9A%E4%B8%80%E6%AC%A1"><span class="toc-text">1、消抖&amp;只做一次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E6%8C%89%E8%BF%9E%E7%BB%AD%E5%81%9A"><span class="toc-text">2、长按连续做</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E6%8C%89%E9%94%AE%E5%88%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-text">3、多按键分别控制</span></a></li></ol></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -484,7 +484,7 @@
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>12</span>
+    <span>13</span>
     <span>文章</span>
   </a>
   <a 
@@ -513,7 +513,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81GPIO"><span class="toc-text">3、GPIO</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%B6%88%E6%8A%96-amp-%E5%8F%AA%E5%81%9A%E4%B8%80%E6%AC%A1"><span class="toc-text">1、消抖&amp;只做一次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E6%8C%89%E8%BF%9E%E7%BB%AD%E5%81%9A"><span class="toc-text">2、长按连续做</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E6%8C%89%E9%94%AE%E5%88%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-text">3、多按键分别控制</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-GPIO"><span class="toc-text">3.GPIO</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%B6%88%E6%8A%96-amp-%E5%8F%AA%E5%81%9A%E4%B8%80%E6%AC%A1"><span class="toc-text">1、消抖&amp;只做一次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E6%8C%89%E8%BF%9E%E7%BB%AD%E5%81%9A"><span class="toc-text">2、长按连续做</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E6%8C%89%E9%94%AE%E5%88%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-text">3、多按键分别控制</span></a></li></ol></li></ol>
       </div>
     </article>
   
@@ -535,6 +535,13 @@
         </div>
       </a>
     
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
+        <div class="categories-list-item">
+          竞赛
+          <span class="categories-list-item-badge">7</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
@@ -549,9 +556,9 @@
         </div>
       </a>
     
-      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
         <div class="categories-list-item">
-          竞赛
+          竞赛/嵌入式
           <span class="categories-list-item-badge">7</span>
         </div>
       </a>
@@ -567,13 +574,6 @@
         <div class="categories-list-item">
           摘录博客/hexo博客
           <span class="categories-list-item-badge">1</span>
-        </div>
-      </a>
-    
-      <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
-        <div class="categories-list-item">
-          竞赛/嵌入式
-          <span class="categories-list-item-badge">7</span>
         </div>
       </a>
     
@@ -651,7 +651,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81GPIO"><span class="toc-text">3、GPIO</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%B6%88%E6%8A%96-amp-%E5%8F%AA%E5%81%9A%E4%B8%80%E6%AC%A1"><span class="toc-text">1、消抖&amp;只做一次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E6%8C%89%E8%BF%9E%E7%BB%AD%E5%81%9A"><span class="toc-text">2、长按连续做</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E6%8C%89%E9%94%AE%E5%88%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-text">3、多按键分别控制</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-GPIO"><span class="toc-text">3.GPIO</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%B6%88%E6%8A%96-amp-%E5%8F%AA%E5%81%9A%E4%B8%80%E6%AC%A1"><span class="toc-text">1、消抖&amp;只做一次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E6%8C%89%E8%BF%9E%E7%BB%AD%E5%81%9A"><span class="toc-text">2、长按连续做</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E6%8C%89%E9%94%AE%E5%88%86%E5%88%AB%E6%8E%A7%E5%88%B6"><span class="toc-text">3、多按键分别控制</span></a></li></ol></li></ol>
     </article>
   
   
@@ -666,8 +666,13 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-08</div>
-        <a href="/2022/05/08/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%AD%E6%96%AD/"><div class="recent-posts-item-content">蓝桥杯-中断</div></a>
+        <div class="recent-posts-item-title">2022-05-12</div>
+        <a href="/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-I2C/"><div class="recent-posts-item-content">蓝桥杯_I2C</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-05-11</div>
+        <a href="/2022/05/11/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/"><div class="recent-posts-item-content"></div></a>
       </div>
     
       <div class="recent-posts-item">
@@ -678,11 +683,6 @@
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-05-05</div>
         <a href="/2022/05/05/%E8%93%9D%E6%A1%A5%E6%9D%AF-ADC%E9%87%87%E9%9B%86/"><div class="recent-posts-item-content">蓝桥杯_ADC采集</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-04</div>
-        <a href="/2022/05/04/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/"><div class="recent-posts-item-content">蓝桥杯_液晶屏</div></a>
       </div>
     
   </div>

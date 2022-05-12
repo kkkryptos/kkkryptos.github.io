@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="不对称">
+  <link 
+    rel="icon" 
+    href="/images/logo.png">
+  <title>不对称</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="不对称">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://kkkryptos.github.io/2022/05/11/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="images/author.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-05-11">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-05-12">
+      <meta 
+        property="og:article:author" 
+        content="kkkryptos">
+      
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="/images/logo.png" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">不对称</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-05-10T22:28:09.846Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-05-11</span>
+    </time>
+    
+    
+      <span class="dot"></span>
+      <span>846 字</span>
+    
+  </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <pre class="highlight"><span class="line">title: 蓝桥杯_串口</span><br><span class="line">date: 2022-05-11 06:28:09</span><br><span class="line">tags:</span><br><span class="line">- 蓝桥杯</span><br><span class="line">- stm32</span><br><span class="line">categories:</span><br><span class="line">- 竞赛</span><br><span class="line">- 嵌入式</span><br></pre>
+
+<h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3><p><img src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\01.png?lastModify=1652262317" alt="01" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\01.png?lastModify=1652262317" class="lozad post-image"></p>
+<p>PA9、PA10</p>
+<h3 id="二、CubeMX工程配置"><a href="#二、CubeMX工程配置" class="headerlink" title="二、CubeMX工程配置"></a>二、CubeMX工程配置</h3><h4 id="1、Pinout-amp-Configuration-System-Core"><a href="#1、Pinout-amp-Configuration-System-Core" class="headerlink" title="1、Pinout&amp;Configuration_System Core"></a>1、Pinout&amp;Configuration_System Core</h4><h5 id="1-SYS"><a href="#1-SYS" class="headerlink" title="1.SYS"></a>1.SYS</h5><p>Debug：<strong>Serial Wire</strong>（串行）</p>
+<pre class="highlight"><span class="line">PA13 SYS_JTCK-SWCLK</span><br><span class="line">PA14 SYS_JTMS-SWDID</span><br></pre>
+
+<h5 id="2-RCC-时钟配置"><a href="#2-RCC-时钟配置" class="headerlink" title="2.RCC(时钟配置)"></a>2.RCC(时钟配置)</h5><p>High Speed Clock(HSE)：<strong>Crystal&#x2F;Ceramic Resonator</strong>（晶振）</p>
+<pre class="highlight"><span class="line">PF0-O RCC_OSC_IN</span><br><span class="line">PF1-O RCC_OSC_OUT</span><br></pre>
+
+<h4 id="2、Connectivity"><a href="#2、Connectivity" class="headerlink" title="2、Connectivity"></a>2、Connectivity</h4><h5 id="USART1"><a href="#USART1" class="headerlink" title="USART1"></a>USART1</h5><pre class="highlight"><span class="line">PA9 USART1_TX</span><br><span class="line">PA10 USART1_RX</span><br></pre>
+
+<p>Mode：<strong>Asynchronous</strong>（异步）（先配置PA9 PA10）</p>
+<h5 id="NVIC-Setting"><a href="#NVIC-Setting" class="headerlink" title="NVIC Setting"></a>NVIC Setting</h5><p><img src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\11.png?lastModify=1652262317" alt="11" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\11.png?lastModify=1652262317" class="lozad post-image"></p>
+<p>生成中断入口函数</p>
+<h4 id="2、Clock-Configuration（时钟源配置）"><a href="#2、Clock-Configuration（时钟源配置）" class="headerlink" title="2、Clock Configuration（时钟源配置）"></a>2、Clock Configuration（时钟源配置）</h4><h5 id="配置HSE（外部晶振）"><a href="#配置HSE（外部晶振）" class="headerlink" title="配置HSE（外部晶振）"></a>配置HSE（外部晶振）</h5><p>Imput frequency：24——HSE——PLLCLK倍频——HCLK：170（回车）</p>
+<h4 id="3、Project-Manager"><a href="#3、Project-Manager" class="headerlink" title="3、Project Manager"></a>3、Project Manager</h4><h5 id="1-Project"><a href="#1-Project" class="headerlink" title="1.Project"></a>1.Project</h5><p>Project Name(STM32G431RBT6_KEY_ACTION)</p>
+<p>Project Location（\CubeMX_Keil)</p>
+<p>Toolchain&#x2F;IDE：MDK-ARM</p>
+<ul>
+<li>Use Default Firmware Location——Browse：V1.3.0</li>
+</ul>
+<h5 id="2-Code-Generator"><a href="#2-Code-Generator" class="headerlink" title="2.Code Generator"></a>2.Code Generator</h5><ul>
+<li>Generate peripheral initialization as a pair of ‘.c&#x2F;.h’ fire per peripheral</li>
+</ul>
+<h4 id="4、GENERATE-CODE"><a href="#4、GENERATE-CODE" class="headerlink" title="4、GENERATE CODE"></a>4、GENERATE CODE</h4><h3 id="三、代码编写"><a href="#三、代码编写" class="headerlink" title="三、代码编写"></a>三、代码编写</h3><h4 id="1、Transmit"><a href="#1、Transmit" class="headerlink" title="1、Transmit"></a>1、Transmit</h4><h5 id="1-HAL-UART-Transmit"><a href="#1-HAL-UART-Transmit" class="headerlink" title="1.HAL_UART_Transmit"></a>1.HAL_UART_Transmit</h5><p>查看串口号 （设备管理器）</p>
+<p>使用串口调试助手（用管理员身份打开）</p>
+<p>打开串口</p>
+<p>波特率应设置一致</p>
+<pre class="highlight"><span class="line">/*****main.c*****/</span><br><span class="line">uint8_t temp_txbuffer[30]=&#123;&quot;test test test&quot;&#125;;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">  uint32_t temp_cnt=0;</span><br><span class="line">  while (1)</span><br><span class="line">  &#123; </span><br><span class="line">    if(HAL_GetTick()-temp_cnt&gt;1000)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_UART_Transmit(&amp;huart1,temp_txbuffer,14,10); </span><br><span class="line">        temp_cnt=HAL_GetTick();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<p>HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)</p>
+<p>1&#x2F;波特率&#x3D;发送一个bit需要的时间，一个字符10bits</p>
+<p><img src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\12.png?lastModify=1652262317" alt="12" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="file://D:\hexo_blog\source_posts\MyPostImages%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3\12.png?lastModify=1652262317" class="lozad post-image"></p>
+<p>需要<code>Timeout</code>（超时时间）超过发送内容所需的时间t&#x3D;1&#x2F;波特率*10 *<code>Size</code>（字符长度）才能完整发送</p>
+<h5 id="2-HAL-UART-Transmit-IT"><a href="#2-HAL-UART-Transmit-IT" class="headerlink" title="2.HAL_UART_Transmit_IT"></a>2.HAL_UART_Transmit_IT</h5><pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="type">uint8_t</span> temp_txbuffer[<span class="number">30</span>]=&#123;<span class="string">&quot;test test test&quot;</span>&#125;;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">uint32_t</span> temp_cnt=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">  &#123; </span><br><span class="line">    <span class="keyword">if</span>(HAL_GetTick()-temp_cnt&gt;<span class="number">1000</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_UART_Transmit_IT(&amp;huart1,temp_txbuffer,<span class="number">14</span>);<span class="comment">//不需要超时时间</span></span><br><span class="line">        temp_cnt=HAL_GetTick();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<p> 波特率应不用设置一致，不必等待超时时间</p>
+<h4 id="2、Receive"><a href="#2、Receive" class="headerlink" title="2、Receive"></a>2、Receive</h4><h5 id="1-HAL库自带函数"><a href="#1-HAL库自带函数" class="headerlink" title="1.HAL库自带函数"></a>1.HAL库自带函数</h5><ul>
+<li>HAL_StatusTypeDef <strong>HAL_UART_Receive</strong>(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t<font color="cornflowerblue"> Size</font>, uint32_t<font color="cornflowerblue"> Timeout</font>)</li>
+<li>HAL_StatusTypeDef <strong>HAL_UART_Receive_DMA</strong>(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t <font color="cornflowerblue">Size</font>)</li>
+<li>HAL_StatusTypeDef <strong>HAL_UART_Receive_IT</strong>(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t <font color="cornflowerblue">Size</font>)</li>
+</ul>
+<p>需要知道字符长度，或达到超时时间</p>
+<h5 id="2-实现在接收空闲状态也能触发中断"><a href="#2-实现在接收空闲状态也能触发中断" class="headerlink" title="2.实现在接收空闲状态也能触发中断"></a>2.实现在接收空闲状态也能触发中断</h5><pre class="highlight"><span class="line"><span class="comment">/***** stm32g4xx_hal_uart.c *****/</span></span><br><span class="line"><span class="comment">//修改HAL_UART_Receive_IT</span></span><br><span class="line">HAL_StatusTypeDef <span class="title function_">HAL_UART_Receive_IT</span><span class="params">(UART_HandleTypeDef *huart, <span class="type">uint8_t</span> *pData, <span class="type">uint16_t</span> Size)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* Check that a Rx process is not already ongoing */</span></span><br><span class="line">  <span class="keyword">if</span> (huart-&gt;RxState == HAL_UART_STATE_READY)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ((pData == <span class="literal">NULL</span>) || (Size == <span class="number">0U</span>)) <span class="comment">//为了不报这个error size不能为0</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> HAL_ERROR;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    __HAL_LOCK(huart);</span><br><span class="line"></span><br><span class="line">    huart-&gt;pRxBuffPtr  = pData;</span><br><span class="line"><span class="comment">//    huart-&gt;RxXferSize  = Size; //注释掉用到Size的语句</span></span><br><span class="line"><span class="comment">//    huart-&gt;RxXferCount = Size;</span></span><br><span class="line">    huart-&gt;RxISR       = <span class="literal">NULL</span>;</span><br><span class="line">``` ```</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">/* Set the Rx ISR function pointer according to the data word length */</span></span><br><span class="line">      <span class="keyword">if</span> ((huart-&gt;Init.WordLength == UART_WORDLENGTH_9B) &amp;&amp; (huart-&gt;Init.Parity == UART_PARITY_NONE))</span><br><span class="line">      &#123;</span><br><span class="line">        huart-&gt;RxISR = UART_RxISR_16BIT;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        huart-&gt;RxISR = UART_RxISR_8BIT;<span class="comment">//我们配置为8bit数据 接下来修改这个函数定义</span></span><br><span class="line">      &#125;</span><br><span class="line">            </span><br><span class="line">      __HAL_UNLOCK(huart);</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* Enable the UART Parity Error interrupt and Data Register Not Empty interrupt */</span> </span><br><span class="line">       <span class="comment">//使能串口奇偶校验位错位中断及数据接收非空中断 我们再添加一个：使能空闲状态中断USART_CR1_IDLEIE</span></span><br><span class="line">      SET_BIT(huart-&gt;Instance-&gt;CR1, USART_CR1_PEIE | USART_CR1_RXNEIE_RXFNEIE | USART_CR1_IDLEIE); <span class="comment">//添加 | USART_CR1_IDLEIE </span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">``` ```</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      </span><br><span class="line"><span class="comment">//修改UART_RxISR_8BIT （8位接收数据的中断状态寄存器函数）</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">UART_RxISR_8BIT</span><span class="params">(UART_HandleTypeDef *huart)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">uint16_t</span> uhMask = huart-&gt;Mask;</span><br><span class="line">  <span class="type">uint16_t</span> uhdata;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(__HAL_UART_GET_FLAG(huart,USART_ISR_RXNE_RXFNE)!=RESET)   <span class="comment">//RX非空 接收数据</span></span><br><span class="line">	&#123;</span><br><span class="line">		uhdata = (<span class="type">uint16_t</span>) READ_REG(huart-&gt;Instance-&gt;RDR);</span><br><span class="line">    *huart-&gt;pRxBuffPtr = (<span class="type">uint8_t</span>)(uhdata &amp; (<span class="type">uint8_t</span>)uhMask); </span><br><span class="line">    huart-&gt;pRxBuffPtr++; <span class="comment">//huart-&gt;pRxBuffPtr为地址 地址++ 即往后填</span></span><br><span class="line">    huart-&gt;RxXferCount++;<span class="comment">//改成计数++</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>			<span class="comment">//RX空 </span></span><br><span class="line">	&#123;</span><br><span class="line">		SET_BIT(huart-&gt;Instance-&gt;ICR, USART_ICR_IDLECF);  <span class="comment">//将USART_ICR_IDLECF置1就会清零空闲位USART_ISR_IDLE</span></span><br><span class="line">		huart-&gt;pRxBuffPtr=huart-&gt;pRxBuffPtr-huart-&gt;RxXferCount;  <span class="comment">//地址回到最初值</span></span><br><span class="line">		huart-&gt;RxXferSize=huart-&gt;RxXferCount; <span class="comment">//用huart-&gt;RxXferSize来记录上一次接收字符的帧值</span></span><br><span class="line">		huart-&gt;RxXferCount=<span class="number">0</span>; <span class="comment">//清零计数</span></span><br><span class="line">		</span><br><span class="line">		HAL_UART_RxCpltCallback(huart); <span class="comment">//weak函数 在main里自己定义</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">  <span class="comment">/* Check that a Rx process is ongoing */</span></span><br><span class="line"><span class="comment">//  if (huart-&gt;RxState == HAL_UART_STATE_BUSY_RX) //RX始终BUSY 因此不需要if else</span></span><br><span class="line"><span class="comment">//  &#123;</span></span><br><span class="line"><span class="comment">// ``` ```</span></span><br><span class="line"><span class="comment">//      /*Call legacy weak Rx complete callback*/</span></span><br><span class="line"><span class="comment">//      HAL_UART_RxCpltCallback(huart);         //保留Callback 在else调用</span></span><br><span class="line"><span class="comment">// ``` ```</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre>
+
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            kkkryptos
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://kkkryptos.github.io/2022/05/11/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/">
+            http://kkkryptos.github.io/2022/05/11/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-I2C/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">蓝桥杯_I2C </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/05/06/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">蓝桥杯_定时器 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Connectivity"><span class="toc-text">2、Connectivity</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#USART1"><span class="toc-text">USART1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NVIC-Setting"><span class="toc-text">NVIC Setting</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Transmit"><span class="toc-text">1、Transmit</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-HAL-UART-Transmit"><span class="toc-text">1.HAL_UART_Transmit</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-HAL-UART-Transmit-IT"><span class="toc-text">2.HAL_UART_Transmit_IT</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Receive"><span class="toc-text">2、Receive</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-HAL%E5%BA%93%E8%87%AA%E5%B8%A6%E5%87%BD%E6%95%B0"><span class="toc-text">1.HAL库自带函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AE%9E%E7%8E%B0%E5%9C%A8%E6%8E%A5%E6%94%B6%E7%A9%BA%E9%97%B2%E7%8A%B6%E6%80%81%E4%B9%9F%E8%83%BD%E8%A7%A6%E5%8F%91%E4%B8%AD%E6%96%AD"><span class="toc-text">2.实现在接收空闲状态也能触发中断</span></a></li></ol></li></ol></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="images/author.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">kkkryptos</p>
+<p class="author-description">勤记录！</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>13</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>7</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>7</span>
+    <span>标签</span>
+  </a>
+</div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Connectivity"><span class="toc-text">2、Connectivity</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#USART1"><span class="toc-text">USART1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NVIC-Setting"><span class="toc-text">NVIC Setting</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Transmit"><span class="toc-text">1、Transmit</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-HAL-UART-Transmit"><span class="toc-text">1.HAL_UART_Transmit</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-HAL-UART-Transmit-IT"><span class="toc-text">2.HAL_UART_Transmit_IT</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Receive"><span class="toc-text">2、Receive</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-HAL%E5%BA%93%E8%87%AA%E5%B8%A6%E5%87%BD%E6%95%B0"><span class="toc-text">1.HAL库自带函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AE%9E%E7%8E%B0%E5%9C%A8%E6%8E%A5%E6%94%B6%E7%A9%BA%E9%97%B2%E7%8A%B6%E6%80%81%E4%B9%9F%E8%83%BD%E8%A7%A6%E5%8F%91%E4%B8%AD%E6%96%AD"><span class="toc-text">2.实现在接收空闲状态也能触发中断</span></a></li></ol></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+        <div class="categories-list-item">
+          数据库
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/">
+        <div class="categories-list-item">
+          竞赛
+          <span class="categories-list-item-badge">7</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
+        <div class="categories-list-item">
+          专业课
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
+        <div class="categories-list-item">
+          竞赛/嵌入式
+          <span class="categories-list-item-badge">7</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
+        <div class="categories-list-item">
+          专业课/嵌入式
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客/hexo博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/stm32/" 
+        title="stm32">
+        <div class="tags-list-item">stm32</div>
+      </a>
+    
+      <a 
+        href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
+        title="蓝桥杯">
+        <div class="tags-list-item">蓝桥杯</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+        title="嵌入式">
+        <div class="tags-list-item">嵌入式</div>
+      </a>
+    
+      <a 
+        href="/tags/MySQL/" 
+        title="MySQL">
+        <div class="tags-list-item">MySQL</div>
+      </a>
+    
+      <a 
+        href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" 
+        title="数据库">
+        <div class="tags-list-item">数据库</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%8D%9A%E5%AE%A2/" 
+        title="博客">
+        <div class="tags-list-item">博客</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-text">一、原理图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CubeMX%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">二、CubeMX工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Pinout-amp-Configuration-System-Core"><span class="toc-text">1、Pinout&amp;Configuration_System Core</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-SYS"><span class="toc-text">1.SYS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-RCC-%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">2.RCC(时钟配置)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Connectivity"><span class="toc-text">2、Connectivity</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#USART1"><span class="toc-text">USART1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NVIC-Setting"><span class="toc-text">NVIC Setting</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Clock-Configuration%EF%BC%88%E6%97%B6%E9%92%9F%E6%BA%90%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">2、Clock Configuration（时钟源配置）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHSE%EF%BC%88%E5%A4%96%E9%83%A8%E6%99%B6%E6%8C%AF%EF%BC%89"><span class="toc-text">配置HSE（外部晶振）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Project-Manager"><span class="toc-text">3、Project Manager</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Project"><span class="toc-text">1.Project</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Code-Generator"><span class="toc-text">2.Code Generator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81GENERATE-CODE"><span class="toc-text">4、GENERATE CODE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">三、代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Transmit"><span class="toc-text">1、Transmit</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-HAL-UART-Transmit"><span class="toc-text">1.HAL_UART_Transmit</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-HAL-UART-Transmit-IT"><span class="toc-text">2.HAL_UART_Transmit_IT</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Receive"><span class="toc-text">2、Receive</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-HAL%E5%BA%93%E8%87%AA%E5%B8%A6%E5%87%BD%E6%95%B0"><span class="toc-text">1.HAL库自带函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AE%9E%E7%8E%B0%E5%9C%A8%E6%8E%A5%E6%94%B6%E7%A9%BA%E9%97%B2%E7%8A%B6%E6%80%81%E4%B9%9F%E8%83%BD%E8%A7%A6%E5%8F%91%E4%B8%AD%E6%96%AD"><span class="toc-text">2.实现在接收空闲状态也能触发中断</span></a></li></ol></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-05-12</div>
+        <a href="/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-I2C/"><div class="recent-posts-item-content">蓝桥杯_I2C</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-05-11</div>
+        <a href="/2022/05/11/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/"><div class="recent-posts-item-content"></div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-05-06</div>
+        <a href="/2022/05/06/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/"><div class="recent-posts-item-content">蓝桥杯_定时器</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-05-05</div>
+        <a href="/2022/05/05/%E8%93%9D%E6%A1%A5%E6%9D%AF-ADC%E9%87%87%E9%9B%86/"><div class="recent-posts-item-content">蓝桥杯_ADC采集</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020 -
+          
+          2022
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          不对称
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer> 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+  </body>
+</html>
