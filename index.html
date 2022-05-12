@@ -103,18 +103,15 @@
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
-        prismThemeChange();
       } else if(reverseDarkList[setting]) {
         document.documentElement.setAttribute('data-user-color-scheme', setting);
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
-        prismThemeChange();
       } else {
         document.documentElement.removeAttribute('data-user-color-scheme');
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
         document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
-        prismThemeChange();
       }
     };
     setDarkmode();
@@ -301,10 +298,7 @@
       </a>
       <div class="card-excerpt">
         
-          title: 蓝桥杯_串口
-date: 2022-05-11 06:28:09
-tags:
-- 蓝...
+          title: 蓝桥杯_串口date: 2022-05-11 06:28:09tags:- 蓝桥杯-...
         
       </div>
       <div class="card-post-footer">

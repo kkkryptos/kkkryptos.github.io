@@ -127,18 +127,15 @@
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
-        prismThemeChange();
       } else if(reverseDarkList[setting]) {
         document.documentElement.setAttribute('data-user-color-scheme', setting);
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
-        prismThemeChange();
       } else {
         document.documentElement.removeAttribute('data-user-color-scheme');
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
         document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
-        prismThemeChange();
       }
     };
     setDarkmode();
@@ -300,7 +297,7 @@
     
     
       <span class="dot"></span>
-      <span>211 字</span>
+      <span>200 字</span>
     
   </div>
   
@@ -338,16 +335,12 @@
     class="post-content">
     <h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-I2C/01.png" alt="01" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-I2C/01.png" class="lozad post-image"></p>
 <h3 id="二、CubeMX工程配置"><a href="#二、CubeMX工程配置" class="headerlink" title="二、CubeMX工程配置"></a>二、CubeMX工程配置</h3><h4 id="1、Pinout-amp-Configuration-System-Core"><a href="#1、Pinout-amp-Configuration-System-Core" class="headerlink" title="1、Pinout&amp;Configuration_System Core"></a>1、Pinout&amp;Configuration_System Core</h4><h5 id="1-SYS"><a href="#1-SYS" class="headerlink" title="1.SYS"></a>1.SYS</h5><p>Debug：<strong>Serial Wire</strong>（串行）</p>
-<pre class="line-numbers language-none"><code class="language-none">PA13 SYS_JTCK-SWCLK
-PA14 SYS_JTMS-SWDID<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="highlight"><code class="hljs plaintext">PA13 SYS_JTCK-SWCLK<br>PA14 SYS_JTMS-SWDID<br></code></pre>
 
 <h5 id="2-RCC-时钟配置"><a href="#2-RCC-时钟配置" class="headerlink" title="2.RCC(时钟配置)"></a>2.RCC(时钟配置)</h5><p>High Speed Clock(HSE)：<strong>Crystal&#x2F;Ceramic Resonator</strong>（晶振）</p>
-<pre class="line-numbers language-none"><code class="language-none">PF0-O RCC_OSC_IN
-PF1-O RCC_OSC_OUT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="highlight"><code class="hljs plaintext">PF0-O RCC_OSC_IN<br>PF1-O RCC_OSC_OUT<br></code></pre>
 
-<h5 id="3-GPIO"><a href="#3-GPIO" class="headerlink" title="3.GPIO"></a>3.GPIO</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;I2C
-PB6 GPIO_OUTPUT
-PB7 GPIO_OUTPUT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h5 id="3-GPIO"><a href="#3-GPIO" class="headerlink" title="3.GPIO"></a>3.GPIO</h5><pre class="highlight"><code class="hljs plaintext">//I2C<br>PB6 GPIO_OUTPUT<br>PB7 GPIO_OUTPUT<br></code></pre>
 
 <p>PB6：</p>
 <p>GPIO mode: Output Open Drain(开漏)</p>
@@ -359,10 +352,7 @@ PB7 GPIO_OUTPUT<span aria-hidden="true" class="line-numbers-rows"><span></span><
 <p>GPIO Pull-up&#x2F;Pull-down: Pull-up(上拉 电路图里有上拉电阻则可以不用选择)</p>
 <p>Maximum Output speed: <strong>Very High</strong>（切换电平状态速度）</p>
 <p>User Label： <strong>SDA</strong>（标签）</p>
-<h4 id="2、Analog"><a href="#2、Analog" class="headerlink" title="2、Analog"></a>2、Analog</h4><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;Analog
-PC12 GPIO_Analog ADC2_IN15
-PC14 GPIO_Analog ADC1_IN5
-PC15 GPIO_Analog ADC1_IN11<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2、Analog"><a href="#2、Analog" class="headerlink" title="2、Analog"></a>2、Analog</h4><pre class="highlight"><code class="hljs plaintext">//Analog<br>PC12 GPIO_Analog ADC2_IN15<br>PC14 GPIO_Analog ADC1_IN5<br>PC15 GPIO_Analog ADC1_IN11<br></code></pre>
 
 <p>ADC1:</p>
 <p>IN5: IN5 Single-ended</p>

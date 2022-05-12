@@ -127,18 +127,15 @@
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
-        prismThemeChange();
       } else if(reverseDarkList[setting]) {
         document.documentElement.setAttribute('data-user-color-scheme', setting);
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
-        prismThemeChange();
       } else {
         document.documentElement.removeAttribute('data-user-color-scheme');
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
         document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
-        prismThemeChange();
       }
     };
     setDarkmode();
@@ -344,37 +341,15 @@
 <p>PB5: LCD_WR#</p>
 <p>LCD_RST: LCD_RST#</p>
 <p>(#：低电平有效)</p>
-<h3 id="二、点亮液晶屏LCD"><a href="#二、点亮液晶屏LCD" class="headerlink" title="二、点亮液晶屏LCD"></a>二、点亮液晶屏LCD</h3><h4 id="1、将fonts-h、lcd-h放入-core-Inc"><a href="#1、将fonts-h、lcd-h放入-core-Inc" class="headerlink" title="1、将fonts.h、lcd.h放入\core\Inc"></a>1、将fonts.h、lcd.h放入\core\Inc</h4><h4 id="2、将lcd-c放入-core-Src"><a href="#2、将lcd-c放入-core-Src" class="headerlink" title="2、将lcd.c放入\core\Src"></a>2、将lcd.c放入\core\Src</h4><h4 id="3、将lcd-c加入工程目录"><a href="#3、将lcd-c加入工程目录" class="headerlink" title="3、将lcd.c加入工程目录"></a>3、将lcd.c加入工程目录</h4><h4 id="4、在main-c中调用LCD-Init"><a href="#4、在main-c中调用LCD-Init" class="headerlink" title="4、在main.c中调用LCD_Init();"></a>4、在main.c中调用LCD_Init();</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"lcd.h"</span></span>
+<h3 id="二、点亮液晶屏LCD"><a href="#二、点亮液晶屏LCD" class="headerlink" title="二、点亮液晶屏LCD"></a>二、点亮液晶屏LCD</h3><h4 id="1、将fonts-h、lcd-h放入-core-Inc"><a href="#1、将fonts-h、lcd-h放入-core-Inc" class="headerlink" title="1、将fonts.h、lcd.h放入\core\Inc"></a>1、将fonts.h、lcd.h放入\core\Inc</h4><h4 id="2、将lcd-c放入-core-Src"><a href="#2、将lcd-c放入-core-Src" class="headerlink" title="2、将lcd.c放入\core\Src"></a>2、将lcd.c放入\core\Src</h4><h4 id="3、将lcd-c加入工程目录"><a href="#3、将lcd-c加入工程目录" class="headerlink" title="3、将lcd.c加入工程目录"></a>3、将lcd.c加入工程目录</h4><h4 id="4、在main-c中调用LCD-Init"><a href="#4、在main-c中调用LCD-Init" class="headerlink" title="4、在main.c中调用LCD_Init();"></a>4、在main.c中调用LCD_Init();</h4><pre class="highlight"><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;lcd.h&quot;</span></span><br><br>LCD_Init();<br></code></pre>
 
-<span class="token function">LCD_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="5、编译"><a href="#5、编译" class="headerlink" title="5、编译"></a>5、编译</h4><h4 id="6、显示"><a href="#6、显示" class="headerlink" title="6、显示"></a>6、显示</h4><pre class="line-numbers language-none"><code class="language-none">&#x2F;*****main.c*****&#x2F;
-#include &quot;stdio.h&quot;
-
-int main(void)
-&#123;
-	uint8_t str[100];
-	LCD_DisplayStringLine(Line0,&quot;test lcd......&quot;);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="5、编译"><a href="#5、编译" class="headerlink" title="5、编译"></a>5、编译</h4><h4 id="6、显示"><a href="#6、显示" class="headerlink" title="6、显示"></a>6、显示</h4><pre class="highlight"><code class="hljs plaintext">/*****main.c*****/<br>#include &quot;stdio.h&quot;<br><br>int main(void)<br>&#123;<br>	uint8_t str[100];<br>	LCD_DisplayStringLine(Line0,&quot;test lcd......&quot;);<br>&#125;<br></code></pre>
 
 
 
 <h3 id="三、LED与LCD冲突解决"><a href="#三、LED与LCD冲突解决" class="headerlink" title="三、LED与LCD冲突解决"></a>三、LED与LCD冲突解决</h3><p>共用PC8-PC15</p>
 <p>添加使能位开关操作</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****main.c*****/</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-     <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-      <span class="token punctuation">&#123;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">Get_Key_Status</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">==</span>key_pressed<span class="token punctuation">)</span>
-            <span class="token punctuation">&#123;</span>
-                <span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_EN_GPIO_Port<span class="token punctuation">,</span>LED_EN_Pin<span class="token punctuation">,</span>GPIO_PIN_SET<span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED1_GPIO_Port<span class="token punctuation">,</span>LED1_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">Do_It_Every_nMs</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_EN_GPIO_Port<span class="token punctuation">,</span>LED_EN_Pin<span class="token punctuation">,</span>GPIO_PIN_RESET<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-            ```
-        <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="highlight"><code class="hljs c"><span class="hljs-comment">/*****main.c*****/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>     <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)<br>      &#123;<br>            <span class="hljs-keyword">if</span>(Get_Key_Status(<span class="hljs-number">0</span>)==key_pressed)<br>            &#123;<br>                HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_SET);<br>				HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);<br>                Do_It_Every_nMs(<span class="hljs-number">0</span>,<span class="hljs-number">500</span>);<br>                HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_RESET);<br>            &#125;<br>            ```<br>        &#125;<br></code></pre>
 
 <p>修改lcd.h下的这三个函数</p>
 <p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/QQ%E5%9B%BE%E7%89%8720220505125035.png" alt="QQ图片20220505125035" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E6%B6%B2%E6%99%B6%E5%B1%8F/QQ%E5%9B%BE%E7%89%8720220505125035.png" class="lozad post-image"></p>
