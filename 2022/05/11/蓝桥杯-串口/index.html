@@ -119,15 +119,18 @@
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else if(reverseDarkList[setting]) {
         document.documentElement.setAttribute('data-user-color-scheme', setting);
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else {
         document.documentElement.removeAttribute('data-user-color-scheme');
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
         document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
       }
     };
     setDarkmode();
@@ -274,7 +277,7 @@
     
     
       <span class="dot"></span>
-      <span>846 字</span>
+      <span>827 字</span>
     
   </div>
   
@@ -282,17 +285,27 @@
   <div 
     id="section" 
     class="post-content">
-    <pre class="highlight"><span class="line">title: 蓝桥杯_串口</span><br><span class="line">date: 2022-05-11 06:28:09</span><br><span class="line">tags:</span><br><span class="line">- 蓝桥杯</span><br><span class="line">- stm32</span><br><span class="line">categories:</span><br><span class="line">- 竞赛</span><br><span class="line">- 嵌入式</span><br></pre>
+    <pre class="line-numbers language-none"><code class="language-none">title: 蓝桥杯_串口
+date: 2022-05-11 06:28:09
+tags:
+- 蓝桥杯
+- stm32
+categories:
+- 竞赛
+- 嵌入式<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/01.png" alt="01" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/01.png" class="lozad post-image"></p>
 <p>PA9、PA10</p>
 <h3 id="二、CubeMX工程配置"><a href="#二、CubeMX工程配置" class="headerlink" title="二、CubeMX工程配置"></a>二、CubeMX工程配置</h3><h4 id="1、Pinout-amp-Configuration-System-Core"><a href="#1、Pinout-amp-Configuration-System-Core" class="headerlink" title="1、Pinout&amp;Configuration_System Core"></a>1、Pinout&amp;Configuration_System Core</h4><h5 id="1-SYS"><a href="#1-SYS" class="headerlink" title="1.SYS"></a>1.SYS</h5><p>Debug：<strong>Serial Wire</strong>（串行）</p>
-<pre class="highlight"><span class="line">PA13 SYS_JTCK-SWCLK</span><br><span class="line">PA14 SYS_JTMS-SWDID</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">PA13 SYS_JTCK-SWCLK
+PA14 SYS_JTMS-SWDID<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h5 id="2-RCC-时钟配置"><a href="#2-RCC-时钟配置" class="headerlink" title="2.RCC(时钟配置)"></a>2.RCC(时钟配置)</h5><p>High Speed Clock(HSE)：<strong>Crystal&#x2F;Ceramic Resonator</strong>（晶振）</p>
-<pre class="highlight"><span class="line">PF0-O RCC_OSC_IN</span><br><span class="line">PF1-O RCC_OSC_OUT</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">PF0-O RCC_OSC_IN
+PF1-O RCC_OSC_OUT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h4 id="2、Connectivity"><a href="#2、Connectivity" class="headerlink" title="2、Connectivity"></a>2、Connectivity</h4><h5 id="USART1"><a href="#USART1" class="headerlink" title="USART1"></a>USART1</h5><pre class="highlight"><span class="line">PA9 USART1_TX</span><br><span class="line">PA10 USART1_RX</span><br></pre>
+<h4 id="2、Connectivity"><a href="#2、Connectivity" class="headerlink" title="2、Connectivity"></a>2、Connectivity</h4><h5 id="USART1"><a href="#USART1" class="headerlink" title="USART1"></a>USART1</h5><pre class="line-numbers language-none"><code class="language-none">PA9 USART1_TX
+PA10 USART1_RX<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>Mode：<strong>Asynchronous</strong>（异步）（先配置PA9 PA10）</p>
 <h5 id="NVIC-Setting"><a href="#NVIC-Setting" class="headerlink" title="NVIC Setting"></a>NVIC Setting</h5><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/11.png" alt="11" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/11.png" class="lozad post-image"></p>
@@ -311,13 +324,39 @@
 <p>使用串口调试助手（用管理员身份打开）</p>
 <p>打开串口</p>
 <p>波特率应设置一致</p>
-<pre class="highlight"><span class="line">/*****main.c*****/</span><br><span class="line">uint8_t temp_txbuffer[30]=&#123;&quot;test test test&quot;&#125;;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">  uint32_t temp_cnt=0;</span><br><span class="line">  while (1)</span><br><span class="line">  &#123; </span><br><span class="line">    if(HAL_GetTick()-temp_cnt&gt;1000)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_UART_Transmit(&amp;huart1,temp_txbuffer,14,10); </span><br><span class="line">        temp_cnt=HAL_GetTick();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;*****main.c*****&#x2F;
+uint8_t temp_txbuffer[30]&#x3D;&#123;&quot;test test test&quot;&#125;;
+int main(void)
+&#123;
+  uint32_t temp_cnt&#x3D;0;
+  while (1)
+  &#123; 
+    if(HAL_GetTick()-temp_cnt&gt;1000)
+    &#123;
+        HAL_UART_Transmit(&amp;huart1,temp_txbuffer,14,10); 
+        temp_cnt&#x3D;HAL_GetTick();
+    &#125;
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout)</p>
 <p>1&#x2F;波特率&#x3D;发送一个bit需要的时间，一个字符10bits</p>
 <p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/12.png" alt="12" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/12.png" class="lozad post-image"></p>
 <p>需要<code>Timeout</code>（超时时间）超过发送内容所需的时间t&#x3D;1&#x2F;波特率*10 *<code>Size</code>（字符长度）才能完整发送</p>
-<h5 id="2-HAL-UART-Transmit-IT"><a href="#2-HAL-UART-Transmit-IT" class="headerlink" title="2.HAL_UART_Transmit_IT"></a>2.HAL_UART_Transmit_IT</h5><pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="type">uint8_t</span> temp_txbuffer[<span class="number">30</span>]=&#123;<span class="string">&quot;test test test&quot;</span>&#125;;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">uint32_t</span> temp_cnt=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">  &#123; </span><br><span class="line">    <span class="keyword">if</span>(HAL_GetTick()-temp_cnt&gt;<span class="number">1000</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_UART_Transmit_IT(&amp;huart1,temp_txbuffer,<span class="number">14</span>);<span class="comment">//不需要超时时间</span></span><br><span class="line">        temp_cnt=HAL_GetTick();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre>
+<h5 id="2-HAL-UART-Transmit-IT"><a href="#2-HAL-UART-Transmit-IT" class="headerlink" title="2.HAL_UART_Transmit_IT"></a>2.HAL_UART_Transmit_IT</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****main.c*****/</span>
+<span class="token class-name">uint8_t</span> temp_txbuffer<span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token string">"test test test"</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token class-name">uint32_t</span> temp_cnt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span> 
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">HAL_GetTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>temp_cnt<span class="token operator">></span><span class="token number">1000</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">HAL_UART_Transmit_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span>temp_txbuffer<span class="token punctuation">,</span><span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//不需要超时时间</span>
+        temp_cnt<span class="token operator">=</span><span class="token function">HAL_GetTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 波特率应不用设置一致，不必等待超时时间</p>
 <h4 id="2、Receive"><a href="#2、Receive" class="headerlink" title="2、Receive"></a>2、Receive</h4><h5 id="1-HAL库自带函数"><a href="#1-HAL库自带函数" class="headerlink" title="1.HAL库自带函数"></a>1.HAL库自带函数</h5><ul>
@@ -326,7 +365,82 @@
 <li>HAL_StatusTypeDef <strong>HAL_UART_Receive_IT</strong>(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t <font color="cornflowerblue">Size</font>)</li>
 </ul>
 <p>需要知道字符长度，或达到超时时间</p>
-<h5 id="2-实现在接收空闲状态也能触发中断"><a href="#2-实现在接收空闲状态也能触发中断" class="headerlink" title="2.实现在接收空闲状态也能触发中断"></a>2.实现在接收空闲状态也能触发中断</h5><pre class="highlight"><span class="line"><span class="comment">/***** stm32g4xx_hal_uart.c *****/</span></span><br><span class="line"><span class="comment">//修改HAL_UART_Receive_IT</span></span><br><span class="line">HAL_StatusTypeDef <span class="title function_">HAL_UART_Receive_IT</span><span class="params">(UART_HandleTypeDef *huart, <span class="type">uint8_t</span> *pData, <span class="type">uint16_t</span> Size)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* Check that a Rx process is not already ongoing */</span></span><br><span class="line">  <span class="keyword">if</span> (huart-&gt;RxState == HAL_UART_STATE_READY)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ((pData == <span class="literal">NULL</span>) || (Size == <span class="number">0U</span>)) <span class="comment">//为了不报这个error size不能为0</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> HAL_ERROR;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    __HAL_LOCK(huart);</span><br><span class="line"></span><br><span class="line">    huart-&gt;pRxBuffPtr  = pData;</span><br><span class="line"><span class="comment">//    huart-&gt;RxXferSize  = Size; //注释掉用到Size的语句</span></span><br><span class="line"><span class="comment">//    huart-&gt;RxXferCount = Size;</span></span><br><span class="line">    huart-&gt;RxISR       = <span class="literal">NULL</span>;</span><br><span class="line">``` ```</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">/* Set the Rx ISR function pointer according to the data word length */</span></span><br><span class="line">      <span class="keyword">if</span> ((huart-&gt;Init.WordLength == UART_WORDLENGTH_9B) &amp;&amp; (huart-&gt;Init.Parity == UART_PARITY_NONE))</span><br><span class="line">      &#123;</span><br><span class="line">        huart-&gt;RxISR = UART_RxISR_16BIT;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        huart-&gt;RxISR = UART_RxISR_8BIT;<span class="comment">//我们配置为8bit数据 接下来修改这个函数定义</span></span><br><span class="line">      &#125;</span><br><span class="line">            </span><br><span class="line">      __HAL_UNLOCK(huart);</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* Enable the UART Parity Error interrupt and Data Register Not Empty interrupt */</span> </span><br><span class="line">       <span class="comment">//使能串口奇偶校验位错位中断及数据接收非空中断 我们再添加一个：使能空闲状态中断USART_CR1_IDLEIE</span></span><br><span class="line">      SET_BIT(huart-&gt;Instance-&gt;CR1, USART_CR1_PEIE | USART_CR1_RXNEIE_RXFNEIE | USART_CR1_IDLEIE); <span class="comment">//添加 | USART_CR1_IDLEIE </span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">``` ```</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      </span><br><span class="line"><span class="comment">//修改UART_RxISR_8BIT （8位接收数据的中断状态寄存器函数）</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">UART_RxISR_8BIT</span><span class="params">(UART_HandleTypeDef *huart)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">uint16_t</span> uhMask = huart-&gt;Mask;</span><br><span class="line">  <span class="type">uint16_t</span> uhdata;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(__HAL_UART_GET_FLAG(huart,USART_ISR_RXNE_RXFNE)!=RESET)   <span class="comment">//RX非空 接收数据</span></span><br><span class="line">	&#123;</span><br><span class="line">		uhdata = (<span class="type">uint16_t</span>) READ_REG(huart-&gt;Instance-&gt;RDR);</span><br><span class="line">    *huart-&gt;pRxBuffPtr = (<span class="type">uint8_t</span>)(uhdata &amp; (<span class="type">uint8_t</span>)uhMask); </span><br><span class="line">    huart-&gt;pRxBuffPtr++; <span class="comment">//huart-&gt;pRxBuffPtr为地址 地址++ 即往后填</span></span><br><span class="line">    huart-&gt;RxXferCount++;<span class="comment">//改成计数++</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>			<span class="comment">//RX空 </span></span><br><span class="line">	&#123;</span><br><span class="line">		SET_BIT(huart-&gt;Instance-&gt;ICR, USART_ICR_IDLECF);  <span class="comment">//将USART_ICR_IDLECF置1就会清零空闲位USART_ISR_IDLE</span></span><br><span class="line">		huart-&gt;pRxBuffPtr=huart-&gt;pRxBuffPtr-huart-&gt;RxXferCount;  <span class="comment">//地址回到最初值</span></span><br><span class="line">		huart-&gt;RxXferSize=huart-&gt;RxXferCount; <span class="comment">//用huart-&gt;RxXferSize来记录上一次接收字符的帧值</span></span><br><span class="line">		huart-&gt;RxXferCount=<span class="number">0</span>; <span class="comment">//清零计数</span></span><br><span class="line">		</span><br><span class="line">		HAL_UART_RxCpltCallback(huart); <span class="comment">//weak函数 在main里自己定义</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">  <span class="comment">/* Check that a Rx process is ongoing */</span></span><br><span class="line"><span class="comment">//  if (huart-&gt;RxState == HAL_UART_STATE_BUSY_RX) //RX始终BUSY 因此不需要if else</span></span><br><span class="line"><span class="comment">//  &#123;</span></span><br><span class="line"><span class="comment">// ``` ```</span></span><br><span class="line"><span class="comment">//      /*Call legacy weak Rx complete callback*/</span></span><br><span class="line"><span class="comment">//      HAL_UART_RxCpltCallback(huart);         //保留Callback 在else调用</span></span><br><span class="line"><span class="comment">// ``` ```</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre>
+<h5 id="2-实现在接收空闲状态也能触发中断"><a href="#2-实现在接收空闲状态也能触发中断" class="headerlink" title="2.实现在接收空闲状态也能触发中断"></a>2.实现在接收空闲状态也能触发中断</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/***** stm32g4xx_hal_uart.c *****/</span>
+<span class="token comment">//修改HAL_UART_Receive_IT</span>
+HAL_StatusTypeDef <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> <span class="token operator">*</span>pData<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> Size<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token comment">/* Check that a Rx process is not already ongoing */</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>huart<span class="token operator">-></span>RxState <span class="token operator">==</span> HAL_UART_STATE_READY<span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>pData <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>Size <span class="token operator">==</span> <span class="token number">0U</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">//为了不报这个error size不能为0</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token keyword">return</span> HAL_ERROR<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token function">__HAL_LOCK</span><span class="token punctuation">(</span>huart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    huart<span class="token operator">-></span>pRxBuffPtr  <span class="token operator">=</span> pData<span class="token punctuation">;</span>
+<span class="token comment">//    huart->RxXferSize  = Size; //注释掉用到Size的语句</span>
+<span class="token comment">//    huart->RxXferCount = Size;</span>
+    huart<span class="token operator">-></span>RxISR       <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+``` ```
+        <span class="token keyword">else</span>
+    <span class="token punctuation">&#123;</span>
+      <span class="token comment">/* Set the Rx ISR function pointer according to the data word length */</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>huart<span class="token operator">-></span>Init<span class="token punctuation">.</span>WordLength <span class="token operator">==</span> UART_WORDLENGTH_9B<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>huart<span class="token operator">-></span>Init<span class="token punctuation">.</span>Parity <span class="token operator">==</span> UART_PARITY_NONE<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">&#123;</span>
+        huart<span class="token operator">-></span>RxISR <span class="token operator">=</span> UART_RxISR_16BIT<span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+      <span class="token keyword">else</span>
+      <span class="token punctuation">&#123;</span>
+        huart<span class="token operator">-></span>RxISR <span class="token operator">=</span> UART_RxISR_8BIT<span class="token punctuation">;</span><span class="token comment">//我们配置为8bit数据 接下来修改这个函数定义</span>
+      <span class="token punctuation">&#125;</span>
+            
+      <span class="token function">__HAL_UNLOCK</span><span class="token punctuation">(</span>huart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Enable the UART Parity Error interrupt and Data Register Not Empty interrupt */</span> 
+       <span class="token comment">//使能串口奇偶校验位错位中断及数据接收非空中断 我们再添加一个：使能空闲状态中断USART_CR1_IDLEIE</span>
+      <span class="token function">SET_BIT</span><span class="token punctuation">(</span>huart<span class="token operator">-></span>Instance<span class="token operator">-></span>CR1<span class="token punctuation">,</span> USART_CR1_PEIE <span class="token operator">|</span> USART_CR1_RXNEIE_RXFNEIE <span class="token operator">|</span> USART_CR1_IDLEIE<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//添加 | USART_CR1_IDLEIE </span>
+    <span class="token punctuation">&#125;</span>
+
+``` ```
+<span class="token punctuation">&#125;</span>
+
+      
+<span class="token comment">//修改UART_RxISR_8BIT （8位接收数据的中断状态寄存器函数）</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">UART_RxISR_8BIT</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token class-name">uint16_t</span> uhMask <span class="token operator">=</span> huart<span class="token operator">-></span>Mask<span class="token punctuation">;</span>
+  <span class="token class-name">uint16_t</span> uhdata<span class="token punctuation">;</span>
+
+	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">__HAL_UART_GET_FLAG</span><span class="token punctuation">(</span>huart<span class="token punctuation">,</span>USART_ISR_RXNE_RXFNE<span class="token punctuation">)</span><span class="token operator">!=</span>RESET<span class="token punctuation">)</span>   <span class="token comment">//RX非空 接收数据</span>
+	<span class="token punctuation">&#123;</span>
+		uhdata <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span> <span class="token function">READ_REG</span><span class="token punctuation">(</span>huart<span class="token operator">-></span>Instance<span class="token operator">-></span>RDR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>huart<span class="token operator">-></span>pRxBuffPtr <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span><span class="token punctuation">(</span>uhdata <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token punctuation">)</span>uhMask<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    huart<span class="token operator">-></span>pRxBuffPtr<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token comment">//huart->pRxBuffPtr为地址 地址++ 即往后填</span>
+    huart<span class="token operator">-></span>RxXferCount<span class="token operator">++</span><span class="token punctuation">;</span><span class="token comment">//改成计数++</span>
+		
+		
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">else</span>			<span class="token comment">//RX空 </span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token function">SET_BIT</span><span class="token punctuation">(</span>huart<span class="token operator">-></span>Instance<span class="token operator">-></span>ICR<span class="token punctuation">,</span> USART_ICR_IDLECF<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//将USART_ICR_IDLECF置1就会清零空闲位USART_ISR_IDLE</span>
+		huart<span class="token operator">-></span>pRxBuffPtr<span class="token operator">=</span>huart<span class="token operator">-></span>pRxBuffPtr<span class="token operator">-</span>huart<span class="token operator">-></span>RxXferCount<span class="token punctuation">;</span>  <span class="token comment">//地址回到最初值</span>
+		huart<span class="token operator">-></span>RxXferSize<span class="token operator">=</span>huart<span class="token operator">-></span>RxXferCount<span class="token punctuation">;</span> <span class="token comment">//用huart->RxXferSize来记录上一次接收字符的帧值</span>
+		huart<span class="token operator">-></span>RxXferCount<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//清零计数</span>
+		
+		<span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>huart<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//weak函数 在main里自己定义</span>
+	<span class="token punctuation">&#125;</span>
+	
+  <span class="token comment">/* Check that a Rx process is ongoing */</span>
+<span class="token comment">//  if (huart->RxState == HAL_UART_STATE_BUSY_RX) //RX始终BUSY 因此不需要if else</span>
+<span class="token comment">//  &#123;</span>
+<span class="token comment">// ``` ```</span>
+<span class="token comment">//      /*Call legacy weak Rx complete callback*/</span>
+<span class="token comment">//      HAL_UART_RxCpltCallback(huart);         //保留Callback 在else调用</span>
+<span class="token comment">// ``` ```</span>
+    
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
   </div>
@@ -468,6 +582,13 @@
         </div>
       </a>
     
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
@@ -482,9 +603,9 @@
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
         <div class="categories-list-item">
-          摘录博客
+          摘录博客/hexo博客
           <span class="categories-list-item-badge">1</span>
         </div>
       </a>
@@ -500,13 +621,6 @@
         <div class="categories-list-item">
           竞赛/嵌入式
           <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          摘录博客/hexo博客
-          <span class="categories-list-item-badge">1</span>
         </div>
       </a>
     

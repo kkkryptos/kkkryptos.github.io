@@ -127,15 +127,18 @@
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else if(reverseDarkList[setting]) {
         document.documentElement.setAttribute('data-user-color-scheme', setting);
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else {
         document.documentElement.removeAttribute('data-user-color-scheme');
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
         document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
       }
     };
     setDarkmode();
@@ -334,20 +337,20 @@
     id="section" 
     class="post-content">
     <h3 id="1、创建一个md文件"><a href="#1、创建一个md文件" class="headerlink" title="1、创建一个md文件"></a>1、创建一个md文件</h3><p>md文件即为Markdowm文件，通过以下命令创建：</p>
-<pre class="highlight"><span class="line">$ hexo new &lt;title&gt;</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">$ hexo new &lt;title&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>eg.</p>
-<pre class="highlight"><span class="line">$ hexo new &quot;如何写博客&quot;</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">$ hexo new &quot;如何写博客&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>把_config.yml中的post_asset_folder设为true，这个配置的意思是每次new post一个博客，会增加一个和博客同名的文件夹；若为false则只生成.md</p>
 <p>这样执行hexo new <title>将在D:\<blog>\source_posts_posts下创建一个同名文件夹及.md</blog></title></p>
 <h3 id="2、布局（layout）"><a href="#2、布局（layout）" class="headerlink" title="2、布局（layout）"></a>2、布局（layout）</h3><ul>
 <li>创建md文件时，我们可以指定布局</li>
 </ul>
-<pre class="highlight"><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">$ hexo new [layout] &lt;title&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>eg.</p>
-<pre class="highlight"><span class="line">$ hexo new page &quot;我的页面&quot;</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">$ hexo new page &quot;我的页面&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
@@ -368,29 +371,48 @@
 <ul>
 <li>我们可在启动服务器时加上 <code>--draft</code> 参数来查看草稿。</li>
 </ul>
-<pre class="highlight"><span class="line">$ hexo server --draft</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">$ hexo server --draft<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>还可以在站点配置文件中把 <code>render_drafts</code> 参数设为 <code>true</code> 来预览草稿。</li>
 <li>我们可以通过 <code>publish</code> 命令将草稿发布文章或者页面，它将会被移动到指定的文件夹。</li>
 </ul>
-<pre class="highlight"><span class="line">$ hexo publish [layout] &lt;title&gt;</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">$ hexo publish [layout] &lt;title&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="4、Front-matter"><a href="#4、Front-matter" class="headerlink" title="4、Front-matter"></a>4、Front-matter</h3><p>当我们创建一个md文件后，打开后会看到一些内容，这些称为<code>Front-matter</code>，它是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
-<pre class="highlight"><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span> <span class="comment"># 标题就是我们上面创建的时候指定的名字</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2013</span><span class="string">/7/13</span> <span class="number">20</span><span class="string">:46:25</span> <span class="comment"># 文件创建的时间</span></span><br><span class="line"><span class="meta">---</span></span><br></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">title</span><span class="token punctuation">:</span> Hello World <span class="token comment"># 标题就是我们上面创建的时候指定的名字</span>
+<span class="token key atrule">date</span><span class="token punctuation">:</span> 2013/7/13 20<span class="token punctuation">:</span><span class="token datetime number">46:25</span> <span class="token comment"># 文件创建的时间</span>
+<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p>在<code>Typora</code>中我们在md文件的首行（必须是第一行）输入<code>---</code> ，然后按回车就可以插入<code>Front-matter</code>了。</p>
 </blockquote>
 <p>Front-matter预定义参数</p>
-<pre class="highlight"><span class="line">layout  布局  默认为true，如果你不想你的文章被处理，可以设置为false</span><br><span class="line">title  标题  标题会显示在最上方居中位置     </span><br><span class="line">date  建立日期    如果不指定则为默认值-文件创建日期，可以自定义。</span><br><span class="line">update  更新日期  如果不指定则为默认值-文件修改后重新生成静态文件的日期。</span><br><span class="line">comments  是否开启文章的评论功能 默认值为true</span><br><span class="line">tags  标签（不适用于页面page布局）</span><br><span class="line">categoreies  分类（不适用于页面page布局）</span><br><span class="line">permalink  覆盖文章网址</span><br><span class="line">keywords  仅用于 meta 标签和 Open Graph 的关键词（不推荐使用）</span><br></pre>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">layout  布局  默认为true，如果你不想你的文章被处理，可以设置为false
+title  标题  标题会显示在最上方居中位置     
+date  建立日期    如果不指定则为默认值-文件创建日期，可以自定义。
+update  更新日期  如果不指定则为默认值-文件修改后重新生成静态文件的日期。
+comments  是否开启文章的评论功能 默认值为true
+tags  标签（不适用于页面page布局）
+categoreies  分类（不适用于页面page布局）
+permalink  覆盖文章网址
+keywords  仅用于 meta 标签和 Open Graph 的关键词（不推荐使用）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="为文章添加分类与标签"><a href="#为文章添加分类与标签" class="headerlink" title="为文章添加分类与标签"></a>为文章添加分类与标签</h3><p>只有文章（post布局）支持分类和标签，需要在<code>Front-matter</code>中设置。分类有层级关系，标签没有。</p>
 <p>举个例子：<br>1）下面文章它的标签是：Hexo、博客<br>2）分类是： 个人博客 &gt; Hexo博客<br>3）“Hexo博客” 是 “个人博客” 的子分类</p>
-<pre class="highlight"><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">个人博客（第一层级）</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Hexo博客（第二层级）</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Hexo</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">博客</span></span><br></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">categories</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> 个人博客（第一层级）
+<span class="token punctuation">-</span> Hexo博客（第二层级）
+<span class="token key atrule">tags</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> Hexo
+<span class="token punctuation">-</span> 博客<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="为文章添加多个分类"><a href="#为文章添加多个分类" class="headerlink" title="为文章添加多个分类"></a>为文章添加多个分类</h3><p>1）下面文章属于三个分类：日常 &gt; 生活，日常 &gt; 随想，日记<br>2）其中生活、随想为日常的子分类，日常和日记为同级分类</p>
-<pre class="highlight"><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">日常</span>, <span class="string">生活</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">日常</span>, <span class="string">随想</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">日记</span>]</span><br></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">categories</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token punctuation">[</span>日常<span class="token punctuation">,</span> 生活<span class="token punctuation">]</span>
+<span class="token punctuation">-</span> <span class="token punctuation">[</span>日常<span class="token punctuation">,</span> 随想<span class="token punctuation">]</span>
+<span class="token punctuation">-</span> <span class="token punctuation">[</span>日记<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="5、typora快捷键"><a href="#5、typora快捷键" class="headerlink" title="5、typora快捷键"></a>5、typora快捷键</h3><p>标题：Ctrl+1、2、3…对应一、二、三…级标题（光标定位到需要设置为标题的行，按快捷键）</p>
 <p>加粗：Ctrl+B（选中要加粗的文本，按快捷键）</p>
@@ -416,7 +438,7 @@
 <h4 id="2-从本地引用"><a href="#2-从本地引用" class="headerlink" title="2.从本地引用"></a>2.从本地引用</h4><ul>
 <li>安装一个图片路径转换的插件</li>
 </ul>
-<pre class="highlight"><span class="line">npm install https://github.com/7ym0n/hexo-asset-image --save</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">npm install https:&#x2F;&#x2F;github.com&#x2F;7ym0n&#x2F;hexo-asset-image --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>（这是个修改过的插件，经测试无问题），使用这个插件来引入图片，而不是网上那些方法里说的用传统md语法相对路径的方法。</p>
 <ul>
@@ -425,11 +447,39 @@
 <li><p>在需要插入图片的地方写下<code>&#123;% asset_img 图片名 图片描述 %&#125;</code></p>
 </li>
 </ul>
-<pre class="highlight"><span class="line">&#123;% asset_img example.jpg This is an example image %&#125;</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">&#123;% asset_img example.jpg This is an example image %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="7、字体颜色"><a href="#7、字体颜色" class="headerlink" title="7、字体颜色"></a>7、字体颜色</h3><h4 id="1、下载并安装AutoHotKey"><a href="#1、下载并安装AutoHotKey" class="headerlink" title="1、下载并安装AutoHotKey"></a>1、下载并安装AutoHotKey</h4><p><a target="_blank" rel="noopener" href="https://autohotkey.com/download/ahk-install.exe">官方下载地址</a>： <a target="_blank" rel="noopener" href="https://autohotkey.com/download/ahk-install.exe">https://autohotkey.com/download/ahk-install.exe</a></p>
 <h4 id="2、AutoHotKey-ahk"><a href="#2、AutoHotKey-ahk" class="headerlink" title="2、AutoHotKey.ahk"></a>2、AutoHotKey.ahk</h4><p>打开记事本，把下面的内容复制粘贴进去：</p>
-<pre class="highlight"><span class="line">; Typora</span><br><span class="line">; 快捷增加字体颜色</span><br><span class="line">; SendInput &#123;Text&#125; 解决中文输入法问题</span><br><span class="line"> </span><br><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+O 橙色</span><br><span class="line">    ^!o::addFontColor(&quot;orange&quot;)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+R 红色</span><br><span class="line">    ^!r::addFontColor(&quot;red&quot;)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+B 浅蓝色</span><br><span class="line">    ^!b::addFontColor(&quot;cornflowerblue&quot;)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">; 快捷增加字体颜色</span><br><span class="line">addFontColor(color)&#123;</span><br><span class="line">    clipboard := &quot;&quot; ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">    If(clipboard = &quot;&quot;)&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">; Typora
+; 快捷增加字体颜色
+; SendInput &#123;Text&#125; 解决中文输入法问题
+ 
+#IfWinActive ahk_exe Typora.exe
+&#123;
+    ; Ctrl+Alt+O 橙色
+    ^!o::addFontColor(&quot;orange&quot;)
+ 
+    ; Ctrl+Alt+R 红色
+    ^!r::addFontColor(&quot;red&quot;)
+ 
+    ; Ctrl+Alt+B 浅蓝色
+    ^!b::addFontColor(&quot;cornflowerblue&quot;)
+&#125;
+ 
+; 快捷增加字体颜色
+addFontColor(color)&#123;
+    clipboard :&#x3D; &quot;&quot; ; 清空剪切板
+    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制
+    SendInput &#123;TEXT&#125;&lt;font color&#x3D;&#39;%color%&#39;&gt;
+    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴
+    If(clipboard &#x3D; &quot;&quot;)&#123;
+        SendInput &#123;TEXT&#125;&lt;&#x2F;font&gt; ; Typora 在这不会自动补充
+    &#125;else&#123;
+        SendInput &#123;TEXT&#125;&lt;&#x2F; ; Typora中自动补全标签
+    &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>重命名，如AutoHotKey.ahk</p>
 <h4 id="3、双击运行"><a href="#3、双击运行" class="headerlink" title="3、双击运行"></a>3、双击运行</h4><h4 id="4、使用"><a href="#4、使用" class="headerlink" title="4、使用"></a>4、使用</h4><p>在Typora软件里就可以使用快捷键进行想要的修改操作了（想要更多的快捷键设置方式，可以在AutoHotKey.ahk文件中自行添加）：</p>
@@ -442,27 +492,39 @@
 <li><strong>部署：</strong><code>hexo deploy</code>可简写为<code>hexo d</code>，用于将网站部署到服务器上。（暂时用不到，目前都是在本地，后面我们将博客托管到<code>GitHub Pages</code>或<code>Gitee Pages</code>时才会用到此命令）<br>常用参数：<code>-g（--generate）</code>，<code>hexo d -g</code>部署前预先生成静态文件，等同于 <code>hexo g -d</code></li>
 </ul>
 <p><strong>一般发布文章或者修改博客后需要这些操作：</strong>清除缓存&gt;生成静态文件&gt;启动服务器，测试没问题后再部署。</p>
-<pre class="highlight"><span class="line"><span class="comment">// 我们可以写成一条命令</span></span><br><span class="line">$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br><span class="line">$ hexo d</span><br></pre>
+<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">// 我们可以写成一条命令</span>
+$ hexo clean <span class="token operator">&amp;&amp;</span> hexo g <span class="token operator">&amp;&amp;</span> hexo s
+$ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="自定义命令"><a href="#自定义命令" class="headerlink" title="自定义命令"></a>自定义命令</h4><p>npm 可以在项目<em>package.json</em>里面自定义脚本命令</p>
-<pre class="highlight"><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">&quot;deploy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo clean &amp;&amp; hexo g -d &quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;server&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+
+  <span class="token property">"deploy"</span><span class="token operator">:</span> <span class="token string">"hexo clean &amp;&amp; hexo g -d "</span><span class="token punctuation">,</span>
+  <span class="token property">"server"</span><span class="token operator">:</span> <span class="token string">"hexo clean &amp;&amp; hexo g &amp;&amp; hexo s"</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>执行npm run可以查看script的list</p>
 <p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/image-20220405172208904.png?raw=true" class="lozad post-image"src="https://github.com/kkkryptos/MyPostImages/raw/master/%E5%A6%82%E4%BD%95%E5%86%99%E5%8D%9A%E5%AE%A2/image-20220405172208904.png?raw=true"></p>
 <p>在写完一篇博客我们可以先启动本地服务器来检查效果</p>
-<pre class="highlight"><span class="line">$ npm run server</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">$ npm run server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>确认没问题后，部署到服务器命令为</p>
-<pre class="highlight"><span class="line">$ npm run deploy</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">$ npm run deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
 <h4 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h4><p>一个npm脚本可以执行多个任务，这些任务之间可以指定不同的执行顺序。</p>
-<pre class="highlight"><span class="line">&#x27;&amp;&#x27; 并行执行顺序，同时执行</span><br><span class="line">&quot;dev&quot;:&quot;node test.js &amp; webpack&quot;</span><br><span class="line"></span><br><span class="line">&#x27;&amp;&amp;&#x27;继发顺序，执行前面之后才可以执行后面</span><br><span class="line">&quot;dev&quot;:&quot;node test.js &amp;&amp; webpack&quot;</span><br></pre>
+<pre class="line-numbers language-none"><code class="language-none">&#39;&amp;&#39; 并行执行顺序，同时执行
+&quot;dev&quot;:&quot;node test.js &amp; webpack&quot;
+
+&#39;&amp;&amp;&#39;继发顺序，执行前面之后才可以执行后面
+&quot;dev&quot;:&quot;node test.js &amp;&amp; webpack&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><pre class="highlight"><span class="line">https://www.cnblogs.com/congcong1/p/10588151.html</span><br><span class="line">https://zhuanlan.zhihu.com/p/156915260</span><br><span class="line">https://blog.csdn.net/liulei952413829/article/details/114670380</span><br></pre>
+<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;www.cnblogs.com&#x2F;congcong1&#x2F;p&#x2F;10588151.html
+https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;156915260
+https:&#x2F;&#x2F;blog.csdn.net&#x2F;liulei952413829&#x2F;article&#x2F;details&#x2F;114670380<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 
   </div>
@@ -604,6 +666,13 @@
         </div>
       </a>
     
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
@@ -618,9 +687,9 @@
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
         <div class="categories-list-item">
-          摘录博客
+          摘录博客/hexo博客
           <span class="categories-list-item-badge">1</span>
         </div>
       </a>
@@ -636,13 +705,6 @@
         <div class="categories-list-item">
           竞赛/嵌入式
           <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          摘录博客/hexo博客
-          <span class="categories-list-item-badge">1</span>
         </div>
       </a>
     

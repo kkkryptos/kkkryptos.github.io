@@ -127,15 +127,18 @@
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else if(reverseDarkList[setting]) {
         document.documentElement.setAttribute('data-user-color-scheme', setting);
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else {
         document.documentElement.removeAttribute('data-user-color-scheme');
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
         document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
       }
     };
     setDarkmode();
@@ -297,7 +300,7 @@
     
     
       <span class="dot"></span>
-      <span>457 字</span>
+      <span>465 字</span>
     
   </div>
   
@@ -343,7 +346,15 @@
 <h5 id="2-RCC-时钟配置"><a href="#2-RCC-时钟配置" class="headerlink" title="2.RCC(时钟配置)"></a>2.RCC(时钟配置)</h5><p>High Speed Clock(HSE)：<strong>Crystal&#x2F;Ceramic Resonator</strong>（晶振）</p>
 <p><code>PF0-O RCC_OSC_IN</code></p>
 <p><code>PF1-O RCC_OSC_OUT</code></p>
-<h5 id="3、GPIO"><a href="#3、GPIO" class="headerlink" title="3、GPIO"></a>3、GPIO</h5><pre class="highlight"><span class="line">PD2 GPIO_OUTPUT</span><br><span class="line">PC8 GPIO_OUTPUT</span><br><span class="line">PC9 GPIO_OUTPUT</span><br><span class="line">PC10 GPIO_OUTPUT</span><br><span class="line">PC11 GPIO_OUTPUT</span><br><span class="line">PC12 GPIO_OUTPUT</span><br><span class="line">PC13 GPIO_OUTPUT</span><br><span class="line">PC14 GPIO_OUTPUT</span><br><span class="line">PC15 GPIO_OUTPUT</span><br></pre>
+<h5 id="3、GPIO"><a href="#3、GPIO" class="headerlink" title="3、GPIO"></a>3、GPIO</h5><pre class="line-numbers language-none"><code class="language-none">PD2 GPIO_OUTPUT
+PC8 GPIO_OUTPUT
+PC9 GPIO_OUTPUT
+PC10 GPIO_OUTPUT
+PC11 GPIO_OUTPUT
+PC12 GPIO_OUTPUT
+PC13 GPIO_OUTPUT
+PC14 GPIO_OUTPUT
+PC15 GPIO_OUTPUT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>PD8-PD15:</p>
 <p>GPIO output level：<strong>High</strong>（默认状态）——LED默认关闭</p>
@@ -361,15 +372,54 @@
 <p>Toolchain&#x2F;IDE：MDK-ARM</p>
 <p>Use Default Firmware Location(取消勾选)——Browse：V1.3.0</p>
 <h5 id="2-Code-Generator"><a href="#2-Code-Generator" class="headerlink" title="2.Code Generator"></a>2.Code Generator</h5><p>勾选Generate peripheral initialization as a pair of ‘.c&#x2F;.h’ fire per peripheral</p>
-<h4 id="4、GENERATE-CODE"><a href="#4、GENERATE-CODE" class="headerlink" title="4、GENERATE CODE"></a>4、GENERATE CODE</h4><h3 id="三、代码编写"><a href="#三、代码编写" class="headerlink" title="三、代码编写"></a>三、代码编写</h3><h4 id="1、点亮"><a href="#1、点亮" class="headerlink" title="1、点亮"></a>1、点亮</h4><pre class="highlight"><span class="line">```</span><br><span class="line">HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_SET);<span class="comment">//GPIO_PIN_SET高电平，使能</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>（<span class="number">1</span>）</span><br><span class="line">&#123;</span><br><span class="line">	HAL_GPIO_WritePin(LED1_GPIO_Port,LED1_Pin,GPIO_PIN_RESET);<span class="comment">//GPIO_PIN_RESET低电平,灯亮</span></span><br><span class="line">	HAL_Delay(<span class="number">200</span>);<span class="comment">//SysTick</span></span><br><span class="line">	HAL_GPIO_WritePin(LED1_GPIO_Port,LED1_Pin,GPIO_PIN_SET);<span class="comment">//GPIO_PIN_SET高电平,灯灭</span></span><br><span class="line">	HAL_Delay(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+<h4 id="4、GENERATE-CODE"><a href="#4、GENERATE-CODE" class="headerlink" title="4、GENERATE CODE"></a>4、GENERATE CODE</h4><h3 id="三、代码编写"><a href="#三、代码编写" class="headerlink" title="三、代码编写"></a>三、代码编写</h3><h4 id="1、点亮"><a href="#1、点亮" class="headerlink" title="1、点亮"></a>1、点亮</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c">```
+<span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_EN_GPIO_Port<span class="token punctuation">,</span>LED_EN_Pin<span class="token punctuation">,</span>GPIO_PIN_SET<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//GPIO_PIN_SET高电平，使能</span>
+
+<span class="token keyword">while</span>（<span class="token number">1</span>）
+<span class="token punctuation">&#123;</span>
+	<span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED1_GPIO_Port<span class="token punctuation">,</span>LED1_Pin<span class="token punctuation">,</span>GPIO_PIN_RESET<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//GPIO_PIN_RESET低电平,灯亮</span>
+	<span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//SysTick</span>
+	<span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED1_GPIO_Port<span class="token punctuation">,</span>LED1_Pin<span class="token punctuation">,</span>GPIO_PIN_SET<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//GPIO_PIN_SET高电平,灯灭</span>
+	<span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>使用TogglePin简化⬇️</p>
-<pre class="highlight"><span class="line">```</span><br><span class="line">HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_SET);<span class="comment">//GPIO_PIN_SET高电平，使能</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">	HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);<span class="comment">//HAL_GPIO_TogglePin()翻转</span></span><br><span class="line">    </span><br><span class="line">	HAL_Delay(<span class="number">200</span>);<span class="comment">//SysTick</span></span><br><span class="line">&#125;</span><br></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">```
+<span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_EN_GPIO_Port<span class="token punctuation">,</span>LED_EN_Pin<span class="token punctuation">,</span>GPIO_PIN_SET<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//GPIO_PIN_SET高电平，使能</span>
+
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED1_GPIO_Port<span class="token punctuation">,</span>LED1_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//HAL_GPIO_TogglePin()翻转</span>
+    
+	<span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//SysTick</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>直接对寄存器操作⬇️</p>
-<pre class="highlight"><span class="line">```</span><br><span class="line"><span class="type">uint16_t</span> temp=<span class="number">0xFF00</span>;<span class="comment">//PC端口有十六位，PC8-15为高八位</span></span><br><span class="line">HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_SET);<span class="comment">//GPIO_PIN_SET高电平，使能</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">	temp=~temp;<span class="comment">//取反</span></span><br><span class="line">    GPIOC-&gt;ODR=temp;<span class="comment">//ODR为输出数据寄存器，对其赋值</span></span><br><span class="line">	HAL_Delay(<span class="number">200</span>);<span class="comment">//SysTick</span></span><br><span class="line">&#125;</span><br></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">```
+<span class="token class-name">uint16_t</span> temp<span class="token operator">=</span><span class="token number">0xFF00</span><span class="token punctuation">;</span><span class="token comment">//PC端口有十六位，PC8-15为高八位</span>
+<span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_EN_GPIO_Port<span class="token punctuation">,</span>LED_EN_Pin<span class="token punctuation">,</span>GPIO_PIN_SET<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//GPIO_PIN_SET高电平，使能</span>
 
-<h4 id="2、流水灯"><a href="#2、流水灯" class="headerlink" title="2、流水灯"></a>2、流水灯</h4><pre class="highlight"><span class="line">```</span><br><span class="line"><span class="type">uint16_t</span> temp=<span class="number">0xFF00</span>;<span class="comment">//PC端口有十六位，PC8-15为高八位</span></span><br><span class="line"><span class="type">uint16_t</span> i=<span class="number">0</span>;</span><br><span class="line">HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_SET);<span class="comment">//GPIO_PIN_SET高电平，使能</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)	</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">	temp=(<span class="number">0xff00</span>&amp;(<span class="number">0xfeff</span>&lt;&lt;i));<span class="comment">//左移i位，取与保证高八位为0</span></span><br><span class="line">	GPIOC-&gt;ODR=temp;</span><br><span class="line">	HAL_Delay(<span class="number">200</span>);&#125;</span><br><span class="line">	i=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre>
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	temp<span class="token operator">=</span><span class="token operator">~</span>temp<span class="token punctuation">;</span><span class="token comment">//取反</span>
+    GPIOC<span class="token operator">-></span>ODR<span class="token operator">=</span>temp<span class="token punctuation">;</span><span class="token comment">//ODR为输出数据寄存器，对其赋值</span>
+	<span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//SysTick</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2、流水灯"><a href="#2、流水灯" class="headerlink" title="2、流水灯"></a>2、流水灯</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c">```
+<span class="token class-name">uint16_t</span> temp<span class="token operator">=</span><span class="token number">0xFF00</span><span class="token punctuation">;</span><span class="token comment">//PC端口有十六位，PC8-15为高八位</span>
+<span class="token class-name">uint16_t</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_EN_GPIO_Port<span class="token punctuation">,</span>LED_EN_Pin<span class="token punctuation">,</span>GPIO_PIN_SET<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//GPIO_PIN_SET高电平，使能</span>
+
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>	
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">8</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	temp<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">0xff00</span><span class="token operator">&amp;</span><span class="token punctuation">(</span><span class="token number">0xfeff</span><span class="token operator">&lt;&lt;</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//左移i位，取与保证高八位为0</span>
+	GPIOC<span class="token operator">-></span>ODR<span class="token operator">=</span>temp<span class="token punctuation">;</span>
+	<span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+	i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
   </div>
   <div>
@@ -510,6 +560,13 @@
         </div>
       </a>
     
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
@@ -524,9 +581,9 @@
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
         <div class="categories-list-item">
-          摘录博客
+          摘录博客/hexo博客
           <span class="categories-list-item-badge">1</span>
         </div>
       </a>
@@ -542,13 +599,6 @@
         <div class="categories-list-item">
           竞赛/嵌入式
           <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          摘录博客/hexo博客
-          <span class="categories-list-item-badge">1</span>
         </div>
       </a>
     

@@ -127,15 +127,18 @@
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else if(reverseDarkList[setting]) {
         document.documentElement.setAttribute('data-user-color-scheme', setting);
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else {
         document.documentElement.removeAttribute('data-user-color-scheme');
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
         document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
       }
     };
     setDarkmode();
@@ -480,6 +483,13 @@
         </div>
       </a>
     
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
@@ -494,9 +504,9 @@
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
         <div class="categories-list-item">
-          摘录博客
+          摘录博客/hexo博客
           <span class="categories-list-item-badge">1</span>
         </div>
       </a>
@@ -512,13 +522,6 @@
         <div class="categories-list-item">
           竞赛/嵌入式
           <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          摘录博客/hexo博客
-          <span class="categories-list-item-badge">1</span>
         </div>
       </a>
     

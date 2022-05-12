@@ -127,15 +127,18 @@
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else if(reverseDarkList[setting]) {
         document.documentElement.setAttribute('data-user-color-scheme', setting);
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else {
         document.documentElement.removeAttribute('data-user-color-scheme');
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
         document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
       }
     };
     setDarkmode();
@@ -297,7 +300,7 @@
     
     
       <span class="dot"></span>
-      <span>918 字</span>
+      <span>906 字</span>
     
   </div>
   
@@ -342,7 +345,16 @@
 <h5 id="2-RCC-时钟配置"><a href="#2-RCC-时钟配置" class="headerlink" title="2.RCC(时钟配置)"></a>2.RCC(时钟配置)</h5><p>High Speed Clock(HSE)：<strong>Crystal&#x2F;Ceramic Resonator</strong>（晶振）</p>
 <p><code>PF0-O RCC_OSC_IN</code></p>
 <p><code>PF1-O RCC_OSC_OUT</code></p>
-<h5 id="3-GPIO"><a href="#3-GPIO" class="headerlink" title="3.GPIO"></a>3.GPIO</h5><pre class="highlight"><span class="line">//按键</span><br><span class="line">PA0 GPIO_INPUT</span><br><span class="line">PB0 GPIO_INPUT</span><br><span class="line">PB1 GPIO_INPUT</span><br><span class="line">PB2 GPIO_INPUT</span><br><span class="line">//LED</span><br><span class="line">PC8 GPIO_OUTPUT</span><br><span class="line">PC9 GPIO_OUTPUT</span><br><span class="line">PC10 GPIO_OUTPUT</span><br><span class="line">PC11 GPIO_OUTPUT</span><br></pre>
+<h5 id="3-GPIO"><a href="#3-GPIO" class="headerlink" title="3.GPIO"></a>3.GPIO</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;按键
+PA0 GPIO_INPUT
+PB0 GPIO_INPUT
+PB1 GPIO_INPUT
+PB2 GPIO_INPUT
+&#x2F;&#x2F;LED
+PC8 GPIO_OUTPUT
+PC9 GPIO_OUTPUT
+PC10 GPIO_OUTPUT
+PC11 GPIO_OUTPUT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>PB0-PB2：</p>
 <p>GPIO mode: Input mode</p>
@@ -369,31 +381,242 @@
 <li><input checked disabled type="checkbox"> Generate peripheral initialization as a pair of ‘.c&#x2F;.h’ fire per peripheral</li>
 </ul>
 <h4 id="4、GENERATE-CODE"><a href="#4、GENERATE-CODE" class="headerlink" title="4、GENERATE CODE"></a>4、GENERATE CODE</h4><h3 id="三、代码编写"><a href="#三、代码编写" class="headerlink" title="三、代码编写"></a>三、代码编写</h3><p>先编译一遍代码看有没有错误</p>
-<h4 id="1、消抖-amp-只做一次"><a href="#1、消抖-amp-只做一次" class="headerlink" title="1、消抖&amp;只做一次"></a>1、消抖&amp;只做一次</h4><pre class="highlight"><span class="line"><span class="comment">/*****key.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">uint16_t</span> key_delay_filter_count[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;<span class="comment">//数组</span></span><br><span class="line">key_status keys_status[<span class="number">4</span>];</span><br><span class="line"><span class="comment">//↑类型（自定义）  ↑变量</span></span><br><span class="line">    </span><br><span class="line"><span class="type">void</span> <span class="title function_">Update_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span><span class="comment">//消抖10ms</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin)==<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		key_delay_filter_count[key_num]&lt;&lt;<span class="number">1</span>;<span class="comment">//左移一位 00000011--&gt;00000110(有16位 这里省略了8位0)</span></span><br><span class="line">		key_delay_filter_count[key_num]|=<span class="number">0x0001</span>;<span class="comment">//与1取或 --&gt;00000111</span></span><br><span class="line">		<span class="keyword">if</span>(key_delay_filter_count[key_num]&gt;<span class="number">0x03FF</span>)<span class="comment">//3是两个1 FF是8个1 共10位 即10ms延时</span></span><br><span class="line">		&#123;</span><br><span class="line">            <span class="keyword">if</span>(keys_status[key_num]=key_released)</span><br><span class="line">                keys_status[key_num]=key_pressed;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		key_delay_filter_count[key_num]&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(key_delay_filter_count[key_num]==<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			keys_status=key_released;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">uint16_t</span> <span class="title function_">Get_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> keys_status[key_num]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> Do_It_Once(<span class="type">uint8_t</span> key_num)</span><br><span class="line">&#123;</span><br><span class="line">    keys_status[key_num]=key_waiting_for_release;</span><br><span class="line">&#125;</span><br></pre>
+<h4 id="1、消抖-amp-只做一次"><a href="#1、消抖-amp-只做一次" class="headerlink" title="1、消抖&amp;只做一次"></a>1、消抖&amp;只做一次</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****key.c*****/</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"key.h"</span></span>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****key.h*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __KEY_H__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __KEY_H__</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;main.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    key_released=<span class="number">0U</span>,<span class="comment">//U指无符号整型</span></span><br><span class="line">    key_pressed,</span><br><span class="line">    key_waiting_for_release,</span><br><span class="line">&#125;key_status;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> key_status keys_status[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Update_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span>;</span><br><span class="line"><span class="type">uint16_t</span> <span class="title function_">Get_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Do_It_Once</span><span class="params">(<span class="type">uint8_t</span> key_num)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/*__ KEY_H__ */</span></span></span><br></pre>
+<span class="token class-name">uint16_t</span> key_delay_filter_count<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span class="token comment">//数组</span>
+key_status keys_status<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">//↑类型（自定义）  ↑变量</span>
+    
+<span class="token keyword">void</span> <span class="token function">Update_Key_Status</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> key_num<span class="token punctuation">)</span><span class="token comment">//消抖10ms</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">HAL_GPIO_ReadPin</span><span class="token punctuation">(</span>KEY1_GPIO_Port<span class="token punctuation">,</span>KEY1_Pin<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		key_delay_filter_count<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">&lt;&lt;</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment">//左移一位 00000011-->00000110(有16位 这里省略了8位0)</span>
+		key_delay_filter_count<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">|=</span><span class="token number">0x0001</span><span class="token punctuation">;</span><span class="token comment">//与1取或 -->00000111</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>key_delay_filter_count<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">></span><span class="token number">0x03FF</span><span class="token punctuation">)</span><span class="token comment">//3是两个1 FF是8个1 共10位 即10ms延时</span>
+		<span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>keys_status<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">=</span>key_released<span class="token punctuation">)</span>
+                keys_status<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">=</span>key_pressed<span class="token punctuation">;</span>	
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">else</span>
+	<span class="token punctuation">&#123;</span>
+		key_delay_filter_count<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">>></span><span class="token number">1</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>key_delay_filter_count<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#123;</span>
+			keys_status<span class="token operator">=</span>key_released<span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****stm32g4xx_it.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">SysTick_Handler</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 0 */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* USER CODE END SysTick_IRQn 0 */</span></span><br><span class="line">  HAL_IncTick();</span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 1 */</span></span><br><span class="line"></span><br><span class="line">	Update_Key_Status();</span><br><span class="line">	</span><br><span class="line">  <span class="comment">/* USER CODE END SysTick_IRQn 1 */</span></span><br><span class="line">&#125;</span><br></pre>
+<span class="token class-name">uint16_t</span> <span class="token function">Get_Key_Status</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> key_num<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> keys_status<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        Do_It_Once(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+<span class="token keyword">void</span> <span class="token function">Do_It_Once</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> key_num<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    keys_status<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">=</span>key_waiting_for_release<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****key.h*****/</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">__KEY_H__</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">__KEY_H__</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"main.h"</span></span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">enum</span>
+<span class="token punctuation">&#123;</span>
+    key_released<span class="token operator">=</span><span class="token number">0U</span><span class="token punctuation">,</span><span class="token comment">//U指无符号整型</span>
+    key_pressed<span class="token punctuation">,</span>
+    key_waiting_for_release<span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>key_status<span class="token punctuation">;</span>
+
+<span class="token keyword">extern</span> key_status keys_status<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">Update_Key_Status</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> key_num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">uint16_t</span> <span class="token function">Get_Key_Status</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> key_num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">Do_It_Once</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> key_num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">/*__ KEY_H__ */</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****stm32g4xx_it.c*****/</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"key.h"</span></span>
+
+<span class="token keyword">void</span> <span class="token function">SysTick_Handler</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token comment">/* USER CODE BEGIN SysTick_IRQn 0 */</span>
+
+  <span class="token comment">/* USER CODE END SysTick_IRQn 0 */</span>
+  <span class="token function">HAL_IncTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">/* USER CODE BEGIN SysTick_IRQn 1 */</span>
+
+	<span class="token function">Update_Key_Status</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+  <span class="token comment">/* USER CODE END SysTick_IRQn 1 */</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****main.c*****/</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"key.h"</span></span>
+
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">Get_Key_Status</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">==</span>key_pressed<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED1_GPIO_Port<span class="token punctuation">,</span>LED1_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Do_It_Once</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h4 id="2、长按连续做"><a href="#2、长按连续做" class="headerlink" title="2、长按连续做"></a>2、长按连续做</h4><pre class="highlight"><span class="line"><span class="comment">/*****key.c*****/</span></span><br><span class="line"><span class="type">uint16_t</span> key_cnt[<span class="number">4</span>],key_action_interval[<span class="number">4</span>];</span><br><span class="line"><span class="comment">/*------------------------    </span></span><br><span class="line"><span class="comment">void Update_Key_Status(uint8_t key_num)//消抖10ms</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	if(HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin)==0)</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]&lt;&lt;1;//左移一位 00000011--&gt;00000110(有16位 这里省略了8位0)</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]|=0x0001;//与1取或 --&gt;00000111</span></span><br><span class="line"><span class="comment">		if(key_delay_filter_count[key_num]&gt;0x03FF)//3是两个1 FF是8个1 共10位 即10ms延时</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">            if(keys_status[key_num]==key_released)</span></span><br><span class="line"><span class="comment">                keys_status[key_num]=key_pressed;</span></span><br><span class="line"><span class="comment">-------------------------*/</span></span><br><span class="line">            <span class="keyword">if</span>(keys_status[key_num]==key_long_pressed)</span><br><span class="line">            &#123;</span><br><span class="line">            	key_cnt[key_num]++; <span class="comment">//长按计时</span></span><br><span class="line">            	<span class="keyword">if</span>(key_cnt[key_num]&gt;key_action_interval[key_num])<span class="comment">//key_action_interval执行间隔</span></span><br><span class="line">            	&#123;</span><br><span class="line">            		keys_status[key_num]=key_pressed;<span class="comment">//执行</span></span><br><span class="line">            		key_cnt[key_num]=<span class="number">0</span>;<span class="comment">//清零计时</span></span><br><span class="line">            	&#125;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	else</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		key_delay_filter_count[key_num]&gt;&gt;1;</span></span><br><span class="line"><span class="comment">		if(key_delay_filter_count[key_num]==0)</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			keys_status=key_released;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line">			key_cnt[key_num]=<span class="number">0</span>;<span class="comment">//清零计时,防止短按（10&lt;key_delay_filter_count&lt;510)时累计</span></span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Do_It_Every_nMs</span><span class="params">(<span class="type">uint8_t</span> key_num,<span class="type">uint16_t</span> nMs)</span></span><br><span class="line">&#123;</span><br><span class="line">    key_action_interval[key_num]=nMs;</span><br><span class="line">    keys_status[key_num]=key_long_pressed;</span><br><span class="line">&#125;</span><br></pre>
+<h4 id="2、长按连续做"><a href="#2、长按连续做" class="headerlink" title="2、长按连续做"></a>2、长按连续做</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****key.c*****/</span>
+<span class="token class-name">uint16_t</span> key_cnt<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>key_action_interval<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">/*------------------------    
+void Update_Key_Status(uint8_t key_num)//消抖10ms
+&#123;
+	if(HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin)==0)
+	&#123;
+		key_delay_filter_count[key_num]&lt;&lt;1;//左移一位 00000011-->00000110(有16位 这里省略了8位0)
+		key_delay_filter_count[key_num]|=0x0001;//与1取或 -->00000111
+		if(key_delay_filter_count[key_num]>0x03FF)//3是两个1 FF是8个1 共10位 即10ms延时
+		&#123;
+            if(keys_status[key_num]==key_released)
+                keys_status[key_num]=key_pressed;
+-------------------------*/</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>keys_status<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">==</span>key_long_pressed<span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+            	key_cnt<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span> <span class="token comment">//长按计时</span>
+            	<span class="token keyword">if</span><span class="token punctuation">(</span>key_cnt<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">></span>key_action_interval<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token comment">//key_action_interval执行间隔</span>
+            	<span class="token punctuation">&#123;</span>
+            		keys_status<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">=</span>key_pressed<span class="token punctuation">;</span><span class="token comment">//执行</span>
+            		key_cnt<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//清零计时</span>
+            	<span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+<span class="token comment">/*--------------------------
+		&#125;
+	&#125;
+	else
+	&#123;
+		key_delay_filter_count[key_num]>>1;
+		if(key_delay_filter_count[key_num]==0)
+		&#123;
+			keys_status=key_released;
+--------------------------*/</span>
+			key_cnt<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//清零计时,防止短按（10&lt;key_delay_filter_count&lt;510)时累计</span>
+<span class="token comment">/*--------------------------
+		&#125;
+	&#125;
+&#125;
+--------------------------*/</span>
+<span class="token keyword">void</span> <span class="token function">Do_It_Every_nMs</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> key_num<span class="token punctuation">,</span><span class="token class-name">uint16_t</span> nMs<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    key_action_interval<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">=</span>nMs<span class="token punctuation">;</span>
+    keys_status<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">=</span>key_long_pressed<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****key.h*****/</span></span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">typedef enum</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    key_released=0U,//U指无符号整型</span></span><br><span class="line"><span class="comment">    key_pressed,</span></span><br><span class="line"><span class="comment">    key_waiting_for_release,</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line">    key_long_pressed,</span><br><span class="line"><span class="comment">/*--------------------------</span></span><br><span class="line"><span class="comment">&#125;key_status;</span></span><br><span class="line"><span class="comment">--------------------------*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Do_It_Every_nMs</span><span class="params">(<span class="type">uint8_t</span> key_num,<span class="type">uint16_t</span> nMs)</span>;</span><br></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****key.h*****/</span>
+<span class="token comment">/*--------------------------
+typedef enum
+&#123;
+    key_released=0U,//U指无符号整型
+    key_pressed,
+    key_waiting_for_release,
+--------------------------*/</span>
+    key_long_pressed<span class="token punctuation">,</span>
+<span class="token comment">/*--------------------------
+&#125;key_status;
+--------------------------*/</span>
+<span class="token keyword">void</span> <span class="token function">Do_It_Every_nMs</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> key_num<span class="token punctuation">,</span><span class="token class-name">uint16_t</span> nMs<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        <span class="comment">//Do_It_Once(0);</span></span><br><span class="line">        Do_It_Every_nMs(<span class="number">0</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****main.c*****/</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"key.h"</span></span>
+
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">Get_Key_Status</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">==</span>key_pressed<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED1_GPIO_Port<span class="token punctuation">,</span>LED1_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//Do_It_Once(0);</span>
+        <span class="token function">Do_It_Every_nMs</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h4 id="3、多按键分别控制"><a href="#3、多按键分别控制" class="headerlink" title="3、多按键分别控制"></a>3、多按键分别控制</h4><pre class="highlight"><span class="line"><span class="comment">/*****key.c*****/</span></span><br><span class="line"><span class="type">uint16_t</span> key_readpin[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Update_Key_ReadPin</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	key_readpin[<span class="number">0</span>]=HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin);</span><br><span class="line">	key_readpin[<span class="number">1</span>]=HAL_GPIO_ReadPin(KEY2_GPIO_Port,KEY2_Pin);</span><br><span class="line">	key_readpin[<span class="number">2</span>]=HAL_GPIO_ReadPin(KEY3_GPIO_Port,KEY3_Pin);</span><br><span class="line">	key_readpin[<span class="number">3</span>]=HAL_GPIO_ReadPin(KEY4_GPIO_Port,KEY4_Pin);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Update_Key_Status</span><span class="params">(<span class="type">uint8_t</span> key_num)</span><span class="comment">//消抖10ms</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(key_readpin[key_num]=<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	```</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">	```</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre>
+<h4 id="3、多按键分别控制"><a href="#3、多按键分别控制" class="headerlink" title="3、多按键分别控制"></a>3、多按键分别控制</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****key.c*****/</span>
+<span class="token class-name">uint16_t</span> key_readpin<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****key.h*****/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Update_Key_ReadPin</span><span class="params">(<span class="type">void</span>)</span>;</span><br></pre>
+<span class="token keyword">int</span> <span class="token function">Update_Key_ReadPin</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	key_readpin<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">HAL_GPIO_ReadPin</span><span class="token punctuation">(</span>KEY1_GPIO_Port<span class="token punctuation">,</span>KEY1_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	key_readpin<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">HAL_GPIO_ReadPin</span><span class="token punctuation">(</span>KEY2_GPIO_Port<span class="token punctuation">,</span>KEY2_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	key_readpin<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">HAL_GPIO_ReadPin</span><span class="token punctuation">(</span>KEY3_GPIO_Port<span class="token punctuation">,</span>KEY3_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	key_readpin<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">HAL_GPIO_ReadPin</span><span class="token punctuation">(</span>KEY4_GPIO_Port<span class="token punctuation">,</span>KEY4_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****stm32g4xx_it.c*****/</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN PD */</span></span><br><span class="line">	<span class="type">uint8_t</span> key_num;</span><br><span class="line"><span class="comment">/* USER CODE END PD */</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">SysTick_Handler</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  ```</span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysTick_IRQn 1 */</span></span><br><span class="line">	Update_Key_ReadPin();</span><br><span class="line">	<span class="keyword">for</span>(key_num=<span class="number">0</span>;key_num&lt;<span class="number">4</span>;key_num++)</span><br><span class="line">	&#123;</span><br><span class="line">		Update_Key_Status(key_num);</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="comment">/* USER CODE END SysTick_IRQn 1 */</span></span><br><span class="line">&#125;</span><br></pre>
+<span class="token keyword">void</span> <span class="token function">Update_Key_Status</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> key_num<span class="token punctuation">)</span><span class="token comment">//消抖10ms</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>key_readpin<span class="token punctuation">[</span>key_num<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+	```
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">else</span>
+	<span class="token punctuation">&#123;</span>
+	```
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">0</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">0</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">1</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">1</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">2</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED3_GPIO_Port,LED3_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">2</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Get_Key_Status(<span class="number">3</span>)==key_pressed)</span><br><span class="line">    &#123;</span><br><span class="line">        HAL_GPIO_TogglePin(LED4_GPIO_Port,LED4_Pin);</span><br><span class="line">        Do_It_Every_nMs(<span class="number">3</span>,<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****key.h*****/</span>
+<span class="token keyword">int</span> <span class="token function">Update_Key_ReadPin</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****stm32g4xx_it.c*****/</span>
+<span class="token comment">/* USER CODE BEGIN PD */</span>
+	<span class="token class-name">uint8_t</span> key_num<span class="token punctuation">;</span>
+<span class="token comment">/* USER CODE END PD */</span>
+
+<span class="token keyword">void</span> <span class="token function">SysTick_Handler</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  ```
+  <span class="token comment">/* USER CODE BEGIN SysTick_IRQn 1 */</span>
+	<span class="token function">Update_Key_ReadPin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span>key_num<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>key_num<span class="token operator">&lt;</span><span class="token number">4</span><span class="token punctuation">;</span>key_num<span class="token operator">++</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token function">Update_Key_Status</span><span class="token punctuation">(</span>key_num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+  <span class="token comment">/* USER CODE END SysTick_IRQn 1 */</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****main.c*****/</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"key.h"</span></span>
+
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">Get_Key_Status</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">==</span>key_pressed<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED1_GPIO_Port<span class="token punctuation">,</span>LED1_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Do_It_Every_nMs</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">Get_Key_Status</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">==</span>key_pressed<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED2_GPIO_Port<span class="token punctuation">,</span>LED2_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Do_It_Every_nMs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">Get_Key_Status</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">==</span>key_pressed<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED3_GPIO_Port<span class="token punctuation">,</span>LED3_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Do_It_Every_nMs</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">Get_Key_Status</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">==</span>key_pressed<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED4_GPIO_Port<span class="token punctuation">,</span>LED4_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">Do_It_Every_nMs</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
   </div>
@@ -535,6 +758,13 @@
         </div>
       </a>
     
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
@@ -549,9 +779,9 @@
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
         <div class="categories-list-item">
-          摘录博客
+          摘录博客/hexo博客
           <span class="categories-list-item-badge">1</span>
         </div>
       </a>
@@ -567,13 +797,6 @@
         <div class="categories-list-item">
           竞赛/嵌入式
           <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          摘录博客/hexo博客
-          <span class="categories-list-item-badge">1</span>
         </div>
       </a>
     

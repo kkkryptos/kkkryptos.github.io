@@ -127,15 +127,18 @@
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else if(reverseDarkList[setting]) {
         document.documentElement.setAttribute('data-user-color-scheme', setting);
         document.getElementById('theme-color').content = themeColor[setting];
         document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
       } else {
         document.documentElement.removeAttribute('data-user-color-scheme');
         localStorage.removeItem('user-color-scheme');
         document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
         document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
       }
     };
     setDarkmode();
@@ -355,7 +358,22 @@
 <p>因此，ticks&#x3D;170 000 000&#x2F;我们想要的时钟产生中断的频率</p>
 <p>如要使频率为10kHz：在main()中<code>SystemClock_Config();</code>之后调用<code>HAL_SYSTICK_Config(17 000);</code></p>
 <p>*<font color="cornflowerblue">注意</font>*：STK_LOAD寄存器的长度为24bit&#x3D;2^24-1&#x3D;16777215</p>
-<pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"></span><br><span class="line"><span class="type">uint32_t</span> tempCnt;</span><br><span class="line"></span><br><span class="line">HAL_SYSTICK_Config(<span class="number">170000000</span>/<span class="number">1000</span>);<span class="comment">//将1000改成10000，比较灯闪烁频率</span></span><br><span class="line"></span><br><span class="line">HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_SET);<span class="comment">//GPIO_PIN_SET高电平，使能</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(HAL_GetTick()-tempCnt&gt;<span class="number">1000</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);</span><br><span class="line">		tempCnt=HAL_GetTick();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****main.c*****/</span>
+
+<span class="token class-name">uint32_t</span> tempCnt<span class="token punctuation">;</span>
+
+<span class="token function">HAL_SYSTICK_Config</span><span class="token punctuation">(</span><span class="token number">170000000</span><span class="token operator">/</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//将1000改成10000，比较灯闪烁频率</span>
+
+<span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_EN_GPIO_Port<span class="token punctuation">,</span>LED_EN_Pin<span class="token punctuation">,</span>GPIO_PIN_SET<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//GPIO_PIN_SET高电平，使能</span>
+
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">HAL_GetTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>tempCnt<span class="token operator">></span><span class="token number">1000</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED1_GPIO_Port<span class="token punctuation">,</span>LED1_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		tempCnt<span class="token operator">=</span><span class="token function">HAL_GetTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="二、General-purpose-timers-TIM2-x2F-TIM3-x2F-TIM4-x2F-TIM5-通用定时器"><a href="#二、General-purpose-timers-TIM2-x2F-TIM3-x2F-TIM4-x2F-TIM5-通用定时器" class="headerlink" title="二、General-purpose timers (TIM2&#x2F;TIM3&#x2F;TIM4&#x2F;TIM5)通用定时器"></a>二、General-purpose timers (TIM2&#x2F;TIM3&#x2F;TIM4&#x2F;TIM5)通用定时器</h3><h4 id="1、时基功能"><a href="#1、时基功能" class="headerlink" title="1、时基功能"></a>1、时基功能</h4><h5 id="1-确定总线（数据手册p16）"><a href="#1-确定总线（数据手册p16）" class="headerlink" title="1. 确定总线（数据手册p16）"></a>1. 确定总线（数据手册p16）</h5><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/21.png?raw=true" alt="21" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/21.png?raw=true" class="lozad post-image"></p>
 <p>TIMER3位于总线APB1上</p>
@@ -366,26 +384,148 @@
 <p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/24.png" alt="24" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/24.png" class="lozad post-image"></p>
 <p>PSC：17分频，则选择16（0-65535）</p>
 <p>Counter Period：170 000&#x2F;17 &#x3D;10000</p>
-<h5 id="4-代码（用TIM2时基控制LED2闪烁）"><a href="#4-代码（用TIM2时基控制LED2闪烁）" class="headerlink" title="4. 代码（用TIM2时基控制LED2闪烁）"></a>4. 代码（用TIM2时基控制LED2闪烁）</h5><pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">HAL_TIM_PeriodElapsedCallback</span><span class="params">(TIM_HandleTypeDef *htim)</span> <span class="comment">//中断函数里调用的回调函数</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* Prevent unused argument(s) compilation warning */</span></span><br><span class="line">	<span class="type">static</span> <span class="type">uint16_t</span> cnt=<span class="number">0</span>; <span class="comment">//静态变量static申请的内存不在栈区，而在数据区。当函数被销毁时，它不会随着函数的销毁而释放，从而实现了其生存期超过了函数本身的功能。</span></span><br><span class="line">	cnt++;</span><br><span class="line">  <span class="keyword">if</span>(cnt&gt;=<span class="number">1000</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cnt=<span class="number">0</span>;</span><br><span class="line">		HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	HAL_TIM_Base_Start_IT(&amp;htim2); <span class="comment">//打开TIM2带中断的时基</span></span><br><span class="line">&#125;</span><br></pre>
+<h5 id="4-代码（用TIM2时基控制LED2闪烁）"><a href="#4-代码（用TIM2时基控制LED2闪烁）" class="headerlink" title="4. 代码（用TIM2时基控制LED2闪烁）"></a>4. 代码（用TIM2时基控制LED2闪烁）</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****main.c*****/</span>
+<span class="token keyword">void</span> <span class="token function">HAL_TIM_PeriodElapsedCallback</span><span class="token punctuation">(</span>TIM_HandleTypeDef <span class="token operator">*</span>htim<span class="token punctuation">)</span> <span class="token comment">//中断函数里调用的回调函数</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token comment">/* Prevent unused argument(s) compilation warning */</span>
+	<span class="token keyword">static</span> <span class="token class-name">uint16_t</span> cnt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//静态变量static申请的内存不在栈区，而在数据区。当函数被销毁时，它不会随着函数的销毁而释放，从而实现了其生存期超过了函数本身的功能。</span>
+	cnt<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>cnt<span class="token operator">>=</span><span class="token number">1000</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		cnt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+		<span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED2_GPIO_Port<span class="token punctuation">,</span>LED2_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token function">HAL_TIM_Base_Start_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>htim2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//打开TIM2带中断的时基</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="2、输入捕获信号频率"><a href="#2、输入捕获信号频率" class="headerlink" title="2、输入捕获信号频率"></a>2、输入捕获信号频率</h4><h5 id="1-参考手册"><a href="#1-参考手册" class="headerlink" title="1. 参考手册"></a>1. 参考手册</h5><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/25.png" alt="25" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/25.png" class="lozad post-image"></p>
 <h5 id="2-原理图"><a href="#2-原理图" class="headerlink" title="2. 原理图"></a>2. 原理图</h5><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/26.png" alt="26" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/26.png" class="lozad post-image"></p>
 <h5 id="3-CubeMX工程配置-1"><a href="#3-CubeMX工程配置-1" class="headerlink" title="3. CubeMX工程配置"></a>3. CubeMX工程配置</h5><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/27.png" alt="27" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/27.png" class="lozad post-image"></p>
 <p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/28.png" alt="28" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/28.png" class="lozad post-image"></p>
-<h5 id="4-代码（通过调试电阻R40，在LCD上看到pwm频率变化）"><a href="#4-代码（通过调试电阻R40，在LCD上看到pwm频率变化）" class="headerlink" title="4. 代码（通过调试电阻R40，在LCD上看到pwm频率变化）"></a>4. 代码（通过调试电阻R40，在LCD上看到pwm频率变化）</h5><pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;lcd.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdio.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">HAL_TIM_IC_CaptureCallback</span><span class="params">(TIM_HandleTypeDef *htim)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* Prevent unused argument(s) compilation warning */</span></span><br><span class="line">  </span><br><span class="line">	<span class="type">static</span> <span class="type">uint32_t</span> old_cap_cal=<span class="number">0</span>;</span><br><span class="line">	<span class="type">static</span> <span class="type">uint32_t</span> new_cap_val=<span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	new_cap_val=HAL_TIM_ReadCapturedValue(&amp;htim2,TIM_CHANNEL_1); </span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(new_cap_val&lt;old_cap_cal)</span><br><span class="line">	&#123;</span><br><span class="line">		pwm_period=<span class="number">100000</span>-old_cap_cal+new_cap_val;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		pwm_period=new_cap_val-old_cap_cal;</span><br><span class="line">	&#125;</span><br><span class="line">	old_cap_cal=new_cap_val;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">uint32_t</span> tempCnt;</span><br><span class="line">	<span class="type">char</span> disp_buff[<span class="number">30</span>];</span><br><span class="line">	<span class="type">float</span> fre=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* USER CODE BEGIN Init */</span></span><br><span class="line">	LCD_Init();</span><br><span class="line">  <span class="comment">/* USER CODE END Init */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysInit */</span></span><br><span class="line">	HAL_SYSTICK_Config(<span class="number">170000000</span>/<span class="number">1000</span>);</span><br><span class="line">  <span class="comment">/* USER CODE END SysInit */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* USER CODE BEGIN 2 */</span></span><br><span class="line">	HAL_TIM_IC_Start_IT(&amp;htim2,TIM_CHANNEL_1);<span class="comment">//打开TIM2通道1的带中断的输入捕获</span></span><br><span class="line">	<span class="comment">//HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_SET);//GPIO_PIN_SET高电平，使能</span></span><br><span class="line">  <span class="comment">/* USER CODE END 2 */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* USER CODE BEGIN WHILE */</span></span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(HAL_GetTick()-tempCnt&gt;<span class="number">100</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			fre=<span class="number">10000000.0</span> / pwm_period;</span><br><span class="line">		</span><br><span class="line">			<span class="built_in">sprintf</span>(disp_buff,<span class="string">&quot;TIM2_CAP_Period:%.2fHz&quot;</span>,fre);</span><br><span class="line">			</span><br><span class="line">			LCD_DisplayStringLine(Line6,(<span class="type">uint8_t</span>*)disp_buff);</span><br><span class="line">			</span><br><span class="line">            tempCnt=HAL_GetTick();</span><br><span class="line">		&#125;</span><br><span class="line">    <span class="comment">/* USER CODE END WHILE */</span></span><br><span class="line">    <span class="comment">/* USER CODE BEGIN 3 */</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/* USER CODE END 3 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+<h5 id="4-代码（通过调试电阻R40，在LCD上看到pwm频率变化）"><a href="#4-代码（通过调试电阻R40，在LCD上看到pwm频率变化）" class="headerlink" title="4. 代码（通过调试电阻R40，在LCD上看到pwm频率变化）"></a>4. 代码（通过调试电阻R40，在LCD上看到pwm频率变化）</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****main.c*****/</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"lcd.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"stdio.h"</span></span>
+
+<span class="token keyword">void</span> <span class="token function">HAL_TIM_IC_CaptureCallback</span><span class="token punctuation">(</span>TIM_HandleTypeDef <span class="token operator">*</span>htim<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token comment">/* Prevent unused argument(s) compilation warning */</span>
+  
+	<span class="token keyword">static</span> <span class="token class-name">uint32_t</span> old_cap_cal<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">static</span> <span class="token class-name">uint32_t</span> new_cap_val<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	
+	new_cap_val<span class="token operator">=</span><span class="token function">HAL_TIM_ReadCapturedValue</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>htim2<span class="token punctuation">,</span>TIM_CHANNEL_1<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+	
+	<span class="token keyword">if</span><span class="token punctuation">(</span>new_cap_val<span class="token operator">&lt;</span>old_cap_cal<span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		pwm_period<span class="token operator">=</span><span class="token number">100000</span><span class="token operator">-</span>old_cap_cal<span class="token operator">+</span>new_cap_val<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">else</span>
+	<span class="token punctuation">&#123;</span>
+		pwm_period<span class="token operator">=</span>new_cap_val<span class="token operator">-</span>old_cap_cal<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	old_cap_cal<span class="token operator">=</span>new_cap_val<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+
+	<span class="token class-name">uint32_t</span> tempCnt<span class="token punctuation">;</span>
+	<span class="token keyword">char</span> disp_buff<span class="token punctuation">[</span><span class="token number">30</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token keyword">float</span> fre<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/* USER CODE BEGIN Init */</span>
+	<span class="token function">LCD_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">/* USER CODE END Init */</span>
+
+  <span class="token comment">/* USER CODE BEGIN SysInit */</span>
+	<span class="token function">HAL_SYSTICK_Config</span><span class="token punctuation">(</span><span class="token number">170000000</span><span class="token operator">/</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">/* USER CODE END SysInit */</span>
+
+  <span class="token comment">/* USER CODE BEGIN 2 */</span>
+	<span class="token function">HAL_TIM_IC_Start_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>htim2<span class="token punctuation">,</span>TIM_CHANNEL_1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//打开TIM2通道1的带中断的输入捕获</span>
+	<span class="token comment">//HAL_GPIO_WritePin(LED_EN_GPIO_Port,LED_EN_Pin,GPIO_PIN_SET);//GPIO_PIN_SET高电平，使能</span>
+  <span class="token comment">/* USER CODE END 2 */</span>
+
+  <span class="token comment">/* USER CODE BEGIN WHILE */</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#123;</span>
+
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">HAL_GetTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>tempCnt<span class="token operator">></span><span class="token number">100</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#123;</span>
+			fre<span class="token operator">=</span><span class="token number">10000000.0</span> <span class="token operator">/</span> pwm_period<span class="token punctuation">;</span>
+		
+			<span class="token function">sprintf</span><span class="token punctuation">(</span>disp_buff<span class="token punctuation">,</span><span class="token string">"TIM2_CAP_Period:%.2fHz"</span><span class="token punctuation">,</span>fre<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			
+			<span class="token function">LCD_DisplayStringLine</span><span class="token punctuation">(</span>Line6<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span><span class="token punctuation">)</span>disp_buff<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			
+            tempCnt<span class="token operator">=</span><span class="token function">HAL_GetTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+    <span class="token comment">/* USER CODE END WHILE */</span>
+    <span class="token comment">/* USER CODE BEGIN 3 */</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token comment">/* USER CODE END 3 */</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="3、输出比较"><a href="#3、输出比较" class="headerlink" title="3、输出比较"></a>3、输出比较</h4><h5 id="1-参考手册-1"><a href="#1-参考手册-1" class="headerlink" title="1. 参考手册"></a>1. 参考手册</h5><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/31.png" alt="31" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/31.png" class="lozad post-image"></p>
 <h5 id="2-CubeMX工程配置"><a href="#2-CubeMX工程配置" class="headerlink" title="2. CubeMX工程配置"></a>2. CubeMX工程配置</h5><p>将PC8配置为TIM3_CH3，即pwm输出到LED1上</p>
 <p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/32.png" alt="32" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/32.png" class="lozad post-image"></p>
 <p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/33.png" alt="33" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/33.png" class="lozad post-image"></p>
 <p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/34.png" alt="34" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/34.png" class="lozad post-image"></p>
-<h5 id="3-代码-用pwm输出呼吸灯"><a href="#3-代码-用pwm输出呼吸灯" class="headerlink" title="3. 代码(用pwm输出呼吸灯)"></a>3. 代码(用pwm输出呼吸灯)</h5><pre class="highlight"><span class="line"><span class="comment">/*****main.c*****/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">HAL_TIM_PWM_PulseFinishedCallback</span><span class="params">(TIM_HandleTypeDef *htim)</span> <span class="comment">//回调函数：改变pwm的值</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* Prevent unused argument(s) compilation warning */</span></span><br><span class="line">  <span class="type">static</span> <span class="type">uint16_t</span> temp_pulse=<span class="number">5000</span>;</span><br><span class="line">	<span class="type">static</span> <span class="type">uint8_t</span> cnt_dir=<span class="number">0</span>; <span class="comment">//脉冲宽度值变化方向 0增1减</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(cnt_dir==<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		temp_pulse+=<span class="number">5</span>;</span><br><span class="line">		<span class="keyword">if</span>(temp_pulse&gt;<span class="number">10000</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			cnt_dir=<span class="number">1</span>;</span><br><span class="line">			temp_pulse=<span class="number">9999</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(cnt_dir==<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		temp_pulse-=<span class="number">5</span>;</span><br><span class="line">		<span class="keyword">if</span>(temp_pulse&lt;<span class="number">5000</span>)</span><br><span class="line">			cnt_dir=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	htim3.Instance-&gt;CCR3 = temp_pulse;</span><br><span class="line"><span class="comment">//结构体变量.指针-&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* NOTE : This function should not be modified, when the callback is needed,</span></span><br><span class="line"><span class="comment">            the HAL_TIM_PWM_PulseFinishedCallback could be implemented in the user file</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//	LCD_Init(); //注释掉LCD的函数，以免影响PC8的输出</span></span><br><span class="line">    HAL_TIM_IC_Start_IT(&amp;htim3,TIM_CHANNEL_3);</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line"><span class="comment">//		if(HAL_GetTick()-tempCnt&gt;100)</span></span><br><span class="line"><span class="comment">//		&#123;</span></span><br><span class="line"><span class="comment">//			```</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre>
+<h5 id="3-代码-用pwm输出呼吸灯"><a href="#3-代码-用pwm输出呼吸灯" class="headerlink" title="3. 代码(用pwm输出呼吸灯)"></a>3. 代码(用pwm输出呼吸灯)</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*****main.c*****/</span>
+<span class="token keyword">void</span> <span class="token function">HAL_TIM_PWM_PulseFinishedCallback</span><span class="token punctuation">(</span>TIM_HandleTypeDef <span class="token operator">*</span>htim<span class="token punctuation">)</span> <span class="token comment">//回调函数：改变pwm的值</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token comment">/* Prevent unused argument(s) compilation warning */</span>
+  <span class="token keyword">static</span> <span class="token class-name">uint16_t</span> temp_pulse<span class="token operator">=</span><span class="token number">5000</span><span class="token punctuation">;</span>
+	<span class="token keyword">static</span> <span class="token class-name">uint8_t</span> cnt_dir<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//脉冲宽度值变化方向 0增1减</span>
+	
+	<span class="token keyword">if</span><span class="token punctuation">(</span>cnt_dir<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		temp_pulse<span class="token operator">+=</span><span class="token number">5</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>temp_pulse<span class="token operator">></span><span class="token number">10000</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#123;</span>
+			cnt_dir<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+			temp_pulse<span class="token operator">=</span><span class="token number">9999</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>cnt_dir<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		temp_pulse<span class="token operator">-=</span><span class="token number">5</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>temp_pulse<span class="token operator">&lt;</span><span class="token number">5000</span><span class="token punctuation">)</span>
+			cnt_dir<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	htim3<span class="token punctuation">.</span>Instance<span class="token operator">-></span>CCR3 <span class="token operator">=</span> temp_pulse<span class="token punctuation">;</span>
+<span class="token comment">//结构体变量.指针-></span>
+
+  <span class="token comment">/* NOTE : This function should not be modified, when the callback is needed,
+            the HAL_TIM_PWM_PulseFinishedCallback could be implemented in the user file
+   */</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">//	LCD_Init(); //注释掉LCD的函数，以免影响PC8的输出</span>
+    <span class="token function">HAL_TIM_IC_Start_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>htim3<span class="token punctuation">,</span>TIM_CHANNEL_3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+<span class="token comment">//		if(HAL_GetTick()-tempCnt>100)</span>
+<span class="token comment">//		&#123;</span>
+<span class="token comment">//			```</span>
+<span class="token comment">//		&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>找到脉冲宽度的赋值pulse位置：</li>
 </ul>
 <p>MX_TIM3_Init();→找到sConfigOC.<font color="cornflowerblue">Pulse</font> &#x3D; 5000;→看sConfigOC这个结构体的的调用函数HAL_TIM_PWM_ConfigChannel(&amp;htim3, &amp;sConfigOC, TIM_CHANNEL_3)→TIM_OC3_SetConfig(htim-&gt;Instance, sConfig);→找到</p>
-<pre class="highlight"><span class="line">  <span class="comment">/* Set the Capture Compare Register value */</span></span><br><span class="line">  TIMx-&gt;CCR3 = OC_Config-&gt;Pulse;   </span><br><span class="line"><span class="comment">//可以直接在工程里查找（Ctrl+F）： Capture Compare Register value</span></span><br></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">  <span class="token comment">/* Set the Capture Compare Register value */</span>
+  TIMx<span class="token operator">-></span>CCR3 <span class="token operator">=</span> OC_Config<span class="token operator">-></span>Pulse<span class="token punctuation">;</span>   
+<span class="token comment">//可以直接在工程里查找（Ctrl+F）： Capture Compare Register value</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>TIMx-&gt;CCR3就是我们要赋值的对象</p>
 <p>但这里TIMx会报错</p>
@@ -530,6 +670,13 @@
         </div>
       </a>
     
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
@@ -544,9 +691,9 @@
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
         <div class="categories-list-item">
-          摘录博客
+          摘录博客/hexo博客
           <span class="categories-list-item-badge">1</span>
         </div>
       </a>
@@ -562,13 +709,6 @@
         <div class="categories-list-item">
           竞赛/嵌入式
           <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          摘录博客/hexo博客
-          <span class="categories-list-item-badge">1</span>
         </div>
       </a>
     
