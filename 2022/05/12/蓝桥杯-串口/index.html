@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="/images/logo.png">
-  <title>不对称</title>
+  <title>蓝桥杯_串口</title>
   
     
       <meta 
         property="og:title" 
-        content="不对称">
+        content="蓝桥杯_串口">
     
     
       <meta 
         property="og:url" 
-        content="http://kkkryptos.github.io/2022/05/11/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/index.html">
+        content="http://kkkryptos.github.io/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/index.html">
     
     
       <meta 
@@ -42,7 +42,7 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-05-11">
+        content="2022-05-12">
       <meta 
         property="og:article:modified_time" 
         content="2022-05-12">
@@ -50,6 +50,14 @@
         property="og:article:author" 
         content="kkkryptos">
       
+        
+          <meta 
+            property="og:article:tag" 
+            content="stm32">
+        
+          <meta 
+            property="og:article:tag" 
+            content="蓝桥杯">
         
       
     
@@ -260,31 +268,72 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      
+      蓝桥杯_串口
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-05-10T22:28:09.846Z">
+    <time datetime="2022-05-12T10:53:19.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-05-11</span>
+      <span>2022-05-12</span>
     </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E7%AB%9E%E8%B5%9B/" 
+          class="post-meta-link">
+          竞赛
+        </a>
+      
+        <a 
+          href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/" 
+          class="post-meta-link">
+          嵌入式
+        </a>
+      
     
     
       <span class="dot"></span>
-      <span>846 字</span>
+      <span>824 字</span>
     
   </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/stm32/" 
+            class="post-meta-link">
+            stm32
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" 
+            class="post-meta-link">
+            蓝桥杯
+          </a>
+        
+      </div>
+    </div>
   
   </header>
   <div 
     id="section" 
     class="post-content">
-    <pre class="highlight"><code class="hljs plaintext">title: 蓝桥杯_串口<br>date: 2022-05-11 06:28:09<br>tags:<br>- 蓝桥杯<br>- stm32<br>categories:<br>- 竞赛<br>- 嵌入式<br></code></pre>
-
-<h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/01.png" alt="01" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/01.png" class="lozad post-image"></p>
+    <h3 id="一、原理图"><a href="#一、原理图" class="headerlink" title="一、原理图"></a>一、原理图</h3><p><img src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/01.png" alt="01" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://github.com/kkkryptos/MyPostImages/raw/master/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/01.png" class="lozad post-image"></p>
 <p>PA9、PA10</p>
 <h3 id="二、CubeMX工程配置"><a href="#二、CubeMX工程配置" class="headerlink" title="二、CubeMX工程配置"></a>二、CubeMX工程配置</h3><h4 id="1、Pinout-amp-Configuration-System-Core"><a href="#1、Pinout-amp-Configuration-System-Core" class="headerlink" title="1、Pinout&amp;Configuration_System Core"></a>1、Pinout&amp;Configuration_System Core</h4><h5 id="1-SYS"><a href="#1-SYS" class="headerlink" title="1.SYS"></a>1.SYS</h5><p>Debug：<strong>Serial Wire</strong>（串行）</p>
 <pre class="highlight"><code class="hljs plaintext">PA13 SYS_JTCK-SWCLK<br>PA14 SYS_JTMS-SWDID<br></code></pre>
@@ -347,8 +396,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://kkkryptos.github.io/2022/05/11/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/">
-            http://kkkryptos.github.io/2022/05/11/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/
+            href="http://kkkryptos.github.io/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/">
+            http://kkkryptos.github.io/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -358,29 +407,15 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
-      <a 
-        href="/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-I2C/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">蓝桥杯_I2C </div>
-          
-        </div>
-      </a>
-    </div>
-  
   
     <div class="nav-item-next">
       <a 
-        href="/2022/05/06/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%AE%9A%E6%97%B6%E5%99%A8/" 
+        href="/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-I2C/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">蓝桥杯_定时器 </div>
+            <div class="nav-title">蓝桥杯_I2C </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -468,13 +503,6 @@
         </div>
       </a>
     
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          摘录博客
-          <span class="categories-list-item-badge">1</span>
-        </div>
-      </a>
-    
       <a href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         <div class="categories-list-item">
           专业课
@@ -485,14 +513,7 @@
       <a href="/categories/%E7%AB%9E%E8%B5%9B/">
         <div class="categories-list-item">
           竞赛
-          <span class="categories-list-item-badge">7</span>
-        </div>
-      </a>
-    
-      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          摘录博客/hexo博客
-          <span class="categories-list-item-badge">1</span>
+          <span class="categories-list-item-badge">8</span>
         </div>
       </a>
     
@@ -503,10 +524,24 @@
         </div>
       </a>
     
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
       <a href="/categories/%E7%AB%9E%E8%B5%9B/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
         <div class="categories-list-item">
           竞赛/嵌入式
-          <span class="categories-list-item-badge">7</span>
+          <span class="categories-list-item-badge">8</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%91%98%E5%BD%95%E5%8D%9A%E5%AE%A2/hexo%E5%8D%9A%E5%AE%A2/">
+        <div class="categories-list-item">
+          摘录博客/hexo博客
+          <span class="categories-list-item-badge">1</span>
         </div>
       </a>
     
@@ -600,12 +635,12 @@
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-05-12</div>
-        <a href="/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-I2C/"><div class="recent-posts-item-content">蓝桥杯_I2C</div></a>
+        <a href="/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/"><div class="recent-posts-item-content">蓝桥杯_串口</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-11</div>
-        <a href="/2022/05/11/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E4%B8%B2%E5%8F%A3/"><div class="recent-posts-item-content"></div></a>
+        <div class="recent-posts-item-title">2022-05-12</div>
+        <a href="/2022/05/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-I2C/"><div class="recent-posts-item-content">蓝桥杯_I2C</div></a>
       </div>
     
       <div class="recent-posts-item">
